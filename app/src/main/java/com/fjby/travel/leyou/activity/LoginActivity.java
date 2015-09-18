@@ -17,10 +17,6 @@ import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 
 import java.util.HashMap;
-
-/**
- * Created by abin on 2015/9/15.
- */
 public class LoginActivity extends BaseActivity {
     private EditText mNameEditText;
     private EditText mPassEditText;
@@ -30,9 +26,6 @@ public class LoginActivity extends BaseActivity {
     private TextView mLoginWecharTv;
     private TextView mLoginWeiboTv;
     private Button mLoginBtn;
-
-
-    //这是提交到那一个
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +75,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(checkSend()){
-                    HashMap<String, String> map = new HashMap<String, String>();
+                    HashMap<String, String> map = new HashMap<>();
                     map.put("name",mNameEditText.getText().toString().trim());
                     map.put("req","login");
                     map.put("pass", mPassEditText.getText().toString().trim());
