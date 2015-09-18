@@ -26,6 +26,7 @@ public class LoginActivity extends BaseActivity {
     private TextView mLoginWecharTv;
     private TextView mLoginWeiboTv;
     private Button mLoginBtn;
+    //实验
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
