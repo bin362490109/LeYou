@@ -32,6 +32,8 @@ public class LoginActivity extends BaseActivity {
     private Button mLoginBtn;
 
 
+    //这是提交到那一个
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
