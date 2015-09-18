@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/white</item>
+        <!--正常状态下字体颜色和icon颜色-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseAppTheme"/>
+
+    <style name="DrawerLayoutTheme" parent="AppTheme"></style>
+
+
+    <style name="CardView.Content" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="EditTextNoBackgroundTheme">
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:height">60dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="EditTextNoBackgroundTheme.loginTextcolor" parent="EditTextNoBackgroundTheme">
+        <item name="android:textColor">@color/login_textcolor_selector</item>
+        <item name="android:textColorHint">@color/login_textcolorhint_selector</item>
+    </style>
+
+    <style name="EditTextNoBackgroundTheme.RegistTextcolor" parent="EditTextNoBackgroundTheme">
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:textColor">@color/regist_textcolor_selector</item>
+        <item name="android:textColorHint">@color/regist_textcolorhint_selector</item>
+    </style>
+</resources>

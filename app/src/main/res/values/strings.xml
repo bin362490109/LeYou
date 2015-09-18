@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">LeYou</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="navigation_book">例子</string>
+    <string name="navigation_example">控件</string>
+    <string name="navigation_my_blog">博客</string>
+    <string name="navigation_about">关于</string>
+
+    <string name="header_author_name">安卓猴</string>
+    <string name="header_author_url">sunjiajia.com</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="phone_number">手机号</string>
+    <string name="get_msg_code">获取验证码</string>
+    <string name="confirm">确定</string>
+    <string name="password">密码</string>
+    <string name="register_pass_digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
+    <string name="register_name_digits">0123456789</string>
+    <string name="password_verifycode">验证码</string>
+    <string name="get_password_verifycode">点击发送</string>
+    <string name="title_activity_registered">Registered</string>
+    <string name="regest_password">密码&#160;&#160;&#160;&#160;</string>
+    <string name="hint_username">用户名</string>
+    <string name="button_login">登录</string>
+    <string name="button_register">注册账号</string>
+    <string name="button_forget">忘记密码</string>
+    <string name="register_label">注册界面</string>
+    <string name="login_label">登录界面</string>
+    <string name="hint_repassword">密码确认</string>
+    <string name="name_is_null">用户名为空</string>
+    <string name="pass_is_null">密码为空</string>
+    <string name="network_err">网络错误</string>
+    <string name="account_is_valid">用户因为未知原因被冰冻了，请联系管理员解冻</string>
+    <string name="account_err">用户名或者密码错误</string>
+    <string name="Phone_is_null">电话为空</string>
+    <string name="code_is_null">验证码为空</string>
+    <string name="Phone_length_err">电话号码长度不对</string>
+    <string name="phone_is_same">你的手机号码已经被注册了，请更换手机号码</string>
+    <string name="code_is_err">短信验证码错误</string>
+    <string name="code_is_overtime">你的验证码超出有效期内，请重新获取</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_err">注册失败</string>
+    <string name="pass_length_err">密码长度应为6-16位</string>
+    <string name="wechat">微信</string>
+    <string name="QQ">QQ</string>
+    <string name="weibo">微博</string>
+    <string name="phone_number_hint">请输入11位手机号码</string>
+    <string name="password_verifycode_hint">请输入短信验证码</string>
+    <string name="regest_password_hint">密码为6到16个字符</string>
+    <string name="register_agree_1">我已阅读并接受</string>
+    <string name="register_agree_2">《注册协议》</string>
+    <string name="produce_info">产品信息</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

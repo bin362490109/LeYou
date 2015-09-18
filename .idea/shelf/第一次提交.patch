@@ -1,0 +1,16 @@
+Index: app/src/main/java/com/fjby/travel/leyou/activity/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/fjby/travel/leyou/activity/MainActivity.java	(date 1442567280000)
++++ app/src/main/java/com/fjby/travel/leyou/activity/MainActivity.java	(revision )
+@@ -27,7 +27,7 @@
+     private NavigationView mNavigationView;
+     private ResUser mResUser;
+     private int oldPosition=0;
+-
++//--------------------------------------------------
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);

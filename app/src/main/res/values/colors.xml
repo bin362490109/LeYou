@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3F56B5</color>
+    <color name="primary_dark">#30459E</color>
+    <color name="primary_light">#B2DFDB</color>
+    <color name="accent">#ffb74d</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lightgray">#D3D3D3</color>
+    <color name="lightblue">#80d8ed</color>
+    <color name="darkblue">#5afff2</color>
+    <color name="black_grey">#6D6D6D</color>
+    <color name="black">#000000</color>
+    <color name="window_background">#FFF5F5F5</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="gray">#ffcacaca</color>
+    <color name="regiset_gray">#f2f2f2</color>
+    <color name="blue">#ff1f9ced</color>
+    <color name="red">#fffd5c48</color>
+    <color name="yellow">#ffff9c00</color>
+    <color name="green">#ff47c84a</color>
+    <color name="indigo">#ff03bff5</color>
+    <color name="purple">#ffdc4e98</color>
+    <color name="vermilion">#ff9c7055</color>
+    <color name="tab_text">#808080</color>
+    <color name="tab_text_pre">#00b1db</color>
+</resources>

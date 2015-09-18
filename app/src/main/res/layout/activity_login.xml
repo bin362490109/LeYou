@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.fjby.travel.leyou.activity.RegisteredActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/login_bg"
+        android:orientation="vertical">
+        <include layout="@layout/include_toolbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical"
+            >
+
+            <EditText
+                android:id="@+id/login_name"
+                style="@style/EditTextNoBackgroundTheme.loginTextcolor"
+                android:drawableLeft="@drawable/acount_selector"
+                android:drawablePadding="34dp"
+                android:hint="@string/hint_username"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                />
+
+            <EditText
+                android:id="@+id/login_password"
+                style="@style/EditTextNoBackgroundTheme.loginTextcolor"
+                android:digits="@string/register_pass_digits"
+                android:drawableLeft="@drawable/password_selector"
+                android:drawablePadding="34dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_login_selector"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/btnRegiset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/textcolor_selector"
+                android:textSize="16sp"
+                android:text="@string/button_register"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:textSize="26sp"
+                android:text="|"
+                />
+            <TextView
+                android:id="@+id/btnForget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/textcolor_selector"
+                android:text="@string/button_forget"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="或用其他方式登录"
+                android:textSize="18sp"
+                />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/login_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/btn_wechat_selector"
+                android:textColor="@color/textcolor_selector"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="@string/wechat"
+                />
+            <TextView
+                android:id="@+id/login_QQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:drawableTop="@drawable/btn_qq_selector"
+                android:textColor="@color/textcolor_selector"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="@string/QQ"
+                />
+            <TextView
+                android:id="@+id/login_weibo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/btn_weibo_selector"
+                android:textColor="@color/textcolor_selector"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="@string/weibo"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
