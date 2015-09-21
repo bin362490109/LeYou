@@ -28,7 +28,7 @@
             <EditText
                 android:id="@+id/login_name"
                 style="@style/EditTextNoBackgroundTheme.loginTextcolor"
-                android:drawableLeft="@drawable/acount_selector"
+                android:drawableLeft="@drawable/account_selector"
                 android:drawablePadding="34dp"
                 android:hint="@string/hint_username"/>
 

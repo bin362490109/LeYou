@@ -76,7 +76,6 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         setContentView(R.layout.activity_register);
         initToolbar(true, true);
         setToolbarTitle(R.string.register_label);
-
         mRegisetSureBtn = (Button) findViewById(R.id.regiset_sure_btn);
         mRegisetCodeBtn = (Button) findViewById(R.id.regiset_code_btn);
         mRegisetphoneEt = (EditText) findViewById(R.id.regiset_phone);
@@ -98,7 +97,6 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
      * @param phone the phone
      */
     private void sendVerifyCode(final String phone) {
-        // TODO Auto-generated method stub
         mRegisetCodeBtn.setEnabled(false);
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("req","reg");
@@ -129,7 +127,6 @@ public class RegisteredActivity extends BaseActivity implements View.OnClickList
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                // TODO Auto-generated method stub
                 handler.sendEmptyMessage(TICK_TIME);
             }
         }, 1000, 1000);

@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="首页"
+            android:text="@string/main_home"
             android:textColor="@color/tab_text_selector"
             android:textSize="12sp"/>
 
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="消息"
+            android:text="@string/main_info"
             android:textColor="@color/tab_text_selector"
             android:textSize="12sp"/>
 
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="乐知"
+            android:text="@string/main_notes"
             android:textColor="@color/tab_text_selector"
             android:textSize="12sp"/>
 
@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="旅讯"
+            android:text="@string/main_news"
             android:textColor="@color/tab_text_selector"
             android:textSize="12sp"/>
 

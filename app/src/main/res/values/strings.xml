@@ -55,6 +55,9 @@
     <string name="register_agree_2">《注册协议》</string>
     <string name="produce_info">产品信息</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_image">没有图片</string>
+    <string name="main_home">首页</string>
+    <string name="main_info">消息</string>
+    <string name="main_notes">乐知</string>
+    <string name="main_news">旅讯</string>
 </resources>

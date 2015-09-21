@@ -1,30 +1,20 @@
 package com.fjby.travel.leyou.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.fragment.HomeFragment;
+import com.fjby.travel.leyou.fragment.InfoFragment;
+import com.fjby.travel.leyou.fragment.NewsFragment;
+import com.fjby.travel.leyou.fragment.NotesFragment;
 import com.fjby.travel.leyou.fragment.PageFragment;
-import com.fjby.travel.leyou.utils.LogUtil;
 
-import static com.fjby.travel.leyou.R.mipmap.ic_launcher;
-
-/**
- * Created by abin on 2015/9/9.
- */
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 4;
     private Context context;
-
+    public static  int[] pagetitl={R.string.main_home,R.string.main_info, R.string.main_notes,R.string.main_news};
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
@@ -33,13 +23,25 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return pagetitl.length;
     }
 
     @Override
     public Fragment getItem(int position) {
-        LogUtil.e("getItem ----------------    " + position);
-        return PageFragment.newInstance(position);
+        switch (position){
+            case 0:
+                return new HomeFragment();
+            case 1:
+                return  new InfoFragment();
+            case 2:
+                return new NotesFragment();
+            case 3:
+                return  new NewsFragment();
+
+            default:
+                return PageFragment.newInstance(position);
+        }
+
     }
 
 }
