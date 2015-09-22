@@ -9,13 +9,6 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link ProduceInstructFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProduceInstructFragment extends Fragment {
 
     @Override
@@ -26,9 +19,9 @@ public class ProduceInstructFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.fragment_text);
-        return view;
+  /*      View view = inflater.inflate(R.layout.fragment_production_instruct, container, false);
+        return view;*/
+        return inflater.inflate(R.layout.fragment_production_instruct, container, false);
     }
 
 
