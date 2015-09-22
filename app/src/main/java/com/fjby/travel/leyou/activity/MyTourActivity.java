@@ -25,9 +25,9 @@ public class MyTourActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produce);
+        setContentView(R.layout.activity_mytour);
         initToolbar(true, true);
-        setToolbarTitle(R.string.produce_info);
+        setToolbarTitle(R.string.mytour);
 
 
 
@@ -49,7 +49,7 @@ public class MyTourActivity extends BaseActivity{
             // as you specify a parent activity in AndroidManifest.xml.
             int id = item.getItemId();
             //noinspection SimplifiableIfStatement
-            if (id == R.id.menu_produce) {
+            if (id == R.id.menu_more) {
                 LogUtil.e("menu_produce                 onOptionsItemSelected");
                 return true;
             }

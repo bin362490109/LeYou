@@ -46,86 +46,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:drawablePadding="10dp"
-                        android:drawableRight="@drawable/group"
-                        android:ellipsize="marquee"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:text="《日本大阪-京都-奈良-名古屋5日游》单独赠日本wifi"
+                        android:layout_marginBottom="15dp"
+                        android:text="《日本 东京 富士山双飞6日游》买二赠一 独家赠日本wifi 5市往返接送"
                         android:textColor="@color/black"
                         android:textSize="18sp"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+
+                <include layout="@layout/fragment_mytour_instruct"/>
+                    <ToggleButton
+                        android:layout_width="27dp"
+                        android:layout_height="18dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="售价"
-                            android:textColor="@color/red"
-                            android:textSize="16sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="￥3500"
-                            android:textColor="@color/red"
-                            android:textSize="22sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="起"
-                            android:textColor="@color/red"
-                            android:textSize="16sp"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="查看或者选择团期（10）"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:singleLine="true"
-                            android:text="07-03，08-29，09-05，09-21，09-25，09-29，10-05，10-21，10-25，11-11"
-                            android:textColor="@color/red"
-                            android:textSize="16sp"/>
-                    </LinearLayout>
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/next_selector"/>
+                        android:layout_gravity="center_horizontal"
+                        android:textOff=""
+                        android:textOn=""
+                        android:background="@drawable/collapse_selector"/>
                 </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

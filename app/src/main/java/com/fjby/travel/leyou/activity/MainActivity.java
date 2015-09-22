@@ -157,4 +157,7 @@ private  void  changeToobarSelect(int position){
     public void production(View view){
         IntentUtils.getInstance().startActivity(MainActivity.this, ProduceInfoActivity.class);
     }
+    public void mytour(View view){
+        IntentUtils.getInstance().startActivity(MainActivity.this, MyTourActivity.class);
+    }
 }
