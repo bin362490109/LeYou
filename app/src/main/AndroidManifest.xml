@@ -25,6 +25,8 @@
             />
         <activity android:name=".activity.ProduceInfoActivity"
             />
+        <activity android:name=".activity.HomeLocationActivity"
+            />
         <activity
             android:name=".activity.LoginActivity">
         </activity>

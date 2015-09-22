@@ -97,6 +97,7 @@ public class MainActivity extends BaseActivity {
        }
        changeToobarSelect(0);
     }
+
 private  void  changeToobarSelect(int position){
     if(position<4){
         mLinearButton[oldPosition].setSelected(false);
@@ -151,5 +152,9 @@ private  void  changeToobarSelect(int position){
                         return true;
                     }
                 });
+    }
+
+    public void production(View view){
+        IntentUtils.getInstance().startActivity(MainActivity.this, ProduceInfoActivity.class);
     }
 }

@@ -21,7 +21,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
@@ -32,7 +31,6 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
-import com.fjby.travel.leyou.fragment.ProduceInfoFragment;
 import com.fjby.travel.leyou.utils.SharePreferenceUtil;
 
 // TODO: Auto-generated Javadoc
@@ -95,7 +93,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
     }
-
+/*
     protected void addFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_base, fragment)
@@ -105,7 +103,7 @@ public class BaseActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_base, fragment)
                 .commit();
-    }
+    }*/
 
 
     public void onResume() {

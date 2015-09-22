@@ -54,6 +54,7 @@
     <string name="register_agree_1">我已阅读并接受</string>
     <string name="register_agree_2">《注册协议》</string>
     <string name="produce_info">产品信息</string>
+    <string name="city_location">选择城市</string>
 
     <string name="no_image">没有图片</string>
     <string name="main_home">首页</string>

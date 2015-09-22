@@ -7,11 +7,19 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.activity.HomeLocationActivity;
+import com.fjby.travel.leyou.activity.ProduceInfoActivity;
+import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
+import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.AutoScrollViewPager;
 
 import java.util.ArrayList;
@@ -30,6 +38,9 @@ public class HomeFragment extends Fragment {
 
     private int mParam1;
     LinearLayout images_dots;
+    private ImageButton mHomeAccoutIB;
+    private TextView mHomeLocationTV;
+
     private AutoScrollViewPager image_viewpager;
     private List<ImageView> mListImageViews;
     private ImageView[] imageDots;
@@ -68,13 +79,37 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
+        images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
+        mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
+        mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
         initImageViews();
         // 5秒滚动变换一次
         image_viewpager.startAutoScroll(5000);
         image_viewpager.setInterval(5000);
         image_viewpager.setScrollDurationFactor(5);
-        images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
-        initDots();
+
+        image_viewpager.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        // Remove it here unless you want to get this callback
+                        // for EVERY
+                        // layout pass, which can get you into infinite loops if
+                        // you ever
+                        // modify the layout from within this method.
+                        image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        initImageViews();
+                        initDots();
+
+                    }
+                });
+
+        mHomeLocationTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.getInstance().startActivity(getActivity(), HomeLocationActivity.class);
+            }
+        });
         return view;
     }
     /**
@@ -83,7 +118,6 @@ public class HomeFragment extends Fragment {
     private void initDots() {
         // dots数组
         imageDots = new ImageView[mListImageViews.size()];
-
         // 初始化dot，默认为非选定
         if (mListImageViews.size() > 1) {
             for (int i = 0; i < mListImageViews.size(); i++) {
@@ -107,7 +141,7 @@ public class HomeFragment extends Fragment {
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtil.v("crb", "点击图片");
+                    IntentUtils.getInstance().startActivity(getActivity(), ProduceInfoActivity.class);
                 }
             });
 
@@ -174,5 +208,6 @@ public class HomeFragment extends Fragment {
             return mListImageViews.get(position);
         }
     }
+
 
 }
