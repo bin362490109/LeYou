@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 
-public class ProduceInstructFragment extends Fragment {
+public class ProduceDetailFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ProduceInstructFragment extends Fragment {
 
   /*      View view = inflater.inflate(R.layout.fragment_production_instruct, container, false);
         return view;*/
-        return inflater.inflate(R.layout.fragment_production_instruct, container, false);
+        return inflater.inflate(R.layout.fragment_production_detail, container, false);
     }
 
 

@@ -10,9 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.fragment.PageFragment;
 import com.fjby.travel.leyou.fragment.ProduceInfoFragment;
-import com.fjby.travel.leyou.fragment.ProduceInstructFragment;
+import com.fjby.travel.leyou.fragment.ProduceDetailFragment;
 import com.fjby.travel.leyou.fragment.ProduceReviewFragment;
 import com.fjby.travel.leyou.utils.LogUtil;
 
@@ -44,7 +43,7 @@ public class ProduceInfoActivity extends BaseActivity{
     private void setupViewPager(ViewPager mViewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ProduceInfoFragment(), "基本信息");
-        adapter.addFragment(new ProduceInstructFragment(), "行程介绍");
+        adapter.addFragment(new ProduceDetailFragment(), "行程介绍");
         adapter.addFragment(new ProduceReviewFragment(), "点评（10）");
         mViewPager.setAdapter(adapter);
     }

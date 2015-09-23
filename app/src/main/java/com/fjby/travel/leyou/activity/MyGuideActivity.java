@@ -22,7 +22,7 @@ import com.fjby.travel.leyou.utils.ToastUtils;
 /**
  * Created by abin on 2015/9/17.
  */
-public class MyTourActivity extends BaseActivity {
+public class MyGuideActivity extends BaseActivity {
 
     //声明窗口PopupWindow
     private PopupWindow pw = null;
@@ -32,20 +32,9 @@ public class MyTourActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mytour);
+        setContentView(R.layout.activity_myguide);
         initToolbar(true, true);
-        setToolbarTitle(R.string.mytour);
-
-        mImageView = (ImageView) findViewById(R.id.mytour_menu);
-        ViewTreeObserver vto = mImageView.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mImageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                location[0] = mImageView.getWidth();
-                location[1] = mImageView.getHeight();
-            }
-        });
+        setToolbarTitle(R.string.mytourguide);
     }
 
     public boolean openMune() {
@@ -66,13 +55,13 @@ public class MyTourActivity extends BaseActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtils.showShort(MyTourActivity.this,"消息中心");
+                    ToastUtils.showShort(MyGuideActivity.this,"消息中心");
                 }
             });
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(MyTourActivity.this, GuideLocationActivity.class);
+                    IntentUtils.getInstance().startActivity(MyGuideActivity.this, ProduceInfoActivity.class);
                 }
             });
             //生成PopupWindow对象
@@ -114,8 +103,5 @@ public class MyTourActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-    public  void map(View view){
-        IntentUtils.getInstance().startActivity(MyTourActivity.this, MyGuideActivity.class);
     }
 }
