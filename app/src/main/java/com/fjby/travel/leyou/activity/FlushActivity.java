@@ -80,45 +80,82 @@ public class FlushActivity extends BaseActivity {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-
-				//判断是否有账号登陆
-				if (StringUtils.isEmpty(spf.getString("name",""))) {
-					//未有账号登陆
-					IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
-					finish();
-
-				} else {
-					//已有账号登陆
-					HashMap<String, String> map = new HashMap<String, String>();
-					map.put("name",spf.getString("name", ""));
-					map.put("req","login");
-					map.put("pass", spf.getString("pass",""));
-					HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
-						@Override
-						public void onFinish(String response) {
-							if(response.length()>30){
-                                Bundle bundle=new Bundle();
-                                bundle.putString("user", response);
-                                IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class, bundle);
-							}else{
-                                ToastUtils.showLong(FlushActivity.this, R.string.account_err);
-                                IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
-							}
-							finish();
-						}
-
-						@Override
-						public void onError(Exception e) {
-							ToastUtils.showLong(FlushActivity.this, R.string.network_err);
-							finish();
-						}
-					});
-
-				}
+				newFlush();
 			}
 		},3000);
 	}
 
+	private  void newFlush(){
+		//判断是否有账号登陆
+		if (StringUtils.isEmpty(spf.getString("name",""))) {
+			//未有账号登陆
+			IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);
+			finish();
+
+		} else {
+			//已有账号登陆
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("name",spf.getString("name", ""));
+			map.put("req","login");
+			map.put("pass", spf.getString("pass",""));
+			HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+				@Override
+				public void onFinish(String response) {
+					if(response.length()>30){
+						Bundle bundle=new Bundle();
+						bundle.putString("user", response);
+					}else{
+						ToastUtils.showLong(FlushActivity.this, R.string.account_err);
+					}
+					IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);
+					finish();
+				}
+
+				@Override
+				public void onError(Exception e) {
+					ToastUtils.showLong(FlushActivity.this, R.string.network_err);
+					finish();
+				}
+			});
+
+		}
+	}
+	private  void oldFlush(){
+		//判断是否有账号登陆
+		if (StringUtils.isEmpty(spf.getString("name",""))) {
+			//未有账号登陆
+			IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
+			finish();
+
+		} else {
+			//已有账号登陆
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("name",spf.getString("name", ""));
+			map.put("req","login");
+			map.put("pass", spf.getString("pass",""));
+			HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+				@Override
+				public void onFinish(String response) {
+					if(response.length()>30){
+						Bundle bundle=new Bundle();
+						bundle.putString("user", response);
+						IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class, bundle);
+					}else{
+						ToastUtils.showLong(FlushActivity.this, R.string.account_err);
+						IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
+					}
+					finish();
+				}
+
+				@Override
+				public void onError(Exception e) {
+					ToastUtils.showLong(FlushActivity.this, R.string.network_err);
+					finish();
+				}
+			});
+
+		}
+	}
 	@Override
 	protected void onDestroy() {
 		if (mHandler != null && task != null) {
