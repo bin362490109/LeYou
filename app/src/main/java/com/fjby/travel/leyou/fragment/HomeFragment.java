@@ -178,10 +178,8 @@ public class HomeFragment extends Fragment {
                 || currentIndex == position) {
             return;
         }
-
         imageDots[position].setSelected(true);
         imageDots[currentIndex].setSelected(false);
-
         currentIndex = position;
     }
 
@@ -211,10 +209,11 @@ public class HomeFragment extends Fragment {
         @Override
         public Object instantiateItem(View collection, int position) {
             ((ViewPager) collection).addView(mListImageViews.get(position), 0);
-
             return mListImageViews.get(position);
         }
     }
+
+
 
 
 }

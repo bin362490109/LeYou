@@ -90,16 +90,19 @@ public class MyTourActivity extends BaseActivity {
         // 此处返回false，系统不会执行onCreateOptionsMenu中添加的菜单
         return false;
     }
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (pw.isShowing()) {
+            if (pw!=null&&pw.isShowing()) {
                 pw.dismiss();
                 return false;
             }
         }
-
         return super.onKeyDown(keyCode, event);
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
