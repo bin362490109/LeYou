@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.HomeLocationActivity;
+import com.fjby.travel.leyou.activity.LoginActivity;
 import com.fjby.travel.leyou.activity.ProduceInfoActivity;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
@@ -81,6 +82,12 @@ public class HomeFragment extends Fragment {
         image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
         images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
         mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
+        mHomeAccoutIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.getInstance().startActivity(getActivity(), LoginActivity.class);
+            }
+        });
         mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
         initImageViews();
         // 5秒滚动变换一次

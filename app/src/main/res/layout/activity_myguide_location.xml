@@ -19,24 +19,52 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/lightgray">
 
-            android:background="@color/lightgray"></RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/guide"
+                android:layout_above="@+id/center"
+                android:layout_alignLeft="@+id/center"
+                android:layout_marginBottom="50dp"
+                />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mark"
+                android:layout_below="@+id/center"
+                android:layout_alignLeft="@+id/center"
+                android:layout_marginTop="50dp"
+               />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/location_selector"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/location_selector"/>
+
             <ImageView
                 android:layout_width="1dp"
                 android:layout_height="30dp"
                 android:background="@color/lightgray"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

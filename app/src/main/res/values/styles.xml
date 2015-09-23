@@ -56,4 +56,5 @@
         <item name="android:textColor">@color/regist_textcolor_selector</item>
         <item name="android:textColorHint">@color/regist_textcolorhint_selector</item>
     </style>
+
 </resources>

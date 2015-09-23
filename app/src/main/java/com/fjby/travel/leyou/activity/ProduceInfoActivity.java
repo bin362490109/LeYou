@@ -93,7 +93,6 @@ public class ProduceInfoActivity extends BaseActivity{
             int id = item.getItemId();
             //noinspection SimplifiableIfStatement
             if (id == R.id.menu_phone) {
-                LogUtil.e("menu_produce                 onOptionsItemSelected");
                 return true;
             }
             return super.onOptionsItemSelected(item);

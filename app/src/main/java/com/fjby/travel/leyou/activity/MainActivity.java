@@ -115,7 +115,7 @@ private  void  changeToobarSelect(int position){
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         savedInstanceState.getInt("position", 0);
-        changeToobarSelect(3);
+        changeToobarSelect(1);
         LogUtil.e("onRestoreInstanceState-------------");
     }
 

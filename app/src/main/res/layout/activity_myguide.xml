@@ -14,34 +14,73 @@
 
         <include
             layout="@layout/include_toolbar"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/lightgray">
 
-            android:background="@color/lightgray"></RelativeLayout>
+            <ImageButton
+                android:id="@+id/center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"/>
+
+            <ImageButton
+                android:id="@+id/attractions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/center"
+                android:layout_alignLeft="@+id/center"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/attractions"
+                />
+
+            <ImageButton
+                android:id="@+id/mark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/center"
+                android:layout_below="@+id/center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/mark"
+                />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/location_selector"/>
+
             <ImageView
                 android:layout_width="1dp"
                 android:layout_height="30dp"
                 android:background="@color/lightgray"/>
+
             <TextView
+                android:id="@+id/spinner_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:text="导游位置离你100米"
+                android:layout_marginLeft="60dp"
+                android:drawablePadding="20dp"
+                android:gravity="center"
+                android:drawableRight="@drawable/updown_selector"
+                android:text="动物园  3.69km"
                 android:textColor="@color/black"/>
+
+
         </LinearLayout>
+
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

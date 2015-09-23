@@ -16,7 +16,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.utils.DensityUtil;
 import com.fjby.travel.leyou.utils.IntentUtils;
+import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
 
 /**
@@ -60,7 +62,7 @@ public class MyTourActivity extends BaseActivity {
         } else {
             //定义窗口菜单
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.menu_produce, null);
+            View view = inflater.inflate(R.layout.popu_produce, null);
             TextView textView= (TextView) view.findViewById(R.id.menu_text_1);
             TextView textView2= (TextView) view.findViewById(R.id.menu_text_2);
             textView.setOnClickListener(new View.OnClickListener() {
