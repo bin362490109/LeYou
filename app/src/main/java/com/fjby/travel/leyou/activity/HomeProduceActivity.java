@@ -13,7 +13,6 @@ import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.fragment.ProduceInfoFragment;
 import com.fjby.travel.leyou.fragment.ProduceDetailFragment;
 import com.fjby.travel.leyou.fragment.ProduceReviewFragment;
-import com.fjby.travel.leyou.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +20,12 @@ import java.util.List;
 /**
  * Created by abin on 2015/9/17.
  */
-public class ProduceInfoActivity extends BaseActivity{
+public class HomeProduceActivity extends BaseActivity{
     private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produce);
+        setContentView(R.layout.activity_home_produce);
         initToolbar(true, true);
         setToolbarTitle(R.string.produce_info);
 

@@ -16,15 +16,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.utils.DensityUtil;
 import com.fjby.travel.leyou.utils.IntentUtils;
-import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
 
 /**
  * Created by abin on 2015/9/17.
  */
-public class MyTourActivity extends BaseActivity {
+public class HomeTourActivity extends BaseActivity {
 
     //声明窗口PopupWindow
     private PopupWindow pw = null;
@@ -34,7 +32,7 @@ public class MyTourActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mytour);
+        setContentView(R.layout.activity_home_tour);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytour);
 
@@ -68,13 +66,13 @@ public class MyTourActivity extends BaseActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtils.showShort(MyTourActivity.this,"消息中心");
+                    ToastUtils.showShort(HomeTourActivity.this,"消息中心");
                 }
             });
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(MyTourActivity.this, GuideLocationActivity.class);
+                    IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourLocationActivity.class);
                 }
             });
             //生成PopupWindow对象
@@ -121,6 +119,6 @@ public class MyTourActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
     public  void map(View view){
-        IntentUtils.getInstance().startActivity(MyTourActivity.this, MyGuideActivity.class);
+        IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourGuideActivity.class);
     }
 }

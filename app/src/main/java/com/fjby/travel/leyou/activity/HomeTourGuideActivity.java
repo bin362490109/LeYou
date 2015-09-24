@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * Created by abin on 2015/9/17.
  */
-public class MyGuideActivity extends BaseActivity {
+public class HomeTourGuideActivity extends BaseActivity {
 
     //声明窗口PopupWindow
     private PopupWindow pw_play = null;
@@ -46,7 +46,7 @@ public class MyGuideActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myguide);
+        setContentView(R.layout.activity_home_tour_guide);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytourguide);
         //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
@@ -56,7 +56,7 @@ public class MyGuideActivity extends BaseActivity {
         list.add("森林公园  4.56km");
 
         mSpinnerTV = (TextView) findViewById(R.id.spinner_text);
-        mListViewAdapter=new ListViewAdapter(MyGuideActivity.this, list);
+        mListViewAdapter=new ListViewAdapter(HomeTourGuideActivity.this, list);
         mSpinnerTV.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -88,7 +88,7 @@ public class MyGuideActivity extends BaseActivity {
             public void onClick(View v) {
                 if (isFirst) {
                     mImageButton.getLocationOnScreen(location);
-                    x = location[0] - (DensityUtil.dip2px(MyGuideActivity.this, 150) - x) / 2;
+                    x = location[0] - (DensityUtil.dip2px(HomeTourGuideActivity.this, 150) - x) / 2;
                     y = location[1] + y;
                     LogUtil.e("x:" + x + "y:" + y);
                     isFirst = false;
@@ -155,13 +155,13 @@ public class MyGuideActivity extends BaseActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtils.showShort(MyGuideActivity.this, "消息中心");
+                    ToastUtils.showShort(HomeTourGuideActivity.this, "消息中心");
                 }
             });
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(MyGuideActivity.this, ProduceInfoActivity.class);
+                    IntentUtils.getInstance().startActivity(HomeTourGuideActivity.this, HomeProduceActivity.class);
                 }
             });
             //生成PopupWindow对象

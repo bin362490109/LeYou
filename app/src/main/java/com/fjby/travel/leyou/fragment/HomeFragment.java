@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,10 +16,8 @@ import android.widget.TextView;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.HomeLocationActivity;
 import com.fjby.travel.leyou.activity.LoginActivity;
-import com.fjby.travel.leyou.activity.ProduceInfoActivity;
+import com.fjby.travel.leyou.activity.HomeProduceActivity;
 import com.fjby.travel.leyou.utils.IntentUtils;
-import com.fjby.travel.leyou.utils.LogUtil;
-import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.AutoScrollViewPager;
 
 import java.util.ArrayList;
@@ -148,7 +145,7 @@ public class HomeFragment extends Fragment {
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(getActivity(), ProduceInfoActivity.class);
+                    IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
                 }
             });
 

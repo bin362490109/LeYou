@@ -134,7 +134,7 @@ private  void  changeToobarSelect(int position){
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.navigation_item_book:
-                                IntentUtils.getInstance().startActivity(MainActivity.this, ProduceInfoActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this, HomeProduceActivity.class);
                                 break;
                             case R.id.navigation_item_example:
                                 LogUtil.v("---------------------------2");
@@ -155,9 +155,13 @@ private  void  changeToobarSelect(int position){
     }
 
     public void production(View view){
-        IntentUtils.getInstance().startActivity(MainActivity.this, ProduceInfoActivity.class);
+        IntentUtils.getInstance().startActivity(MainActivity.this, HomeProduceActivity.class);
     }
     public void mytour(View view){
-        IntentUtils.getInstance().startActivity(MainActivity.this, MyTourActivity.class);
+        IntentUtils.getInstance().startActivity(MainActivity.this, HomeTourActivity.class);
+    }
+
+    public void noteSerch(View view){
+        IntentUtils.getInstance().startActivity(MainActivity.this, HomeLocationActivity.class);
     }
 }

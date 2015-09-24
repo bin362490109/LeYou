@@ -27,7 +27,7 @@
             android:screenOrientation="portrait"
             />
         <activity
-            android:name=".activity.ProduceInfoActivity"
+            android:name=".activity.HomeProduceActivity"
             android:screenOrientation="portrait"
             />
         <activity
@@ -39,7 +39,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.MyTourActivity"
+            android:name=".activity.HomeTourActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -48,11 +48,11 @@
             >
         </activity>
         <activity
-            android:name=".activity.MyGuideActivity"
+            android:name=".activity.HomeTourGuideActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".activity.GuideLocationActivity"
+            android:name=".activity.HomeTourLocationActivity"
             android:screenOrientation="portrait"
             >
         </activity>
