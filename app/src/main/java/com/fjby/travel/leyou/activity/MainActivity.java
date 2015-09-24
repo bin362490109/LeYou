@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
@@ -161,7 +162,7 @@ private  void  changeToobarSelect(int position){
         IntentUtils.getInstance().startActivity(MainActivity.this, HomeTourActivity.class);
     }
 
-    public void noteSerch(View view){
-        IntentUtils.getInstance().startActivity(MainActivity.this, HomeLocationActivity.class);
+    public void notesSerch(View view){
+        IntentUtils.getInstance().startActivity(MainActivity.this, NotesLocationActivity.class);
     }
 }

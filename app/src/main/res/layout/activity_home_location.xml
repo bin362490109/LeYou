@@ -29,7 +29,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/button_shap"
+                android:background="@drawable/editext_home_shap"
                 android:gravity="center"
                 android:hint="输入城市或者拼音"
                 android:textColor="@color/black"
@@ -77,9 +77,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:columnWidth="90dp"
                 android:horizontalSpacing="15dp"
-                android:numColumns="auto_fit"
+                android:numColumns="3"
+                android:scrollbars="none"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="15dp"/>
         </LinearLayout>

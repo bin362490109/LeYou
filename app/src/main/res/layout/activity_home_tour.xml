@@ -55,7 +55,7 @@
                         android:textSize="18sp"/>
 
 
-                <include layout="@layout/fragment_mytour_instruct"/>
+                <include layout="@layout/adapter_home_tour_details"/>
                     <ToggleButton
                         android:layout_width="27dp"
                         android:layout_height="18dp"

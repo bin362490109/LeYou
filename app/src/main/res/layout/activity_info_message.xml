@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/bg_chat">
+            android:background="@color/regiset_gray">
             <include layout="@layout/adapter_infos_received"/>
             <include layout="@layout/adapter_infos_voice"/>
         </LinearLayout>

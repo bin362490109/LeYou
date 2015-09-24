@@ -19,7 +19,7 @@
     android:layout_height="0dp"
     android:layout_weight="1"
     android:orientation="vertical"
-    android:background="@color/lightgray">
+    android:background="@color/regiset_gray">
     <include layout="@layout/adapter_infos_push"/>
 </LinearLayout>
 

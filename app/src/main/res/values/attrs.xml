@@ -17,4 +17,18 @@
         <item >厦门</item>
         <item >西安</item>
     </string-array>
+    <string-array name="hot_search">
+        <item >泰国</item>
+        <item >法国</item>
+        <item >美国</item>
+
+        <item >三亚</item>
+        <item >韩国</item>
+        <item >丽江</item>
+
+        <item >昆明</item>
+        <item >厦门</item>
+        <item >马尔代夫</item>
+
+    </string-array>
 </resources>
