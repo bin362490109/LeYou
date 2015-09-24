@@ -21,7 +21,6 @@ public class SnackbarUtil {
         } else { // 长时显示
             mSnackbar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG);
         }
-
         mSnackbar.show();
         // Snackbar中有一个可点击的文字，这里设置点击所触发的操作。
         mSnackbar.setAction(R.string.drawer_close, new View.OnClickListener() {

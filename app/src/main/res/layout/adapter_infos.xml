@@ -32,6 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/list_item_icon"
         android:textColor="@color/black_grey"
+        android:singleLine="true"
+        android:layout_marginRight="40dp"
         android:text="旅游监管局的推送通知"
         android:layout_alignLeft="@id/list_item_title"/>
 

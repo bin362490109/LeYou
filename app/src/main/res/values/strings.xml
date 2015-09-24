@@ -56,6 +56,8 @@
     <string name="produce_info">产品信息</string>
     <string name="mytour">我的旅程</string>
     <string name="mytourguidelocation">导游位置</string>
+    <string name="info_message_title">XXX旅游团</string>
+    <string name="info_push_title">旅游监管机构</string>
     <string name="mytourguide">导游</string>
     <string name="city_location">选择城市</string>
 

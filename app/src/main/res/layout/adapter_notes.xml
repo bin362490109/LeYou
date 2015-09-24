@@ -32,6 +32,7 @@
                     android:text="12313"
                     android:textColor="@color/black_grey"
                     android:drawableLeft="@drawable/reviews"
+                    android:layout_marginRight="20dp"
                     android:drawablePadding="5dp"
                     android:textSize="18sp"/>
 
