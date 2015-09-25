@@ -31,9 +31,11 @@
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:background="@drawable/editext_notes_shap"
-            android:drawableLeft="@drawable/star"
+            android:drawableLeft="@drawable/search"
             android:drawablePadding="10dp"
             android:hint="威尼斯"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/black_grey"
             android:textCursorDrawable="@null"/>
@@ -70,7 +72,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/star"
+                        android:drawableLeft="@drawable/recently"
                         android:drawablePadding="15dp"
                         android:layout_marginLeft="20dp"
                         android:padding="10dp"
@@ -79,17 +81,16 @@
                         android:textColor="@color/black_grey"
                         android:textSize="18sp"/>
 
-                    <TextView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="24sp"
-                        android:text="X"
-                        android:padding="10dp"
+                        android:background="@drawable/delete_selector"
+                        android:padding="8dp"
                         android:layout_marginRight="20dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:textColor="@color/black"/>
+                        />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -100,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/star"
+                        android:drawableLeft="@drawable/recently"
                         android:layout_marginLeft="20dp"
                         android:padding="10dp"
                         android:drawablePadding="15dp"
@@ -109,17 +110,16 @@
                         android:textColor="@color/black_grey"
                         android:textSize="18sp"/>
 
-                    <TextView
+                    <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="24sp"
-                        android:text="X"
-                        android:padding="10dp"
+                        android:background="@drawable/delete_selector"
+                        android:padding="8dp"
                         android:layout_marginRight="20dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:textColor="@color/black"/>
+                        />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:drawableLeft="@drawable/star"
+                android:drawableLeft="@drawable/top"
                 android:drawablePadding="15dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"

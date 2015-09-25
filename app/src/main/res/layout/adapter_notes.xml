@@ -4,20 +4,21 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    app:cardBackgroundColor="@color/white"
+                                    android:onClick="notesCard"
                                     app:cardCornerRadius="4dp"
                                    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray">
 
             <ImageView
                 android:id="@+id/notes_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/no_image"/>
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -30,8 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12313"
-                    android:textColor="@color/black_grey"
-                    android:drawableLeft="@drawable/reviews"
+                    android:drawableLeft="@drawable/lezhi_browse"
                     android:layout_marginRight="20dp"
                     android:drawablePadding="5dp"
                     android:textSize="18sp"/>
@@ -41,9 +41,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="5632"
-                    android:drawableLeft="@drawable/like"
+                    android:drawableLeft="@drawable/lezhi_review"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/black_grey"
                     android:textSize="16sp"/>
             </LinearLayout>
 
@@ -59,17 +58,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="中国最美高铁带你去旅游"
-                    android:textColor="@color/black_grey"
                     android:textSize="18sp"/>
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/like"
+                    android:drawableLeft="@drawable/lezhi_pin"
                     android:drawablePadding="5dp"
                     android:text="5632"
-                    android:textColor="@color/black_grey"
                     android:textSize="16sp"/>
             </LinearLayout>
     </RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bg"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/include_toolbar"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/lightgray">
+            <include layout="@layout/adapter_notes_reviews"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray"/>
+            <include layout="@layout/adapter_notes_reviews"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightgray"/>
+            <include layout="@layout/adapter_notes_reviews"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/regiset_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:hint="写评论"
+                android:layout_marginRight="15dp"
+                android:background="@color/white"
+                android:textColor="@color/black"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -27,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:onClick="notesSerch"
-            android:background="@drawable/account_selector"/>
+            android:background="@drawable/nav_search_selector"/>
 
     </RelativeLayout>
 
@@ -44,7 +44,7 @@
             android:orientation="vertical"
             >
 
-            <include layout="@layout/adapter_notes"/>
+            <include layout="@layout/adapter_notes" />
 
             <include layout="@layout/adapter_notes"/>
 

@@ -165,4 +165,7 @@ private  void  changeToobarSelect(int position){
     public void notesSerch(View view){
         IntentUtils.getInstance().startActivity(MainActivity.this, NotesLocationActivity.class);
     }
+    public void notesCard(View view){
+        IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailReviewsActivity.class);
+    }
 }
