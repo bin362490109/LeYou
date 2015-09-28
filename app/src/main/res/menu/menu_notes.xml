@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item android:id="@+id/nav_like"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+          android:icon="@drawable/nav_like_selector"
+          app:showAsAction="always"/>
+    <item android:id="@+id/nav_share"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+          android:icon="@drawable/nav_share_selector"
+          app:showAsAction="always"/>
+    <item android:id="@+id/nav_collect"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+          android:icon="@drawable/nav_collect_selector"
+          app:showAsAction="always"/>
+    <item android:id="@+id/nav_review"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+          android:icon="@drawable/nav_reviews_selector"
+          app:showAsAction="always"/>
+</menu>

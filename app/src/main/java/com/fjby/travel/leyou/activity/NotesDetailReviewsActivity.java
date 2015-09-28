@@ -17,8 +17,6 @@ import com.fjby.travel.leyou.utils.ToastUtils;
  * Created by abin on 2015/9/17.
  */
 public class NotesDetailReviewsActivity extends BaseActivity {
-    private String[] itemNames;
-    private TextView mNotesSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

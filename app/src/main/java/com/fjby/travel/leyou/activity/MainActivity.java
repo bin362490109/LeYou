@@ -166,6 +166,7 @@ private  void  changeToobarSelect(int position){
         IntentUtils.getInstance().startActivity(MainActivity.this, NotesLocationActivity.class);
     }
     public void notesCard(View view){
-        IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailReviewsActivity.class);
+       // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailReviewsActivity.class);
+        IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
     }
 }

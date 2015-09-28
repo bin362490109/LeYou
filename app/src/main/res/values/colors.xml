@@ -25,4 +25,5 @@
     <color name="vermilion">#ff9c7055</color>
     <color name="tab_text">#808080</color>
     <color name="tab_text_pre">#00b1db</color>
+    <color name="other_bg">#00b1db</color>
 </resources>

@@ -67,6 +67,11 @@
             android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
         <activity
+            android:name=".activity.NotesDetailActivity"
+            android:screenOrientation="portrait"
+         >
+        </activity>
+        <activity
             android:name=".activity.InfoPushActivity"
             android:screenOrientation="portrait"
             >
