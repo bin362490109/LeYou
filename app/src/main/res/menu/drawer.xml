@@ -4,21 +4,34 @@
     tools:context=".MainActivity">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_book"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/navigation_book" />
+            android:id="@+id/navigation_item_collect"
+            android:icon="@drawable/menu_collect"
+            android:title="@string/navigation_collect" />
         <item
-            android:id="@+id/navigation_item_example"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/navigation_example" />
+            android:id="@+id/navigation_item_order"
+            android:icon="@drawable/menu_order"
+            android:title="@string/navigation_order" />
         <item
-            android:id="@+id/navigation_item_blog"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/navigation_my_blog" />
+            android:id="@+id/navigation_item_like"
+            android:icon="@drawable/menu_like"
+            android:title="@string/navigation_like" />
 
         <item
-            android:id="@+id/navigation_item_about"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/navigation_about" />
+            android:id="@+id/navigation_item_travel"
+            android:icon="@drawable/menu_travels"
+            android:title="@string/navigation_travel" />
+        <item
+            android:id="@+id/navigation_item_email"
+            android:icon="@drawable/menu_email"
+            android:title="@string/navigation_email" />
+        <item
+            android:id="@+id/navigation_item_password"
+            android:icon="@drawable/menu_password"
+            android:title="@string/navigation_password" />
+
+        <item
+            android:id="@+id/navigation_item_setting"
+            android:icon="@drawable/menu_settings"
+            android:title="@string/navigation_setting" />
     </group>
 </menu>

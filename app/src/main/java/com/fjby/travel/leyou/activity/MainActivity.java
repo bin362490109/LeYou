@@ -132,17 +132,20 @@ private  void  changeToobarSelect(int position){
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
-                            case R.id.navigation_item_book:
-                                IntentUtils.getInstance().startActivity(MainActivity.this, HomeProduceActivity.class);
+                            case R.id.navigation_item_collect:
                                 break;
-                            case R.id.navigation_item_example:
-                                LogUtil.v("---------------------------2");
+                            case R.id.navigation_item_setting:
+                                IntentUtils.getInstance().startActivity(MainActivity.this,SettingActivity.class);
                                 break;
-                            case R.id.navigation_item_blog:
-                                LogUtil.v("---------------------------3");
+                            case R.id.navigation_item_email:
                                 break;
-                            case R.id.navigation_item_about:
-                                LogUtil.v("---------------------------4");
+                            case R.id.navigation_item_order:
+                                break;
+                            case R.id.navigation_item_like:
+                                break;
+                            case R.id.navigation_item_password:
+                                break;
+                            case R.id.navigation_item_travel:
                                 break;
 
                         }

@@ -3,31 +3,49 @@
               android:layout_width="match_parent"
               android:layout_height="220dp"
               android:background="@drawable/login_bg"
-              android:gravity="center"
               android:orientation="vertical">
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginTop="50dp"
+    android:layout_marginLeft="20dp">
     <com.fjby.travel.leyou.widget.RoundedImageView
         android:id="@+id/id_header_face"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:scaleType="fitXY"
         android:src="@drawable/author" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:text="请叫我梦游君"/>
+</LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/white"/>
     <TextView
         android:id="@+id/id_header_authorname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/header_author_name"
-        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:text="我的签名"
+        android:layout_marginLeft="20dp"
+        android:drawableLeft="@drawable/menu_signature"
+        android:drawablePadding="20dp"
         android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/id_header_url"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/header_author_url"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/white"/>
 </LinearLayout>

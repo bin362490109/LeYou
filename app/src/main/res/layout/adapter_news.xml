@@ -13,7 +13,7 @@
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:layout_marginTop="6dp"
-        android:lineSpacingMultiplier="1.4"
+        android:lineSpacingExtra="6dp"
         android:textColor="@color/black"
         android:textColorLink="@color/blue"
         android:textSize="16sp"
@@ -24,14 +24,18 @@
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:layout_gravity="center_horizontal"
         android:horizontalSpacing="1dp"
-        android:numColumns="3"
+        android:numColumns="auto_fit"
         android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="1dp"/>
+        android:columnWidth="110dp"
+        android:verticalSpacing="6dp"
+        android:stretchMode="columnWidth"/>
     <ImageView
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="1dp"
         android:background="@color/lightgray"/>
     <LinearLayout

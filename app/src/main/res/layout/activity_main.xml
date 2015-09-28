@@ -37,8 +37,9 @@
             android:layout_gravity="left"
             android:background="@color/white"
             app:headerLayout="@layout/navigation_header"
-            app:itemTextColor="@color/navmenu_textcolor_selector"
-            app:menu="@menu/drawer"/>
+            app:itemTextColor="@color/menu_text_selector"
+            app:menu="@menu/drawer"
+            />
     </android.support.v4.widget.DrawerLayout>
 </android.support.design.widget.CoordinatorLayout>
 
