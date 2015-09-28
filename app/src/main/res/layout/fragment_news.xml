@@ -17,59 +17,22 @@
             android:textSize="24dp"/>
     </LinearLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
-        -
-
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:background="@color/blue"
-            android:descendantFocusability="blocksDescendants"
-            android:gravity="center_vertical"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/list_item_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/no_image"/>
-
-            <TextView
-                android:id="@+id/list_item_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/list_item_icon"
-                android:text="旅游监管局"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:id="@+id/list_item_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/list_item_icon"
-                android:text="旅游监管局的推送通知"
-                android:layout_alignLeft="@id/list_item_title"/>
-
-            <TextView
-                android:id="@+id/list_item_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="2015/8/29"
-                android:layout_alignTop="@id/list_item_title"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:background="@color/lightgray"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:orientation="vertical"
+            >
+            <include layout="@layout/adapter_news"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

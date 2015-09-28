@@ -10,10 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.utils.IntentUtils;
@@ -26,7 +28,9 @@ public class HomeTourActivity extends BaseActivity {
 
     //声明窗口PopupWindow
     private PopupWindow pw = null;
-    ImageView mImageView;
+    private ImageView mImageView;
+    private ToggleButton mToggleButton;
+    private RelativeLayout mLinearLayout;
     private int[] location = new int[2];
 
     @Override
@@ -37,6 +41,19 @@ public class HomeTourActivity extends BaseActivity {
         setToolbarTitle(R.string.mytour);
 
         mImageView = (ImageView) findViewById(R.id.mytour_menu);
+        mToggleButton = (ToggleButton) findViewById(R.id.tour_toggleBtn);
+        mLinearLayout = (RelativeLayout) findViewById(R.id.tour_text);
+        mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    mLinearLayout.setVisibility(View.VISIBLE);
+                }else{
+                    mLinearLayout.setVisibility(View.GONE);
+                }
+
+            }
+        });
         ViewTreeObserver vto = mImageView.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

@@ -146,7 +146,7 @@
                 android:layout_marginTop="2dp"
                 android:horizontalSpacing="1dp"
                 android:listSelector="@android:color/transparent"
-                android:numColumns="4"
+                android:numColumns="3"
                 android:scrollbars="none"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="2dp"/>

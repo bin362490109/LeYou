@@ -28,7 +28,7 @@
                         android:id="@+id/ivImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/no_image"
+                        android:background="@drawable/main_2"
                         android:scaleType="fitXY"
                         android:transitionName="@string/transition_book_img"
                         app:layout_collapseMode="parallax"
@@ -56,7 +56,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_toRightOf="@+id/detail_icon"
                             android:text="爱旅游的猫"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="15sp"/>
 
                         <TextView
@@ -67,7 +67,7 @@
                             android:layout_alignLeft="@+id/detail_name"
                             android:singleLine="true"
                             android:text="08-15  19:30/3图/300赞"
-                            android:textColor="@color/black_grey"
+                            android:textColor="@color/white"
                             />
 
                     </RelativeLayout>
@@ -120,7 +120,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="一个月宅行澳洲-悉尼"
+                        android:text="一个月宅行福州-鼓楼"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         />
@@ -137,6 +137,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/notes_linear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -156,7 +157,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="一个月宅行澳洲-悉尼"
+                            android:text="一个月宅行福州-鼓楼"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             />
@@ -171,13 +172,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:text="@string/notes_1"
                         android:textColor="@color/black_grey"/>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="@color/gray"/>
+                        android:layout_height="180dp"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/main_3"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -190,7 +193,7 @@
                             android:layout_centerVertical="true"
                             android:drawableLeft="@drawable/map_pin"
                             android:drawablePadding="10dp"
-                            android:text="悉尼"
+                            android:text="鼓山"
                             android:textColor="@color/blue"/>
 
                         <Button

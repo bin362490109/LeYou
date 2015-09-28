@@ -1,7 +1,10 @@
 package com.fjby.travel.leyou.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
@@ -36,8 +39,6 @@ public class MainActivity extends BaseActivity {
             Gson gson = new Gson();
             mResUser = gson.fromJson(msg, ResUser.class);
         }
-
-
         if(savedInstanceState!=null){
             LogUtil.e("savedInstanceState-------------");
             oldPosition=savedInstanceState.getInt("position",0);
@@ -59,7 +60,6 @@ public class MainActivity extends BaseActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 LogUtil.e("onPageSelected--------------" + position);
@@ -108,8 +108,6 @@ private  void  changeToobarSelect(int position){
     }else{
         ToastUtils.showLong(MainActivity.this,"写游记吗？");
     }
-
-
 }
 
     @Override
@@ -166,7 +164,10 @@ private  void  changeToobarSelect(int position){
         IntentUtils.getInstance().startActivity(MainActivity.this, NotesLocationActivity.class);
     }
     public void notesCard(View view){
-       // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailReviewsActivity.class);
-        IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
+       // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
+        Intent intent = new Intent(MainActivity.this, NotesDetailActivity.class);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view.findViewById(R.id.notes_image), getString(R.string.transition_book_img));
+        ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
+
     }
 }

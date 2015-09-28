@@ -11,13 +11,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightgray">
+       >
 
             <ImageView
                 android:id="@+id/notes_image"
                 android:transitionName="@string/transition_book_img"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
+                android:background="@drawable/main_2"
                 android:scaleType="fitXY"
                 />
 

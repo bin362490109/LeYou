@@ -77,7 +77,7 @@ public class NotesLocationActivity extends BaseActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             GridHolder holder;
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.adapter_gridview, null);
+                convertView = inflater.inflate(R.layout.adapter_gridview_text, null);
                 holder = new GridHolder();
                 holder.gridviewTV = (TextView) convertView.findViewById(R.id.gridView_text);
                 convertView.setTag(holder);

@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
     private List<ImageView> mListImageViews;
     private ImageView[] imageDots;
     private int currentIndex; // 当前图片顺序
-
+    private int []mImages={R.drawable.main_1,R.drawable.main_2,R.drawable.main_3};
 
     /**
      * Use this factory method to create a new instance of
@@ -91,7 +91,6 @@ public class HomeFragment extends Fragment {
         image_viewpager.startAutoScroll(5000);
         image_viewpager.setInterval(5000);
         image_viewpager.setScrollDurationFactor(5);
-
         image_viewpager.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
@@ -141,7 +140,7 @@ public class HomeFragment extends Fragment {
         for (int i = 0; i < 3; ++i) {
             final ImageView iv = new ImageView(getActivity());
             iv.setScaleType(ImageView.ScaleType.FIT_XY);
-            iv.setImageResource(R.drawable.no_image);
+            iv.setImageResource(mImages[i]);
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
