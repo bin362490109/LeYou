@@ -61,7 +61,8 @@
     <string name="mytourguidelocation">导游位置</string>
     <string name="info_message_title">XXX旅游团</string>
     <string name="info_push_title">旅游监管机构</string>
-    <string name="setting_title">设置</string>
+    <string name="mysetting_title">设置</string>
+    <string name="mytravel_title">设置</string>
     <string name="mytourguide">导游</string>
     <string name="city_location">选择城市</string>
     <string name="notes_reviews_title">评论</string>

@@ -7,15 +7,15 @@ import com.fjby.travel.leyou.R;
 /**
  * Created by abin on 2015/9/17.
  */
-public class SettingActivity extends BaseActivity {
+public class MySettingActivity extends BaseActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_mysetting);
         initToolbar(true, true);
-        setToolbarTitle(R.string.setting_title);
+        setToolbarTitle(R.string.mysetting_title);
 
 
     }

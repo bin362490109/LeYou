@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
@@ -135,7 +134,7 @@ private  void  changeToobarSelect(int position){
                             case R.id.navigation_item_collect:
                                 break;
                             case R.id.navigation_item_setting:
-                                IntentUtils.getInstance().startActivity(MainActivity.this,SettingActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this,MySettingActivity.class);
                                 break;
                             case R.id.navigation_item_email:
                                 break;
@@ -146,6 +145,7 @@ private  void  changeToobarSelect(int position){
                             case R.id.navigation_item_password:
                                 break;
                             case R.id.navigation_item_travel:
+                                IntentUtils.getInstance().startActivity(MainActivity.this,MyTravelActivity.class);
                                 break;
 
                         }
