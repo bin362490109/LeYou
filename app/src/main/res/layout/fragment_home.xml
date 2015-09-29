@@ -14,81 +14,82 @@
         >
 
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true">
+
+            <com.fjby.travel.leyou.widget.AutoScrollViewPager
+                android:id="@+id/image_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_alignParentTop="true">
+                android:layout_height="match_parent"/>
 
-                <com.fjby.travel.leyou.widget.AutoScrollViewPager
-                    android:id="@+id/image_viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+            <ImageButton
+                android:id="@+id/home_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/account_selector"/>
 
-                <ImageButton
-                    android:id="@+id/home_account"
+            <TextView
+                android:id="@+id/home_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/nav_location_selector"
+                android:text="福州"
+                android:textColor="@color/textcolor_selector"
+                android:textSize="18sp"/>
+
+            <LinearLayout
+                android:id="@+id/images_dots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="5dip"
+                android:orientation="horizontal">
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/account_selector"/>
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:contentDescription="@string/no_image"
+                    android:padding="5dip"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/banner_selector"/>
 
-                    <TextView
-                        android:id="@+id/home_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:drawablePadding="10dp"
-                        android:text="福州"
-                        android:drawableRight="@drawable/nav_location_selector"
-                        android:textColor="@color/textcolor_selector"
-                        android:textSize="18sp"/>
-
-                <LinearLayout
-                    android:id="@+id/images_dots"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginBottom="5dip"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:contentDescription="@string/no_image"
+                    android:padding="5dip"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/banner_selector"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:adjustViewBounds="true"
-                        android:clickable="true"
-                        android:contentDescription="@string/no_image"
-                        android:padding="5dip"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/banner_selector"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:contentDescription="@string/no_image"
+                    android:padding="5dip"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/banner_selector"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:adjustViewBounds="true"
-                        android:clickable="true"
-                        android:contentDescription="@string/no_image"
-                        android:padding="5dip"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/banner_selector"/>
+            </LinearLayout>
+        </RelativeLayout>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:adjustViewBounds="true"
-                        android:clickable="true"
-                        android:contentDescription="@string/no_image"
-                        android:padding="5dip"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/banner_selector"/>
-
-                </LinearLayout>
-            </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,23 +105,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="mytour"
-               >
+                >
 
                 <ImageView
                     android:id="@+id/home_doing_image"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
-                    android:scaleType="fitXY"
                     android:layout_marginRight="10dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/main_1"/>
 
                 <TextView
                     android:id="@+id/home_doing_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/home_doing_image"
                     android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/home_doing_image"
                     android:lineSpacingMultiplier="2"
                     android:text="《厦门观音山-沙滩音乐节自驾一日游》阳光沙滩  音乐  门票预定"
                     android:textColor="@color/black"
@@ -140,9 +141,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="热门推荐"
                 android:onClick="production"
                 android:padding="6dp"
+                android:text="热门推荐"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -156,9 +157,9 @@
                     android:layout_height="@dimen/main_image_height"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="3dp"
-                    android:scaleType="fitXY"
-                    android:onClick="production"
                     android:layout_weight="1"
+                    android:onClick="production"
+                    android:scaleType="fitXY"
                     android:src="@drawable/main_2"/>
 
                 <ImageView
@@ -166,9 +167,9 @@
                     android:layout_height="@dimen/main_image_height"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="6dp"
+                    android:layout_weight="1"
                     android:onClick="production"
                     android:scaleType="fitXY"
-                    android:layout_weight="1"
                     android:src="@drawable/main_3"/>
             </LinearLayout>
 
@@ -184,112 +185,23 @@
                     android:layout_height="@dimen/main_image_height"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="3dp"
+                    android:layout_weight="1"
                     android:onClick="production"
                     android:scaleType="fitXY"
-                    android:layout_weight="1"
                     android:src="@drawable/main_1"/>
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="@dimen/main_image_height"
                     android:layout_marginLeft="3dp"
-                    android:scaleType="fitXY"
-                    android:onClick="production"
                     android:layout_marginRight="6dp"
                     android:layout_weight="1"
+                    android:onClick="production"
+                    android:scaleType="fitXY"
                     android:src="@drawable/main_2"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:onClick="production"
-                android:orientation="horizontal"
-                >
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="6dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/main_3"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:text="《厦门观音山-沙滩音乐节自驾一日游》阳光沙滩  音乐  门票预定"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="￥3500"
-                            android:textColor="@color/red"
-                            android:layout_marginRight="6dp"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="起"
-                            android:textColor="@color/black_grey"
-                            android:textSize="16sp"/>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/reviews"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="280"
-                            android:textColor="@color/black_grey"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="人点评"
-                            android:textColor="@color/black_grey"
-                            android:layout_marginRight="10dp"
-                            android:textSize="18sp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:src="@drawable/like"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="5"
-                            android:textColor="@color/black_grey"
-                            android:textSize="16sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="分"
-                            android:textColor="@color/black_grey"
-                            android:textSize="16sp"/>
-                    </LinearLayout>
-                    </LinearLayout>
-            </LinearLayout>
+            <include layout="@layout/adapter_produce"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

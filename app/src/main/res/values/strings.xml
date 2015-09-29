@@ -62,7 +62,10 @@
     <string name="info_message_title">XXX旅游团</string>
     <string name="info_push_title">旅游监管机构</string>
     <string name="mysetting_title">设置</string>
-    <string name="mytravel_title">设置</string>
+    <string name="myappeal_title">我的诉求</string>
+    <string name="myappeal_more_title">诉求详情</string>
+    <string name="mytravel_title">我的游记</string>
+    <string name="mycollect_title">收藏</string>
     <string name="mytourguide">导游</string>
     <string name="city_location">选择城市</string>
     <string name="notes_reviews_title">评论</string>

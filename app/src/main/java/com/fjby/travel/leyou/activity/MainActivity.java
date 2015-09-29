@@ -132,11 +132,13 @@ private  void  changeToobarSelect(int position){
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.navigation_item_collect:
+                                IntentUtils.getInstance().startActivity(MainActivity.this,MyCollectActivity.class);
                                 break;
                             case R.id.navigation_item_setting:
                                 IntentUtils.getInstance().startActivity(MainActivity.this,MySettingActivity.class);
                                 break;
                             case R.id.navigation_item_email:
+                                IntentUtils.getInstance().startActivity(MainActivity.this,MyAppealActivity.class);
                                 break;
                             case R.id.navigation_item_order:
                                 break;

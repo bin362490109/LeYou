@@ -91,6 +91,17 @@
             android:screenOrientation="portrait"
             >
         </activity>
+        <activity
+            android:name=".activity.MyCollectActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".activity.MyAppealActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            >
+        </activity>
     </application>
 
 </manifest>
