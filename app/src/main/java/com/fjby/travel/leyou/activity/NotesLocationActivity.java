@@ -19,6 +19,7 @@ import com.fjby.travel.leyou.utils.ToastUtils;
 public class NotesLocationActivity extends BaseActivity {
     private String[] itemNames;
     private TextView mNotesSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class NotesLocationActivity extends BaseActivity {
             }
         });
 
-         mNotesSearch=(TextView)findViewById(R.id.notes_text_search);
+        mNotesSearch = (TextView) findViewById(R.id.notes_text_search);
         mNotesSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

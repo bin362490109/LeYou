@@ -39,16 +39,15 @@ public class HomeTourActivity extends BaseActivity {
         setContentView(R.layout.activity_home_tour);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytour);
-
         mImageView = (ImageView) findViewById(R.id.mytour_menu);
         mToggleButton = (ToggleButton) findViewById(R.id.tour_toggleBtn);
         mLinearLayout = (RelativeLayout) findViewById(R.id.tour_text);
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     mLinearLayout.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     mLinearLayout.setVisibility(View.GONE);
                 }
 
@@ -78,12 +77,12 @@ public class HomeTourActivity extends BaseActivity {
             //定义窗口菜单
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.popu_produce, null);
-            TextView textView= (TextView) view.findViewById(R.id.menu_text_1);
-            TextView textView2= (TextView) view.findViewById(R.id.menu_text_2);
+            TextView textView = (TextView) view.findViewById(R.id.menu_text_1);
+            TextView textView2 = (TextView) view.findViewById(R.id.menu_text_2);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtils.showShort(HomeTourActivity.this,"消息中心");
+                    ToastUtils.showShort(HomeTourActivity.this, "消息中心");
                 }
             });
             textView2.setOnClickListener(new View.OnClickListener() {
@@ -105,18 +104,17 @@ public class HomeTourActivity extends BaseActivity {
         // 此处返回false，系统不会执行onCreateOptionsMenu中添加的菜单
         return false;
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (pw!=null&&pw.isShowing()) {
+            if (pw != null && pw.isShowing()) {
                 pw.dismiss();
                 return false;
             }
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
 
 
     @Override
@@ -135,7 +133,8 @@ public class HomeTourActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public  void map(View view){
+
+    public void map(View view) {
         IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourGuideActivity.class);
     }
 }

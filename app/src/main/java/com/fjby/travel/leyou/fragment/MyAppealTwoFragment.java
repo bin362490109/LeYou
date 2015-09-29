@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 
@@ -22,7 +23,8 @@ public class MyAppealTwoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
      View view = inflater.inflate(R.layout.fragment_myappeal_two, container, false);
-        getActivity().setTitle("3333");
+        TextView mToolbarTitle = (TextView) getActivity().findViewById(R.id.toolbar_title);
+        mToolbarTitle.setText(R.string.myappeal_more_title);
         setHasOptionsMenu(true);
         return view;
     }

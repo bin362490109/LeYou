@@ -72,17 +72,14 @@
 
                     </RelativeLayout>
                 </RelativeLayout>
-
-
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
+                    android:navigationIcon="@drawable/nav_back_selector"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
             </android.support.design.widget.CollapsingToolbarLayout>
-
-
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView

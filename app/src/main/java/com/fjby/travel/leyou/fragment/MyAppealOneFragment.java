@@ -22,6 +22,8 @@ public class MyAppealOneFragment extends Fragment {
 
      View view = inflater.inflate(R.layout.fragment_myappeal_one, container, false);
         mTextView=(TextView)view.findViewById(R.id.myappeal_more);
+        TextView  mToolbarTitle = (TextView) getActivity().findViewById(R.id.toolbar_title);
+        mToolbarTitle.setText(R.string.myappeal_title);
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

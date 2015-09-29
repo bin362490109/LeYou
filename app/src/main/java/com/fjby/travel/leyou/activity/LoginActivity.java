@@ -17,6 +17,7 @@ import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 
 import java.util.HashMap;
+
 public class LoginActivity extends BaseActivity {
     private EditText mNameEditText;
     private EditText mPassEditText;
@@ -32,7 +33,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initToolbar(true,true);
+        initToolbar(true, true);
         setToolbarTitle(R.string.login_label);
         mRegisetTv = (TextView) findViewById(R.id.btnRegiset);
         mLoginBtn = (Button) findViewById(R.id.btnLogin);
@@ -45,40 +46,40 @@ public class LoginActivity extends BaseActivity {
         mRegisetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               IntentUtils.getInstance().startActivity(LoginActivity.this, RegisteredActivity.class);
+                IntentUtils.getInstance().startActivity(LoginActivity.this, RegisteredActivity.class);
             }
         });
         mForgetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ToastUtils.showLong(LoginActivity.this, R.string.button_forget);
+                ToastUtils.showLong(LoginActivity.this, R.string.button_forget);
             }
         });
         mLoginQqTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ToastUtils.showLong(LoginActivity.this, R.string.QQ);
+                ToastUtils.showLong(LoginActivity.this, R.string.QQ);
             }
         });
         mLoginWecharTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ToastUtils.showLong(LoginActivity.this, R.string.wechat);
+                ToastUtils.showLong(LoginActivity.this, R.string.wechat);
             }
         });
         mLoginWeiboTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ToastUtils.showLong(LoginActivity.this,R.string.weibo);
+                ToastUtils.showLong(LoginActivity.this, R.string.weibo);
             }
         });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkSend()){
+                if (checkSend()) {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("name",mNameEditText.getText().toString().trim());
-                    map.put("req","login");
+                    map.put("name", mNameEditText.getText().toString().trim());
+                    map.put("req", "login");
                     map.put("pass", mPassEditText.getText().toString().trim());
                     HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
                         @Override
@@ -97,13 +98,13 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
-    private boolean checkSend(){
-        if(StringUtils.isEmpty(mNameEditText.getText().toString())){
+    private boolean checkSend() {
+        if (StringUtils.isEmpty(mNameEditText.getText().toString())) {
             ToastUtils.showLong(LoginActivity.this, R.string.name_is_null);
             mNameEditText.requestFocus();
             return false;
         }
-        if(StringUtils.isEmpty(mPassEditText.getText().toString())) {
+        if (StringUtils.isEmpty(mPassEditText.getText().toString())) {
             ToastUtils.showLong(LoginActivity.this, R.string.pass_is_null);
             mPassEditText.requestFocus();
             return false;
@@ -112,16 +113,16 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void CheckResult(String msg) {
-        ToastUtils.showLong(LoginActivity.this,msg);
-        if(msg.trim().equals("502")){
+        ToastUtils.showLong(LoginActivity.this, msg);
+        if (msg.trim().equals("502")) {
             ToastUtils.showLong(LoginActivity.this, R.string.account_err);
-        }else if(msg.trim().equals("503")){
+        } else if (msg.trim().equals("503")) {
             ToastUtils.showLong(LoginActivity.this, R.string.account_is_valid);
-        }else {
-           spf.setString("name", mNameEditText.getText().toString().trim());
-            spf.setString("pass",mPassEditText.getText().toString().trim());
-            Bundle bundle=new Bundle();
-            bundle.putString("user",msg);
+        } else {
+            spf.setString("name", mNameEditText.getText().toString().trim());
+            spf.setString("pass", mPassEditText.getText().toString().trim());
+            Bundle bundle = new Bundle();
+            bundle.putString("user", msg);
             IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, MainActivity.class, bundle);
             finish();
         }

@@ -16,8 +16,5 @@ public class InfoMessageActivity extends BaseActivity {
         setContentView(R.layout.activity_info_message);
         initToolbar(true, true);
         setToolbarTitle(R.string.info_message_title);
-
-
     }
-
 }

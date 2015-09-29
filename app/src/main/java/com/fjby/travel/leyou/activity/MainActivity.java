@@ -22,11 +22,12 @@ import com.google.gson.Gson;
 public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private LinearLayout mLinearLayout;
-    private LinearLayout []mLinearButton=new LinearLayout[5];
+    private LinearLayout[] mLinearButton = new LinearLayout[5];
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private ResUser mResUser;
-    private int oldPosition=0;
+    private int oldPosition = 0;
+
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,13 @@ public class MainActivity extends BaseActivity {
             Gson gson = new Gson();
             mResUser = gson.fromJson(msg, ResUser.class);
         }
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             LogUtil.e("savedInstanceState-------------");
-            oldPosition=savedInstanceState.getInt("position",0);
+            oldPosition = savedInstanceState.getInt("position", 0);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
+        // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
         //slidemune另一个版本
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         setupDrawerContent(mNavigationView);
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
+
             @Override
             public void onPageSelected(int position) {
                 LogUtil.e("onPageSelected--------------" + position);
@@ -73,42 +75,41 @@ public class MainActivity extends BaseActivity {
         initCustomToobar();
     }
 
-   private void initCustomToobar(){
-       mLinearLayout = (LinearLayout) findViewById(R.id.linear_tablayout);
-       for(int i=0;i<mLinearLayout.getChildCount();i++){
-           final int finalI ;
-           if (i<2) {
-               finalI=i;
-           }else if(i==2){
-               finalI=4;
-           }else{
-               finalI=i-1;
-           }
-           mLinearButton[finalI]= (LinearLayout)mLinearLayout.getChildAt(i);
+    private void initCustomToobar() {
+        mLinearLayout = (LinearLayout) findViewById(R.id.linear_tablayout);
+        for (int i = 0; i < mLinearLayout.getChildCount(); i++) {
+            final int finalI;
+            if (i < 2) {
+                finalI = i;
+            } else if (i == 2) {
+                finalI = 4;
+            } else {
+                finalI = i - 1;
+            }
+            mLinearButton[finalI] = (LinearLayout) mLinearLayout.getChildAt(i);
 
-           mLinearButton[finalI].setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   if (finalI != oldPosition) {
-                       changeToobarSelect(finalI);
-                   }
-               }
-           });
-       }
-       changeToobarSelect(0);
+            mLinearButton[finalI].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (finalI != oldPosition) {
+                        changeToobarSelect(finalI);
+                    }
+                }
+            });
+        }
+        changeToobarSelect(0);
     }
 
-private  void  changeToobarSelect(int position){
-    if(position<4){
-        mLinearButton[oldPosition].setSelected(false);
-        mLinearButton[position].setSelected(true);
-        mViewPager.setCurrentItem(position);
-        oldPosition=position;
-    }else{
-        ToastUtils.showLong(MainActivity.this,"写游记吗？");
+    private void changeToobarSelect(int position) {
+        if (position < 4) {
+            mLinearButton[oldPosition].setSelected(false);
+            mLinearButton[position].setSelected(true);
+            mViewPager.setCurrentItem(position);
+            oldPosition = position;
+        } else {
+            ToastUtils.showLong(MainActivity.this, "写游记吗？");
+        }
     }
-}
-
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -132,13 +133,13 @@ private  void  changeToobarSelect(int position){
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.navigation_item_collect:
-                                IntentUtils.getInstance().startActivity(MainActivity.this,MyCollectActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this, MyCollectActivity.class);
                                 break;
                             case R.id.navigation_item_setting:
-                                IntentUtils.getInstance().startActivity(MainActivity.this,MySettingActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this, MySettingActivity.class);
                                 break;
                             case R.id.navigation_item_email:
-                                IntentUtils.getInstance().startActivity(MainActivity.this,MyAppealActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this, MyAppealActivity.class);
                                 break;
                             case R.id.navigation_item_order:
                                 break;
@@ -147,7 +148,7 @@ private  void  changeToobarSelect(int position){
                             case R.id.navigation_item_password:
                                 break;
                             case R.id.navigation_item_travel:
-                                IntentUtils.getInstance().startActivity(MainActivity.this,MyTravelActivity.class);
+                                IntentUtils.getInstance().startActivity(MainActivity.this, MyTravelActivity.class);
                                 break;
 
                         }
@@ -158,18 +159,20 @@ private  void  changeToobarSelect(int position){
                 });
     }
 
-    public void production(View view){
+    public void production(View view) {
         IntentUtils.getInstance().startActivity(MainActivity.this, HomeProduceActivity.class);
     }
-    public void mytour(View view){
+
+    public void mytour(View view) {
         IntentUtils.getInstance().startActivity(MainActivity.this, HomeTourActivity.class);
     }
 
-    public void notesSerch(View view){
+    public void notesSerch(View view) {
         IntentUtils.getInstance().startActivity(MainActivity.this, NotesLocationActivity.class);
     }
-    public void notesCard(View view){
-       // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
+
+    public void notesCard(View view) {
+        // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
         Intent intent = new Intent(MainActivity.this, NotesDetailActivity.class);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view.findViewById(R.id.notes_image), getString(R.string.transition_book_img));
         ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());

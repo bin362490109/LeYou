@@ -16,8 +16,6 @@ public class InfoPushActivity extends BaseActivity {
         setContentView(R.layout.activity_info_push);
         initToolbar(true, true);
         setToolbarTitle(R.string.info_push_title);
-
-
     }
 
 }
