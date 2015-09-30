@@ -32,6 +32,7 @@ public class NotesDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes_detail);
         initToolbar(true, true);
+        setToolbarNavigationIcon(R.drawable.nav_back_selector);
     }
 
     @Override

@@ -63,6 +63,8 @@
     <string name="info_push_title">旅游监管机构</string>
     <string name="mysetting_title">设置</string>
     <string name="myappeal_title">我的诉求</string>
+    <string name="myrecord_title">我的游记</string>
+    <string name="myrecordfile_title">游游随记</string>
     <string name="myappeal_more_title">诉求详情</string>
     <string name="mytravel_title">我的游记</string>
     <string name="mycollect_title">收藏</string>

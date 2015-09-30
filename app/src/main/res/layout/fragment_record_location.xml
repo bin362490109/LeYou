@@ -1,0 +1,124 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@color/other_bg"
+                  android:fitsSystemWindows="true"
+                  android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <ImageButton
+                android:id="@+id/record_nav_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/nav_back_selector"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/editext_notes_shap"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="10dp"
+                android:hint="搜索旅行地"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black_grey"
+                android:textCursorDrawable="@null"/>
+
+            <TextView
+                android:id="@+id/record_text_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="搜索"
+                android:textColor="@color/login_textcolorhint_selector"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/regiset_gray"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/recently"
+                    android:drawablePadding="15dp"
+                    android:padding="10dp"
+                    android:text="新西兰"
+                    android:textColor="@color/black_grey"
+                    android:textSize="18sp"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/next_selector"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/recently"
+                    android:drawablePadding="15dp"
+                    android:padding="10dp"
+                    android:text="新西兰"
+                    android:textColor="@color/black_grey"
+                    android:textSize="18sp"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/next_selector"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

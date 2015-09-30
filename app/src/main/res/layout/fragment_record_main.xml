@@ -1,0 +1,225 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              android:orientation="vertical"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/regiset_gray"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="DAY1  2015年6月30日  周二"
+                android:textColor="@color/black"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/record_location"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="福州动物园"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_grey"
+                    android:drawableRight="@drawable/next_selector"
+                    android:layout_marginRight="20dp"
+                    android:drawablePadding="10dp"
+                    android:text=""/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_3"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="DAY1  2015年6月30日  周二"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/record_pending"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="还没有位置"
+                    android:textColor="@color/black_grey"
+                    android:textSize="18sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/record_location_text"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_grey"
+                    android:drawableRight="@drawable/next_selector"
+                    android:layout_marginRight="20dp"
+                    android:drawablePadding="10dp"
+                    android:text="点击关联位置"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_3"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="DAY1  2015年6月30日  周二"
+                android:textColor="@color/black"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/record_file"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="福州动物园"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_grey"
+                    android:drawableRight="@drawable/next_selector"
+                    android:layout_marginRight="20dp"
+                    android:drawablePadding="10dp"
+                    android:text=""/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="两个月的时间不长不短"
+                android:textColor="@color/black_grey"
+                />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:orientation="horizontal"
+        >
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/record_tab_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/tab_file_selector"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/record_tab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/tab_camera_selector"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/record_tab_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:background="@drawable/tab_location_selector"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

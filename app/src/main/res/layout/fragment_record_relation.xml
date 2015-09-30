@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/regiset_gray"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="DAY1  2015年6月30日  周二"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="一项未关联内容（可多选）"
+                android:textColor="@color/black_grey"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/main_3"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/main_2"
+                    android:scaleType="fitXY"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="长按未编辑内容，拖动到相关地点内"
+                android:textColor="@color/black_grey"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="↓"
+                android:textColor="@color/black_grey"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:text="福州动物员"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+
+                        android:background="@drawable/main_2"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:text="福州动物员"
+                        android:textColor="@color/black"/>
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/addto_h"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/record_add"
+
+                android:drawablePadding="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:text="快速添加编辑地点"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

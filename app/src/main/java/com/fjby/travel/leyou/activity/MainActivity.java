@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity {
             mViewPager.setCurrentItem(position);
             oldPosition = position;
         } else {
-            ToastUtils.showLong(MainActivity.this, "写游记吗？");
+            IntentUtils.getInstance().startActivity(MainActivity.this,MyRecordActivity.class);
         }
     }
     @Override
