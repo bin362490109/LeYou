@@ -27,6 +27,7 @@ public class SharePreferenceUtil {
     public static SharePreferenceUtil getInstance(Context context, String fileName) {
         if(defaultFileName == null || !defaultFileName.trim().equals(fileName)) {
             defaultFileName =  fileName;
+           // sp = context.getSharedPreferences(fileName, context.MODE_PRIVATE);
             sp = context.getSharedPreferences(fileName, context.MODE_PRIVATE);
         }
         return new SharePreferenceUtil();

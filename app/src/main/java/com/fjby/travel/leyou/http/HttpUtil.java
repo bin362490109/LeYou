@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.application.MyVolley;
 import com.fjby.travel.leyou.utils.LogUtil;
 
@@ -24,7 +25,9 @@ import java.util.Map;
 
 public class HttpUtil {
     public final static String SRV_URL = "http://192.168.0.52:8080/tour/";
-    public final static String API_URL = "http://192.168.0.52:8080/tour/SaApi";
+    //public final static String API_URL = "http://192.168.0.54:8080/tour/SaApi";
+    public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
+
 
 
     /**
@@ -74,12 +77,12 @@ public class HttpUtil {
     }
 
     //POST表单提交
-
     private static void VolleyRequestByPost(final HashMap<String, String> map, final HttpCallbackListener listener) {
         StringRequest request = new StringRequest(Request.Method.POST, API_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 listener.onFinish(response);
+                LogUtil.e("response==="+response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -90,6 +93,15 @@ public class HttpUtil {
             // 携带参数
             @Override
             protected HashMap<String, String> getParams() throws AuthFailureError {
+                if(LeYouMyApplication.mUser!=null){
+                    map.put("hhid",LeYouMyApplication.mCashHhid);
+                    map.put("dlid",LeYouMyApplication.mUser.getGuid());
+                }else{
+                    map.put("hhid",LeYouMyApplication.mCashHhid);
+                }
+                map.put("check","");
+                map.put("ver",LeYouMyApplication.versionName);
+                LogUtil.e("map=="+map.toString()+"     "+LeYouMyApplication.mCashHhid);
                 return map;
             }
 

@@ -30,9 +30,9 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.SharePreferenceUtil;
 
-// TODO: Auto-generated Javadoc
 
 /**
  * 所有activity的基类。该基类实现了XPGWifiDeviceListener和XPGWifiSDKListener两个监听器，并提供全局的回调方法。
@@ -51,8 +51,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LeYouMyApplication.addActivity(this);
-        spf = SharePreferenceUtil.getInstance(getApplicationContext(), "account");
-
+        spf = SharePreferenceUtil.getInstance(getApplicationContext());
     }
 
     protected void initToolbar(boolean showToolbar, boolean showNav) {
@@ -72,12 +71,20 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void setToolbarTitle(int resid) {
+    public void setToolbarTitle(int resid) {
         mToolbarTitle.setText(resid);
     }
 
-    protected void setToolbarNavigationIcon(int resid) {
+    public void setToolbarNavigationIcon(int resid) {
         mToolbar.setNavigationIcon(resid);
+    }
+    public void setToolbarShow(boolean show) {
+        if(show) {
+            mToolbar.setVisibility(View.VISIBLE);
+        }else{
+            mToolbar.setVisibility(View.GONE);
+        }
+
     }
 
     private void setToolbarHomeEnabled(boolean isShow) {
@@ -161,9 +168,14 @@ public class BaseActivity extends AppCompatActivity {
     private void hideSoftInput(IBinder token) {
         if (token != null) {
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            im.hideSoftInputFromWindow(token,
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+            im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtil.e(LeYouMyApplication.Size()+"   baseactivity   onDestroy");
+        LeYouMyApplication.removeActivity(this);
+    }
 }

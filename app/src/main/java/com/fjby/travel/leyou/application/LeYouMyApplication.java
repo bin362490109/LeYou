@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
 
+import com.fjby.travel.leyou.pojo.User;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.NetworkUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
@@ -24,17 +25,17 @@ public class LeYouMyApplication extends Application {
     private static Stack<Activity> activitiesStack = new Stack<Activity>();
     public static int versionCode;
     public static String versionName;
-
+    public static User mUser = null;
+    public static String mCashHhid;
     public static String imei;
     public static String ip;
     public static String device;
     public static String number;
     public static int screenWidth;
     public static int screenHeight;
-
     @Override
     public void onCreate() {
-
+        mCashHhid = "-1";
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
         MyVolley.init(getApplicationContext());
@@ -57,8 +58,8 @@ public class LeYouMyApplication extends Application {
             ip = NetworkUtils.getIpAddress();
             // 获取应用信息
             ai = pm.getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
-            LogUtil.d("[pi]=" + pi + "   [versioncode]=" + LeYouMyApplication.versionCode + "    [versionName]=" + LeYouMyApplication.versionName +
-                    "   [imei]=" + imei + "   [device]=" + device + "   [number]=" + screenWidth);
+            LogUtil.d("[pi]=" + pi + "   [versioncode]=" + LeYouMyApplication.versionCode + "    [versionName]=" + LeYouMyApplication.versionName + "   [imei]=" + imei + "   [device]=" + device + "   [number]=" + screenWidth);
+            LogUtil.e("-------myapplication---------onCreate----------------");
         } catch (PackageManager.NameNotFoundException e) {
             LogUtil.e(e.getMessage());
             ToastUtils.showLong(this, e.getMessage());
@@ -74,17 +75,25 @@ public class LeYouMyApplication extends Application {
         return activitiesStack.lastElement();
     }
 
-    public static Activity removeActivity(Activity activity) {
-        activitiesStack.remove(activity);
-        activity.finish();
-        activity = null;
-
-        return activity;
+    public static void removeActivity(Activity activity) {
+        if(activity == null)
+            return ;
+        try {
+            activitiesStack.remove(activity);
+            activity.finish();
+            activity = null;
+            if(Size()<1){
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(0);
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void removeAllActivities() {
         if (activitiesStack != null && !activitiesStack.isEmpty()) {
-
             for (Iterator<Activity> i = activitiesStack.iterator(); i.hasNext(); ) {
                 Activity a = i.next();
                 if (a != null) {
@@ -96,10 +105,19 @@ public class LeYouMyApplication extends Application {
         activitiesStack.clear();
     }
 
+    public static int Size() {
+        return activitiesStack.size();
+    }
+
+
     @Override
     public void onTerminate() {
         super.onTerminate();
         activitiesStack = null;
+        mUser = null;
+        LogUtil.e("-------myapplication---------onTerminate----------------");
     }
+
+
 
 }

@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.activity.MyAppealActivity;
 
 public class MyAppealTwoFragment extends Fragment {
     ImageButton mImageButton;
@@ -23,9 +24,8 @@ public class MyAppealTwoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
      View view = inflater.inflate(R.layout.fragment_myappeal_two, container, false);
-        TextView mToolbarTitle = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(R.string.myappeal_more_title);
         setHasOptionsMenu(true);
+        ((MyAppealActivity)getActivity()).setToolbarTitle(R.string.myappeal_more_title);
         return view;
     }
 

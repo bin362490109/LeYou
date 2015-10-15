@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.activity.MyRecordActivity;
 
 public class MyRecordMainFragment extends Fragment {
     private TextView mTextView;
@@ -58,12 +59,11 @@ public class MyRecordMainFragment extends Fragment {
             }
         });
 
-        TextView mToolbarTitle = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        Toolbar mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        mToolbar.setVisibility(View.VISIBLE);
-        mToolbar.setNavigationIcon(R.drawable.nav_back_selector);
+        MyRecordActivity myParentActivity=(MyRecordActivity)getActivity();
+        myParentActivity.setToolbarShow(true);
+        myParentActivity.setToolbarNavigationIcon(R.drawable.nav_cancel_selector);
+        myParentActivity.setToolbarTitle(R.string.myrecord_title);
         setHasOptionsMenu(true);
-        mToolbarTitle.setText(R.string.myrecord_title);
         return view;
     }
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.activity.MyRecordActivity;
 
 public class MyRecordRelationFragment extends Fragment {
     private TextView mTextView;
@@ -24,13 +25,11 @@ public class MyRecordRelationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_relation, container, false);
-
-        TextView mToolbarTitle = (TextView) getActivity().findViewById(R.id.toolbar_title);
-        Toolbar mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        mToolbar.setVisibility(View.VISIBLE);
-        mToolbar.setNavigationIcon(R.drawable.nav_back_selector);
+        MyRecordActivity myParentActivity=(MyRecordActivity)getActivity();
+        myParentActivity.setToolbarShow(true);
+        myParentActivity.setToolbarNavigationIcon(R.drawable.nav_cancel_selector);
+        myParentActivity.setToolbarTitle(R.string.myrecordRelation_title);
         setHasOptionsMenu(true);
-        mToolbarTitle.setText("关联地点");
         return view;
     }
 

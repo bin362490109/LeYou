@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.activity.MyRecordActivity;
 
 public class MyRecordLocationFragment extends Fragment {
     private TextView mTextView;
@@ -27,9 +28,7 @@ public class MyRecordLocationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_location, container, false);
-
-        Toolbar mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-        mToolbar.setVisibility(View.GONE);
+        ((MyRecordActivity)getActivity()).setToolbarShow(false);
         setHasOptionsMenu(true);
 
         TextView  mNotesSearch = (TextView) view.findViewById(R.id.record_text_search);

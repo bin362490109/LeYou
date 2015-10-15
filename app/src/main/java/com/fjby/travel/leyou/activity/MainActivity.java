@@ -13,7 +13,8 @@ import android.widget.LinearLayout;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
-import com.fjby.travel.leyou.entity.ResUser;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
@@ -25,8 +26,9 @@ public class MainActivity extends BaseActivity {
     private LinearLayout[] mLinearButton = new LinearLayout[5];
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
-    private ResUser mResUser;
     private int oldPosition = 0;
+
+    private long exitTime = 0;
 
     //
     @Override
@@ -34,16 +36,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle bundle = this.getIntent().getExtras();
-        if (bundle != null) {
-            String msg = bundle.getString("user");
-            Gson gson = new Gson();
-            mResUser = gson.fromJson(msg, ResUser.class);
-        }
         if (savedInstanceState != null) {
-            LogUtil.e("savedInstanceState-------------");
             oldPosition = savedInstanceState.getInt("position", 0);
         }
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
         //slidemune另一个版本
@@ -107,22 +102,21 @@ public class MainActivity extends BaseActivity {
             mViewPager.setCurrentItem(position);
             oldPosition = position;
         } else {
-            IntentUtils.getInstance().startActivity(MainActivity.this,MyRecordActivity.class);
+            IntentUtils.getInstance().startActivity(MainActivity.this, MyRecordActivity.class);
         }
     }
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         savedInstanceState.getInt("position", 0);
         changeToobarSelect(1);
-        LogUtil.e("onRestoreInstanceState-------------");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("position", oldPosition);
-        LogUtil.e("onSaveInstanceState-------------");
     }
 
 
@@ -146,6 +140,13 @@ public class MainActivity extends BaseActivity {
                             case R.id.navigation_item_like:
                                 break;
                             case R.id.navigation_item_password:
+                                if(LeYouMyApplication.mUser==null){
+                                    ToastUtils.show(MainActivity.this,"请先登录账户",0);
+                                 break;
+                                }
+                                Bundle bundle=new Bundle();
+                                bundle.putInt(PassWordActivity.PassType, PassWordActivity.ChangePass);
+                                IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class,bundle);
                                 break;
                             case R.id.navigation_item_travel:
                                 IntentUtils.getInstance().startActivity(MainActivity.this, MyTravelActivity.class);
@@ -172,10 +173,18 @@ public class MainActivity extends BaseActivity {
     }
 
     public void notesCard(View view) {
-        // IntentUtils.getInstance().startActivity(MainActivity.this, NotesDetailActivity.class);
         Intent intent = new Intent(MainActivity.this, NotesDetailActivity.class);
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, view.findViewById(R.id.notes_image), getString(R.string.transition_book_img));
         ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
+    }
 
+    @Override
+    public void onBackPressed() {
+        if((System.currentTimeMillis()-exitTime) > 2000){
+            ToastUtils.show(MainActivity.this, "再按一次返回", 0);
+            exitTime = System.currentTimeMillis();
+            return;
+        }
+           finish();
     }
 }

@@ -27,6 +27,10 @@
             android:screenOrientation="portrait"
             />
         <activity
+            android:name=".activity.PassWordActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
             android:name=".activity.HomeProduceActivity"
             android:screenOrientation="portrait"
             />
@@ -41,11 +45,6 @@
         <activity
             android:name=".activity.HomeTourActivity"
             android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".activity.RegisteredActivity"
-            android:screenOrientation="portrait"
-            >
         </activity>
         <activity
             android:name=".activity.HomeTourGuideActivity"

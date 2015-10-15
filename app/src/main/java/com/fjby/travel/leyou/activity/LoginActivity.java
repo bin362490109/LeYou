@@ -1,20 +1,21 @@
 package com.fjby.travel.leyou.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 
@@ -35,6 +36,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         initToolbar(true, true);
         setToolbarTitle(R.string.login_label);
+        LogUtil.e("LoginActivity   ="+ ((LeYouMyApplication)getApplicationContext()).mCashHhid+"      "+LeYouMyApplication.mUser);
         mRegisetTv = (TextView) findViewById(R.id.btnRegiset);
         mLoginBtn = (Button) findViewById(R.id.btnLogin);
         mNameEditText = (EditText) findViewById(R.id.login_name);
@@ -46,13 +48,17 @@ public class LoginActivity extends BaseActivity {
         mRegisetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.getInstance().startActivity(LoginActivity.this, RegisteredActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putInt(PassWordActivity.PassType, PassWordActivity.RegiserPass);
+                IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, PassWordActivity.class,bundle);
             }
         });
         mForgetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showLong(LoginActivity.this, R.string.button_forget);
+                Bundle bundle=new Bundle();
+                bundle.putInt(PassWordActivity.PassType, PassWordActivity.ResetPass);
+                IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, PassWordActivity.class, bundle);
             }
         });
         mLoginQqTv.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +84,9 @@ public class LoginActivity extends BaseActivity {
             public void onClick(View v) {
                 if (checkSend()) {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("name", mNameEditText.getText().toString().trim());
-                    map.put("req", "login");
-                    map.put("pass", mPassEditText.getText().toString().trim());
+                    map.put("req", "UserLoginAccount");
+                    map.put("phone", mNameEditText.getText().toString().trim());
+                    map.put("password", mPassEditText.getText().toString().trim());
                     HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
@@ -113,18 +119,17 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void CheckResult(String msg) {
-        ToastUtils.showLong(LoginActivity.this, msg);
-        if (msg.trim().equals("502")) {
-            ToastUtils.showLong(LoginActivity.this, R.string.account_err);
-        } else if (msg.trim().equals("503")) {
-            ToastUtils.showLong(LoginActivity.this, R.string.account_is_valid);
-        } else {
-            spf.setString("name", mNameEditText.getText().toString().trim());
+        Gson gson = new Gson();
+        ResUser mResUser = gson.fromJson(msg, ResUser.class);
+        if (mResUser.getStateCode() == 600) {
+            spf.setString("hhid", mNameEditText.getText().toString().trim());
             spf.setString("pass", mPassEditText.getText().toString().trim());
-            Bundle bundle = new Bundle();
-            bundle.putString("user", msg);
-            IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, MainActivity.class, bundle);
+            LeYouMyApplication.mUser = mResUser.getUser();
+            LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
+            IntentUtils.getInstance().startActivity(LoginActivity.this, MainActivity.class);
             finish();
+        } else {
+            ToastUtils.showLong(LoginActivity.this, mResUser.getStateMsg());
         }
 
     }
