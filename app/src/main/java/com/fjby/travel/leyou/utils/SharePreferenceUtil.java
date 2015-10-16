@@ -81,6 +81,9 @@ public class SharePreferenceUtil {
         return sp.getLong(key, defaultValue);
     }
 
+    public void  remove(final String key){
+        sp.edit().remove(key).commit();
+    }
 /**
      * API-11 以上支持此方法
      * */

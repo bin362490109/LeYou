@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity {
                     map.put("req", "UserLoginAccount");
                     map.put("phone", mNameEditText.getText().toString().trim());
                     map.put("password", mPassEditText.getText().toString().trim());
-                    HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+                    HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
                             CheckResult(response);

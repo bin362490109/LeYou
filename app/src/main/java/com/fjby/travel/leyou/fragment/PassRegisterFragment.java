@@ -107,7 +107,7 @@ public class PassRegisterFragment extends Fragment implements View.OnClickListen
         map.put("req", "reg");
         map.put("type", "code");
         map.put("phone", phone);
-        HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+        HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
                 Gson gson = new Gson();
@@ -157,7 +157,7 @@ public class PassRegisterFragment extends Fragment implements View.OnClickListen
                     map.put("username", "测试"+phone);
                     map.put("smscode", mRegisetCodeEt.getText().toString().trim());
                     map.put("password", mRegisetPasswordEt.getText().toString().trim());
-                    HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+                    HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
                             CheckResult(response);

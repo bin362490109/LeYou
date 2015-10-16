@@ -115,7 +115,6 @@ public class LeYouMyApplication extends Application {
         super.onTerminate();
         activitiesStack = null;
         mUser = null;
-        LogUtil.e("-------myapplication---------onTerminate----------------");
     }
 
 

@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
@@ -18,6 +19,7 @@ import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
+import com.fjby.travel.leyou.widget.RoundedImageView;
 import com.google.gson.Gson;
 
 public class MainActivity extends BaseActivity {
@@ -27,7 +29,8 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int oldPosition = 0;
-
+    private RoundedImageView mMenuImage;
+    private TextView mNavTextView;
     private long exitTime = 0;
 
     //
@@ -35,7 +38,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle bundle = this.getIntent().getExtras();
         if (savedInstanceState != null) {
             oldPosition = savedInstanceState.getInt("position", 0);
         }
@@ -43,6 +45,16 @@ public class MainActivity extends BaseActivity {
         // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
         //slidemune另一个版本
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mMenuImage = (RoundedImageView) findViewById(R.id.id_header_image);
+        mMenuImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(PassWordActivity.PassType, PassWordActivity.updateInfo);
+                IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class, bundle);
+            }
+        });
+        mNavTextView = (TextView) findViewById(R.id.id_header_text);
         setupDrawerContent(mNavigationView);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         // 设置ViewPager最大缓存的页面个数
@@ -119,6 +131,11 @@ public class MainActivity extends BaseActivity {
         outState.putInt("position", oldPosition);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setNavImageAndText();
+    }
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -140,20 +157,20 @@ public class MainActivity extends BaseActivity {
                             case R.id.navigation_item_like:
                                 break;
                             case R.id.navigation_item_password:
-                                if(LeYouMyApplication.mUser==null){
-                                    ToastUtils.show(MainActivity.this,"请先登录账户",0);
-                                 break;
+                                if (LeYouMyApplication.mUser == null) {
+                                    ToastUtils.show(MainActivity.this, "请先登录账户", 0);
+                                    break;
                                 }
-                                Bundle bundle=new Bundle();
+                                Bundle bundle = new Bundle();
                                 bundle.putInt(PassWordActivity.PassType, PassWordActivity.ChangePass);
-                                IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class,bundle);
+                                IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class, bundle);
                                 break;
                             case R.id.navigation_item_travel:
                                 IntentUtils.getInstance().startActivity(MainActivity.this, MyTravelActivity.class);
                                 break;
 
                         }
-                        menuItem.setChecked(true);
+                        menuItem.setChecked(false);
                         mDrawerLayout.closeDrawers();
                         return true;
                     }
@@ -178,13 +195,23 @@ public class MainActivity extends BaseActivity {
         ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
     }
 
+    private void  setNavImageAndText(){
+        if(LeYouMyApplication.mUser!=null) {
+            mNavTextView.setText(LeYouMyApplication.mUser.getUserName());
+            mNavTextView.setVisibility(View.VISIBLE);
+            mMenuImage.setImageResource(R.drawable.author);
+        }else{
+            mNavTextView.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onBackPressed() {
-        if((System.currentTimeMillis()-exitTime) > 2000){
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
             ToastUtils.show(MainActivity.this, "再按一次返回", 0);
             exitTime = System.currentTimeMillis();
             return;
         }
-           finish();
+        finish();
     }
 }

@@ -60,7 +60,7 @@ public class BitmapUtils {
 	 * @return  目标Bitmap
 	 * 
 	 * */
-	public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+	/*public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
 			int reqWidth, int reqHeight) {
 		// 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
 		BitmapFactory.Options options = new BitmapFactory.Options();
@@ -70,30 +70,59 @@ public class BitmapUtils {
 		options.inInputShareable = true;
 		// BitmapFactory.decodeResource(res, resId, options);
 		// 调用上面定义的方法计算inSampleSize值
-		options.inSampleSize =calculateInSampleSize(options, reqWidth,
+		options.inSampleSize =computeScale(options, reqWidth,
 				reqHeight);
 		// 使用获取到的inSampleSize值再次解析图片
 		options.inJustDecodeBounds = false;
 		InputStream is =res.openRawResource(resId);
 		return BitmapFactory.decodeStream(is, null, options);
+	}*/
+
+
+	/**
+	 * 根据View(主要是ImageView)的宽和高来获取图片的缩略图
+	 *
+	 * @param path
+	 * @param viewWidth
+	 * @param viewHeight
+	 * @return
+	 */
+	public static Bitmap decodeThumbBitmapForFile(Resources res,int imageRec, int viewWidth, int viewHeight) {
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		//设置为true,表示解析Bitmap对象，该对象不占内存
+		options.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(res, imageRec, options);
+		//设置缩放比例
+		options.inSampleSize = computeScale(options, viewWidth, viewHeight);
+		//设置为false,解析Bitmap对象加入到内存中
+		options.inJustDecodeBounds = false;
+		return BitmapFactory.decodeResource(res, imageRec, options);
 	}
-	
-	//根据指定宽高计算图片适合的尺寸
-	private static int calculateInSampleSize(BitmapFactory.Options options,
-			int reqWidth, int reqHeight) {
-		// 源图片的高度和宽度
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
-		if (height > reqHeight || width > reqWidth) {
-			// 计算出实际宽高和目标宽高的比率
-			final int heightRatio = Math.round((float) height
-					/ (float) reqHeight);
-			final int widthRatio = Math.round((float) width / (float) reqWidth);
-			// 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
-			// 一定都会大于等于目标的宽和高。
-			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+
+	/**
+	 * 根据View(主要是ImageView)的宽和高来计算Bitmap缩放比例。默认不缩放
+	 *
+	 * @param options
+	 * @param width
+	 * @param height
+	 */
+	public static int computeScale(BitmapFactory.Options options, int viewWidth, int viewHeight) {
+		int inSampleSize = 4;
+		if (viewWidth == 0 || viewWidth == 0) {
+			return inSampleSize;
 		}
+		int bitmapWidth = options.outWidth;
+		int bitmapHeight = options.outHeight;
+
+		//假如Bitmap的宽度或高度大于我们设定图片的View的宽高，则计算缩放比例
+		if (bitmapWidth > viewWidth || bitmapHeight > viewWidth) {
+			int widthScale = Math.round((float) bitmapWidth / (float) viewWidth);
+			int heightScale = Math.round((float) bitmapHeight / (float) viewWidth);
+
+			//为了保证图片不缩放变形，我们取宽高比例最小的那个
+			inSampleSize = widthScale < heightScale ? widthScale : heightScale;
+		}
+		LogUtil.e("缩放比例computeScale-inSampleSize= " + inSampleSize);
 		return inSampleSize;
 	}
 }

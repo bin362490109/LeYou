@@ -30,6 +30,7 @@ import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResUser;
+import com.fjby.travel.leyou.utils.BitmapUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.StringUtils;
@@ -81,7 +82,7 @@ public class FlushActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flush);
-        bitmap = decodeThumbBitmapForFile(R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
+        bitmap = BitmapUtils.decodeThumbBitmapForFile(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
         //  Bitmap bitmap=BitmapFactory.decodeResource( getResources(),R.drawable.flush_bg);
         mLoading = (ImageView) findViewById(R.id.welcome_03_layout);
         mImageView = (ImageView) findViewById(R.id.welcome_bg);
@@ -95,53 +96,8 @@ public class FlushActivity extends BaseActivity {
         }, 3000);
     }
 
-    /**
-     * 根据View(主要是ImageView)的宽和高来获取图片的缩略图
-     *
-     * @param path
-     * @param viewWidth
-     * @param viewHeight
-     * @return
-     */
-    private Bitmap decodeThumbBitmapForFile(int imageRec, int viewWidth, int viewHeight) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        //设置为true,表示解析Bitmap对象，该对象不占内存
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(getResources(), imageRec, options);
-        //设置缩放比例
-        options.inSampleSize = computeScale(options, viewWidth, viewHeight);
-        //设置为false,解析Bitmap对象加入到内存中
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(getResources(), imageRec, options);
-    }
 
 
-    /**
-     * 根据View(主要是ImageView)的宽和高来计算Bitmap缩放比例。默认不缩放
-     *
-     * @param options
-     * @param width
-     * @param height
-     */
-    private int computeScale(BitmapFactory.Options options, int viewWidth, int viewHeight) {
-        int inSampleSize = 4;
-        if (viewWidth == 0 || viewWidth == 0) {
-            return inSampleSize;
-        }
-        int bitmapWidth = options.outWidth;
-        int bitmapHeight = options.outHeight;
-
-        //假如Bitmap的宽度或高度大于我们设定图片的View的宽高，则计算缩放比例
-        if (bitmapWidth > viewWidth || bitmapHeight > viewWidth) {
-            int widthScale = Math.round((float) bitmapWidth / (float) viewWidth);
-            int heightScale = Math.round((float) bitmapHeight / (float) viewWidth);
-
-            //为了保证图片不缩放变形，我们取宽高比例最小的那个
-            inSampleSize = widthScale < heightScale ? widthScale : heightScale;
-        }
-        LogUtil.e("缩放比例computeScale-inSampleSize= " + inSampleSize);
-        return inSampleSize;
-    }
 
     private void newFlush() {
         //判断是否有账号登陆
@@ -155,7 +111,7 @@ public class FlushActivity extends BaseActivity {
             map.put("req", "UserLoginAccount");
             map.put("phone", spf.getString("hhid", ""));
             map.put("password", spf.getString("pass", ""));
-            HttpUtil.sendVolleyRequestToString(map, new HttpCallbackListener() {
+            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                 @Override
                 public void onFinish(String response) {
                     Gson gson = new Gson();

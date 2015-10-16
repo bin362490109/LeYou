@@ -78,6 +78,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
         images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
+
         mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
         mHomeAccoutIB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +152,7 @@ public class HomeFragment extends Fragment {
             mListImageViews.add(iv);
         }
         image_viewpager.setAdapter(new ImageViewPagerAdapter());
+        image_viewpager.setOffscreenPageLimit(3);
 
         image_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -210,6 +212,9 @@ public class HomeFragment extends Fragment {
     }
 
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        initDots();
+    }
 }
