@@ -37,6 +37,11 @@ public class HttpUtil {
     //public final static String API_URL = "http://192.168.0.54:8080/tour/SaApi";
     public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
 
+
+/*   public static void sendVolleyRequestToString(final HashMap<String, String> map, final HttpCallbackListener listener) {
+        VolleyRequestByPost(map, listener);
+    }*/
+
     //POST表单提交
     private static void VolleyRequestByPost(final HashMap<String, String> map, final HttpCallbackListener listener) {
         StringRequest request = new StringRequest(Request.Method.POST, API_URL, new Response.Listener<String>() {
@@ -67,7 +72,8 @@ public class HttpUtil {
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() throws AuthFailureError
+            {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("Charset", "UTF-8");
                 headers.put("Content-Type", "application/x-javascript");
@@ -76,7 +82,8 @@ public class HttpUtil {
             }
 
             @Override
-            public RetryPolicy getRetryPolicy() {
+            public RetryPolicy getRetryPolicy()
+            {
                 RetryPolicy retryPolicy = new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
                 return retryPolicy;
             }
@@ -98,20 +105,20 @@ public class HttpUtil {
         map.put("ver", LeYouMyApplication.versionName);
         Iterator<Map.Entry<String, String>> iter = map.entrySet().iterator();
         Map.Entry<String, String> entry;
-        StringBuffer input = new StringBuffer();
-        input.append(API_URL + "?");
+        StringBuffer input=new StringBuffer();
+        input.append(API_URL+"?");
         while (iter.hasNext()) {
             entry = iter.next();
             String key = entry.getKey();
             String value = entry.getValue();
             try {
-                input.append(key + "=" + URLEncoder.encode(value, "UTF-8") + "&");
+                input.append(key+"="+ URLEncoder.encode(value, "UTF-8")+"&");
             } catch (UnsupportedEncodingException e) {
                 input.append("");
             }
         }
-        input.deleteCharAt(input.length() - 1);
-        LogUtil.e("input   inout=" + input.toString());
+        input.deleteCharAt(input.length()-1);
+        LogUtil.e("input   inout="+input.toString());
         VolleyRequestByParam(input.toString(), listener);
     }
 
@@ -128,18 +135,10 @@ public class HttpUtil {
             public void onErrorResponse(VolleyError error) {
                 listener.onError(error);
             }
-        }) {
+        }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
-                headers.put("Charset", "UTF-8");
-                headers.put("Content-Type", "application/x-javascript");
-                headers.put("Accept-Encoding", "gzip,deflate");
-                return headers;
-            }
-
-            @Override
-            public RetryPolicy getRetryPolicy() {
+            public RetryPolicy getRetryPolicy()
+            {
                 RetryPolicy retryPolicy = new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
                 return retryPolicy;
             }
