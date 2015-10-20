@@ -22,7 +22,7 @@ public class PassWordActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
+        setContentView(R.layout.activity_fragment);
         initToolbar(true, true);
         int type=   getIntent().getExtras().getInt(PassType,2);
         switch (type){
@@ -34,16 +34,11 @@ public class PassWordActivity extends BaseActivity {
                 break;
             case RegiserPass:
                 repalceFragment(new PassRegisterFragment());
+                break;
             case updateInfo:
                 repalceFragment(new UpdateInfoFragment());
                 break;
         }
 
-    }
-    private void repalceFragment(Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.password_framelayout,fragment);
-        ft.commit();
     }
 }

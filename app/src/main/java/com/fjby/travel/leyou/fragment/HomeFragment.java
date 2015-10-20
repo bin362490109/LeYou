@@ -23,13 +23,6 @@ import com.fjby.travel.leyou.widget.AutoScrollViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class HomeFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +33,8 @@ public class HomeFragment extends Fragment {
     private TextView mHomeLocationTV;
 
     private AutoScrollViewPager image_viewpager;
+    
+    //// TODO: 2015/10/20   如果不放地址以后可以删除  写死
     private List<ImageView> mListImageViews;
     private ImageView[] imageDots;
     private int currentIndex; // 当前图片顺序
@@ -138,7 +133,7 @@ public class HomeFragment extends Fragment {
 
     private void initImageViews() {
         mListImageViews = new ArrayList<>(3);
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i <3; ++i) {
             final ImageView iv = new ImageView(getActivity());
             iv.setScaleType(ImageView.ScaleType.FIT_XY);
             iv.setImageResource(mImages[i]);
@@ -172,8 +167,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void doCurrentDotChange(int position) {
-        if (position < 0 || position == mListImageViews.size()
-                || currentIndex == position) {
+        if (position < 0 || position == mListImageViews.size()  || currentIndex == position) {
             return;
         }
         imageDots[position].setSelected(true);

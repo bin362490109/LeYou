@@ -20,6 +20,9 @@ package com.fjby.travel.leyou.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
@@ -110,11 +113,22 @@ public class BaseActivity extends AppCompatActivity {
                 .add(R.id.fragment_base, fragment)
                 .commit();
     }
+*/
+
     protected void repalceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_base, fragment)
-                .commit();
-    }*/
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment_base,fragment);
+        ft.commit();
+    }
+    public void repalceFragmentWithTag(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment_base,fragment);
+        ft.addToBackStack("tag");
+        ft.commit();
+    }
+
 
 
     public void onResume() {

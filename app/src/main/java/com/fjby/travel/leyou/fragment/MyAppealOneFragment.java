@@ -22,11 +22,13 @@ public class MyAppealOneFragment extends Fragment {
 
      View view = inflater.inflate(R.layout.fragment_myappeal_one, container, false);
         mTextView=(TextView)view.findViewById(R.id.myappeal_more);
-        ((MyAppealActivity)getActivity()).setToolbarTitle(R.string.myappeal_title);
+        final MyAppealActivity myAppealActivity=(MyAppealActivity)getActivity();
+        myAppealActivity.setToolbarTitle(R.string.myappeal_title);
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.myappeal_framlayout, new MyAppealTwoFragment()).addToBackStack("tag").commit();
+                myAppealActivity.repalceFragmentWithTag(new MyAppealTwoFragment());
+
             }
         });
         return view;

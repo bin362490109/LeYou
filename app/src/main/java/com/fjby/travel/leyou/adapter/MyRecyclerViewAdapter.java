@@ -39,6 +39,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         mLayoutInflater = LayoutInflater.from(mContext);
         this.mDatas=dates;
     }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     /**
      * 创建ViewHolder
      */

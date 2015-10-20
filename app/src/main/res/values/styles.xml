@@ -9,7 +9,7 @@
         <!--正常状态下字体颜色和icon颜色-->
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/other_bg</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
     </style>
 
