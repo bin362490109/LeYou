@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+    
+    <LinearLayout 
+        android:id="@+id/shareLayout"
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:background="#D000"
+        android:padding="8dp"
+         android:orientation="horizontal"
+        >
+        <TextView 
+            android:id="@+id/adressText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="20dp"
+              android:text="分享"
+            />
+        <View 
+             android:layout_width="0dp"
+              android:layout_height="20dp"
+              android:layout_weight="1"
+            />
+        <Button 
+             android:id="@+id/shareButton"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+               android:layout_marginRight="20dp"
+              android:text="分享"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="#D000"
+        android:alpha="0.5"
+        android:minWidth="100dip"
+        android:orientation="vertical"
+        android:padding="2dp" >
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="定位icon" >
+
+            <RadioButton
+                android:id="@+id/defaulticon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="普通地图" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/customicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="卫星图" >
+            </RadioButton>
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp"
+        android:background="@color/gray"
+        android:layout_marginBottom="61dp"
+        android:layout_marginLeft="16dp" />
+
+</RelativeLayout>

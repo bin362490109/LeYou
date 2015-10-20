@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.fjby.travel.baidulibrary.activity.MapTestActivity;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
@@ -88,7 +89,8 @@ public class HomeTourActivity extends BaseActivity {
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourLocationActivity.class);
+               //     IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourLocationActivity.class);
+                    IntentUtils.getInstance().startActivity(HomeTourActivity.this, MapTestActivity.class);
                 }
             });
             //生成PopupWindow对象

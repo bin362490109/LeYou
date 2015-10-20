@@ -18,7 +18,6 @@
 package com.fjby.travel.leyou.activity;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,7 +31,6 @@ import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.BitmapUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
-import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.google.gson.Gson;

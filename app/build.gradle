@@ -11,8 +11,22 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'leyou'
+            storeFile file('C://Users/abin/.android/leyou.jks')
+            keyPassword '654321'
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.releaseConfig
+        }
+
         release {
+            signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -29,4 +43,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.0.1'
     compile 'com.android.support:recyclerview-v7:23.0.1'
     compile 'com.afollestad:material-dialogs:0.7.6.0'
+    compile project(':baidulibrary')
 }

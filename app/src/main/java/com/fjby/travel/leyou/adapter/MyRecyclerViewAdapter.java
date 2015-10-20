@@ -9,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.utils.LogUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

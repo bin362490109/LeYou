@@ -1,7 +1,5 @@
 package com.fjby.travel.leyou.utils;
 
-import java.io.InputStream;
-
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

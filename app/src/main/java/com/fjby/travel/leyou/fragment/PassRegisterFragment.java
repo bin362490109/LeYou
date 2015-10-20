@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.activity.BaseActivity;
 import com.fjby.travel.leyou.activity.PassWordActivity;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;

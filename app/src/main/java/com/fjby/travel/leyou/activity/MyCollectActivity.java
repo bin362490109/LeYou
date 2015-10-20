@@ -9,9 +9,6 @@ import android.support.v4.view.ViewPager;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.fragment.MyCollectProduceFragment;
-import com.fjby.travel.leyou.fragment.ProduceDetailFragment;
-import com.fjby.travel.leyou.fragment.ProduceInfoFragment;
-import com.fjby.travel.leyou.fragment.ProduceReviewFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,12 +15,10 @@ import android.widget.TextView;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
-import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.RoundedImageView;
-import com.google.gson.Gson;
 
 public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;

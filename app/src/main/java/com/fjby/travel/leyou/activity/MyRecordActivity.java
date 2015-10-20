@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.fragment.MyAppealOneFragment;
 import com.fjby.travel.leyou.fragment.MyRecordMainFragment;
-import com.fjby.travel.leyou.utils.LogUtil;
 
 public class MyRecordActivity extends BaseActivity {
 

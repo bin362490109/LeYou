@@ -6,12 +6,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.InfoMessageActivity;
@@ -19,7 +15,6 @@ import com.fjby.travel.leyou.activity.InfoPushActivity;
 import com.fjby.travel.leyou.adapter.MyRecyclerViewAdapter;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.SnackbarUtil;
-import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.DividerItemDecoration;
 
 import java.util.ArrayList;

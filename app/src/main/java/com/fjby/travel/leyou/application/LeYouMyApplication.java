@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.fjby.travel.leyou.pojo.User;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.NetworkUtils;
@@ -60,6 +61,8 @@ public class LeYouMyApplication extends Application {
             ai = pm.getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             LogUtil.d("[pi]=" + pi + "   [versioncode]=" + LeYouMyApplication.versionCode + "    [versionName]=" + LeYouMyApplication.versionName + "   [imei]=" + imei + "   [device]=" + device + "   [number]=" + screenWidth);
             LogUtil.e("-------myapplication---------onCreate----------------");
+            // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
+            SDKInitializer.initialize(this);
         } catch (PackageManager.NameNotFoundException e) {
             LogUtil.e(e.getMessage());
             ToastUtils.showLong(this, e.getMessage());

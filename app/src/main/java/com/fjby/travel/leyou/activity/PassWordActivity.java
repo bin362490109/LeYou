@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.fragment.MyAppealOneFragment;
 import com.fjby.travel.leyou.fragment.PassChangeFragment;
 import com.fjby.travel.leyou.fragment.PassRegisterFragment;
 import com.fjby.travel.leyou.fragment.PassResetFragment;
