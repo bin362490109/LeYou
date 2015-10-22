@@ -23,7 +23,6 @@
                 android:layout_weight="1"
                 android:scrollbars="none"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
             <include
                 layout="@layout/include_tab"/>
         </LinearLayout>

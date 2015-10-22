@@ -45,7 +45,7 @@ import com.baidu.mapapi.search.share.OnGetShareUrlResultListener;
 import com.baidu.mapapi.search.share.ShareUrlResult;
 import com.baidu.mapapi.search.share.ShareUrlSearch;
 import com.fjby.travel.baidulibrary.R;
-import com.fjby.travel.baidulibrary.util.MyOrientationListener;
+import com.fjby.travel.baidulibrary.listener.MyOrientationListener;
 
 /**
  * 此demo用来展示如何结合定位SDK实现定位，并使用MyLocationOverlay绘制定位位置 同时展示如何使用自定义图标绘制并点击时弹出泡泡
@@ -92,7 +92,7 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 
 		// 定位初始化
 		mLocClient = new LocationClient(this);
-		mLocClient.registerLocationListener(new MyLocationListenner());
+		mLocClient.registerLocationListener(new MyBDLocationListenner());
 
 		LocationClientOption option = new LocationClientOption();
 		option.setOpenGps(true);// 打开gps
@@ -102,8 +102,6 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 		// option.setScanSpan(3000);
 		mLocClient.setLocOption(option);
 		mLocClient.start();
-
-	
 	}
 
 	private void initDatas() {
@@ -140,7 +138,6 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 					break;
 				default:
 					setLocationMode(LocationMode.NORMAL);
-					
 					break;
 				}
 			}
@@ -204,7 +201,7 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 	/**
 	 * 定位SDK监听函数
 	 */
-	public class MyLocationListenner implements BDLocationListener {
+	public class MyBDLocationListenner implements BDLocationListener {
 		@Override
 		public void onReceiveLocation(BDLocation location) {
 			// map view 销毁后不在处理新接收的位置
@@ -288,7 +285,6 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 	// 设置罗盘、普通模式
 	private void setLocationMode(LocationMode currentMode) {
 		mCurrentMode = currentMode;
-		
 		if (mCurrentMode == LocationMode.COMPASS) {
 			mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(mCurrentMode, true, null));
 			MRequestLocButton.setText("罗盘");

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -17,6 +18,7 @@ import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.pojo.User;
+import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.RoundedImageView;
 import com.google.gson.Gson;
@@ -24,14 +26,17 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 
 public class UpdateInfoFragment extends Fragment implements View.OnClickListener {
-    private Button updateinfobutton;
-    private TextView updateinfosharename;
-    private TextView updateinfosharetype;
-    private TextView updateinfotype;
-    private TextView updateinfodate;
-    private TextView updateinfophone;
-    private TextView updateinfoname;
-    private RoundedImageView updateinfoimage;
+    private Button updateInfoButton;
+    private TextView updateInfoShareName;
+    private TextView updateInfoShareType;
+    private TextView updateInfoDate;
+    private TextView updateInfoEmail;
+    private TextView updateInfoBelongCity;
+    private RadioGroup updateInfoSex;
+    private TextView updateInfoBirthday;
+    private TextView updateInfoName;
+    private RoundedImageView updateInfoImageCode;
+    private MaterialDialog.Builder mDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,34 +48,49 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
         //// TODO: 2015/10/14   界面按钮需要更改
         View view = inflater.inflate(R.layout.fragment_updateinfo, container, false);
         ((PassWordActivity) getActivity()).setToolbarTitle(R.string.updateinfo_label);
-        updateinfobutton = (Button) view.findViewById(R.id.updateinfo_button);
-        updateinfosharename = (TextView) view.findViewById(R.id.updateinfo_sharename);
-        updateinfosharetype = (TextView) view.findViewById(R.id.updateinfo_sharetype);
-        updateinfotype = (TextView) view.findViewById(R.id.updateinfo_type);
-        updateinfodate = (TextView) view.findViewById(R.id.updateinfo_date);
-        updateinfophone = (TextView) view.findViewById(R.id.updateinfo_phone);
-        updateinfoname = (TextView) view.findViewById(R.id.updateinfo_name);
-        updateinfoimage = (RoundedImageView) view.findViewById(R.id.updateinfo_image);
+        updateInfoButton = (Button) view.findViewById(R.id.updateinfo_button);
+        updateInfoShareName = (TextView) view.findViewById(R.id.updateinfo_sharename);
+        updateInfoShareType = (TextView) view.findViewById(R.id.updateinfo_sharetype);
+        updateInfoDate = (TextView) view.findViewById(R.id.updateinfo_date);
 
-        updateinfobutton.setOnClickListener(this);
-        updateinfoname.setOnClickListener(this);
-        updateinfoimage.setOnClickListener(this);
+        updateInfoName = (TextView) view.findViewById(R.id.updateinfo_name);
+        updateInfoEmail = (TextView) view.findViewById(R.id.updateinfo_email);
+        updateInfoBelongCity = (TextView) view.findViewById(R.id.updateinfo_city);
+        updateInfoSex = (RadioGroup) view.findViewById(R.id.updateinfo_sex);
+        updateInfoBirthday = (TextView) view.findViewById(R.id.updateinfo_birthday);
+        updateInfoImageCode = (RoundedImageView) view.findViewById(R.id.updateinfo_image);
+        mDialog= new MaterialDialog.Builder(getActivity());
+        updateInfoButton.setOnClickListener(this);
+        updateInfoName.setOnClickListener(this);
+        updateInfoEmail.setOnClickListener(this);
+        updateInfoBelongCity.setOnClickListener(this);
+        updateInfoSex.setOnClickListener(this);
+        updateInfoBirthday.setOnClickListener(this);
+        updateInfoImageCode.setOnClickListener(this);
+
         initDate();
+
         return view;
     }
 
     private void initDate() {
         if(LeYouMyApplication.mUser!=null){
             User user=LeYouMyApplication.mUser;
-            updateinfosharename.setText(user.getShareUserId());
-            updateinfosharetype.setText(user.getShareLoginType());
-            updateinfotype.setText(user.getUserType());
-            updateinfodate.setText(user.getRegDate());
-            updateinfophone.setText(user.getPhone());
-            updateinfoname.setText(user.getUserName());
-       //   updateinfoimage.setText(user.getUserName());
+            updateInfoShareName.setText(user.getShareUserId());
+            updateInfoShareType.setText(user.getShareLoginType());
+            updateInfoDate.setText(user.getRegDate());
+            updateInfoName.setText(user.getUserName());
+            updateInfoEmail.setText(user.getEmail());
+            LogUtil.e("user.getSex()======================"+user.getSex()+"      "+user.toString());
+            if(user.getSex()!=null&&user.getSex().equals("女")){
+                updateInfoSex.check(R.id.updateinfo_sex_nv);
+            }else{
+                updateInfoSex.check(R.id.updateinfo_sex_nan);
+            }
 
-
+            updateInfoBelongCity.setText(user.getBelongCityCode());
+            updateInfoBirthday.setText(user.getBirthday());
+       //   updateInfoImageCode.setText(user.getUserName());
         }
     }
 
@@ -80,39 +100,80 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
             case R.id.updateinfo_button:
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("req", "UserUpdateInfo");
-                map.put("userid", LeYouMyApplication.mCashHhid);
-              //  map.put("imagecode", LeYouMyApplication.mUser.getImageCode());
-                map.put("username", updateinfoname.getText().toString().trim());
+                map.put("imagecode", LeYouMyApplication.mUser.getImageCode()!=null? LeYouMyApplication.mUser.getImageCode():"");
+                map.put("username", updateInfoName.getText().toString().trim());
+                map.put("email", updateInfoEmail.getText().toString().trim());
+                map.put("sex", updateInfoSex.getCheckedRadioButtonId()==R.id.updateinfo_sex_nan?"男":"女");
+                map.put("belongcitycode", updateInfoBelongCity.getText().toString().trim());
+                map.put("birthday", updateInfoBirthday.getText().toString().trim());
               HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
-                    @Override
-                    public void onFinish(String response) {
-                        CheckResult(response);
-                    }
+                  @Override
+                  public void onFinish(String response) {
+                      CheckResult(response);
+                  }
 
-                    @Override
-                    public void onError(Exception e) {
-                        ToastUtils.showLong(getActivity(), R.string.network_err);
-                    }
-                });
+                  @Override
+                  public void onError(Exception e) {
+                      ToastUtils.showLong(getActivity(), R.string.network_err);
+                  }
+              });
                 break;
             case R.id.updateinfo_name:
                 new MaterialDialog.Builder(getActivity())
                         .title("修改用户名")
-                        .input(R.string.input_hint, R.string.input_prefill, new MaterialDialog.InputCallback() {
+                        .input("请输入新的用户名", "", new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(MaterialDialog dialog, CharSequence input) {
                                 // Do something
                                 if (!TextUtils.isEmpty(input)) {
-                                    updateinfoname.setText(input.toString());
+                                    updateInfoName.setText(input.toString());
                                 } else {
                                     ToastUtils.showLong(getActivity(),"不能为空");
                                 }
                             }
-
                         }).show();
                 break;
             case R.id.updateinfo_image:
                 ToastUtils.show(getActivity(), "暂时不支持换图像", 0);
+                break;
+            case R.id.updateinfo_city:
+                mDialog.title("所属城市").input("请输入你所在的城市", "", new MaterialDialog.InputCallback() {
+                @Override
+                public void onInput(MaterialDialog dialog, CharSequence input) {
+                    // Do something
+                    if (!TextUtils.isEmpty(input)) {
+                        updateInfoBelongCity.setText(input.toString());
+                    } else {
+                        ToastUtils.showLong(getActivity(),"不能为空");
+                    }
+                }
+            }).show();
+                break;
+            case R.id.updateinfo_birthday:
+                mDialog.title("出生日期").input("请输入你的出生日期", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        // Do something
+                        if (!TextUtils.isEmpty(input)) {
+                            updateInfoBirthday.setText(input.toString());
+                        } else {
+                            ToastUtils.showLong(getActivity(),"不能为空");
+                        }
+                    }
+                }).show();
+                break;
+            case R.id.updateinfo_email:
+                mDialog.title("邮箱地址").input("请输入你的邮箱地址", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        // Do something
+                        if (!TextUtils.isEmpty(input)) {
+                            updateInfoEmail.setText(input.toString());
+                        } else {
+                            ToastUtils.showLong(getActivity(),"不能为空");
+                        }
+                    }
+                }).show();
                 break;
         }
     }

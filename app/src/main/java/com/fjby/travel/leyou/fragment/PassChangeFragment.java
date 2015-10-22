@@ -53,7 +53,6 @@ public class PassChangeFragment extends Fragment implements View.OnClickListener
                 if (checkSend()) {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("req", "UserChangePassword");
-                    map.put("userid", LeYouMyApplication.mCashHhid);
                     map.put("oldpassword", mChangeOldpass.getText().toString().trim());
                     map.put("newpassword", mChangeNewpass.getText().toString().trim());
                     HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {

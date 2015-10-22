@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/regiset_gray"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,23 +30,25 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/author"/>
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="用户名:"
                 android:textColor="@color/black"
@@ -56,12 +58,13 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/updateinfo_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
                 android:padding="10dp"
                 android:text=""
@@ -75,20 +78,21 @@
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
                 android:padding="10dp"
-                android:text="账户信息:"
+                android:text="所属城市:"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -96,12 +100,55 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"/>
+
             <TextView
-                android:id="@+id/updateinfo_phone"
+                android:id="@+id/updateinfo_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/set_next_selector"
+                android:padding="10dp"
+                android:text="福州"
+                android:textColor="@color/black_grey"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightgray"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="邮箱:"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/updateinfo_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
                 android:padding="10dp"
                 android:text=""
@@ -115,18 +162,105 @@
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="性别:"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+            <RadioGroup
+                android:id="@+id/updateinfo_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/updateinfo_sex_nan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:checked="true"
+                    android:text="男"/>
+
+                <RadioButton
+                    android:id="@+id/updateinfo_sex_nv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="女"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightgray"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="出生日期:"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/updateinfo_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/set_next_selector"
+                android:padding="10dp"
+                android:textColor="@color/black_grey"
+                android:textSize="16dp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lightgray"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="注册日期:"
                 android:textColor="@color/black"
@@ -136,13 +270,15 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/updateinfo_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
+                android:editable="false"
                 android:padding="10dp"
                 android:text=""
                 android:textColor="@color/black_grey"
@@ -155,58 +291,19 @@
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:padding="10dp"
-                android:text="用户类型:"
-                android:textColor="@color/black"
-                android:textSize="16sp"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
-            <TextView
-                android:id="@+id/updateinfo_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:layout_marginRight="10dp"
-                android:drawableRight="@drawable/set_next_selector"
-                android:padding="10dp"
-                android:text="游客端"
-                android:textColor="@color/black_grey"
-                android:textSize="16dp"
-                />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/lightgray"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="@color/white"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
                 android:padding="10dp"
                 android:text="共享登录类型:"
                 android:textColor="@color/black"
@@ -216,13 +313,15 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/updateinfo_sharetype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
+                android:editable="false"
                 android:padding="10dp"
                 android:text=""
                 android:textColor="@color/black_grey"
@@ -235,18 +334,19 @@
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
                 android:padding="10dp"
                 android:text="共享登录用户:"
                 android:textColor="@color/black"
@@ -256,13 +356,15 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/updateinfo_sharename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
                 android:layout_marginRight="10dp"
+                android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
+                android:editable="false"
                 android:padding="10dp"
                 android:text=""
                 android:textColor="@color/black_grey"
@@ -275,6 +377,7 @@
             android:layout_height="1dp"
             android:background="@color/lightgray"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -284,14 +387,14 @@
 
             <Button
                 android:id="@+id/updateinfo_button"
-                android:layout_margin="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="30dp"
                 android:background="@drawable/login_btn_selector"
+                android:gravity="center"
                 android:text="修改信息"
                 android:textColor="@color/passbutton_selector"
-                android:textSize="18sp"
-                android:gravity="center"/>
+                android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

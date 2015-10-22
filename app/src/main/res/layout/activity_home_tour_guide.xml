@@ -77,9 +77,6 @@
                 android:drawableRight="@drawable/updown_selector"
                 android:text="动物园  3.69km"
                 android:textColor="@color/black"/>
-
-
         </LinearLayout>
-
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

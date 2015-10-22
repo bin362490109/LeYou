@@ -81,10 +81,11 @@ public class HttpUtil {
      */
     public static void sendVolleyRequesttoParam(final HashMap<String, String> map, final HttpCallbackListener listener) {
         if (LeYouMyApplication.mUser != null) {
-            map.put("hhid", LeYouMyApplication.mCashHhid);
-            map.put("dlid", LeYouMyApplication.mUser.getGuid());
+            map.put("guid", LeYouMyApplication.mUser.getGuid());
+            map.put("verifycode", LeYouMyApplication.mUser.getVerifyCode());
         } else {
-            map.put("hhid", LeYouMyApplication.mCashHhid);
+            map.put("guid", LeYouMyApplication.mCashHhid);
+            map.put("verifycode", "-1");
         }
         map.put("check", "");
         map.put("ver", LeYouMyApplication.versionName);

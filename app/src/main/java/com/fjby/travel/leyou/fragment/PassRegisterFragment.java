@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.PassWordActivity;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResUser;
@@ -154,8 +155,15 @@ public class PassRegisterFragment extends Fragment implements View.OnClickListen
                     map.put("usertype", "1");
                     map.put("phone", phone);
                     map.put("username", "测试"+phone);
+                    map.put("imei", LeYouMyApplication.imei);
                     map.put("smscode", mRegisetCodeEt.getText().toString().trim());
                     map.put("password", mRegisetPasswordEt.getText().toString().trim());
+
+                    map.put("email", "");
+                    map.put("sex", "");
+                    map.put("belongcitycode", "");
+                    map.put("birthday", "");
+                    map.put("imagecode", "");
                     HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {

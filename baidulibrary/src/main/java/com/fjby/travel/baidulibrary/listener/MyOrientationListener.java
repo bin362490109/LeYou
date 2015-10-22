@@ -1,4 +1,4 @@
-package com.fjby.travel.baidulibrary.util;
+package com.fjby.travel.baidulibrary.listener;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -35,20 +35,17 @@ public class MyOrientationListener implements SensorEventListener
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);  
         if (sensorManager != null)  
         {  
-            
             //获取Sensor
             magneticSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
             accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-  
-        }  
+        }
         // 注册  
           if (magneticSensor != null&& accelerometerSensor!=null)  
         {//SensorManager.SENSOR_DELAY_UI  
             sensorManager.registerListener(this, magneticSensor,SensorManager.SENSOR_DELAY_NORMAL);  
             sensorManager.registerListener(this, accelerometerSensor,SensorManager.SENSOR_DELAY_NORMAL);  
         } 
-  
-    }  
+    }
   
     // 停止检测  
     public void stop()  

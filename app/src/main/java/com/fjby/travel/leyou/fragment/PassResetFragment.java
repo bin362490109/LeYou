@@ -95,7 +95,6 @@ public class PassResetFragment extends Fragment implements View.OnClickListener 
         mRegisetCodeBtn.setEnabled(false);
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("req", "reg");
-        map.put("type", "code");
         map.put("phone", phone);
         HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
             @Override
@@ -140,6 +139,7 @@ public class PassResetFragment extends Fragment implements View.OnClickListener 
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("req", "UserResetPassword");
                     map.put("phone", phone);
+                    map.put("usertype", "1");
                     map.put("smscode", mRegisetCodeEt.getText().toString().trim());
                     map.put("password", mRegisetPasswordEt.getText().toString().trim());
                     HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
