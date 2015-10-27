@@ -18,9 +18,8 @@ import android.widget.TextView;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.ListViewAdapter;
 import com.fjby.travel.leyou.utils.DensityUtil;
-import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
-import com.fjby.travel.leyou.utils.ToastUtils;
+import com.fjby.travel.leyou.widget.PlayPopuwindow;
 
 import java.util.ArrayList;
 
@@ -65,7 +64,7 @@ public class HomeTourGuideActivity extends BaseActivity {
                     list.remove(mSpinnerTV.getText());
                     list.add(mSpinnerTV.getText().toString());
                     mListViewAdapter.notifyDataSetChanged();
-                    openMune();
+                    openSpinner();
                 }
 
             }
@@ -99,7 +98,7 @@ public class HomeTourGuideActivity extends BaseActivity {
 
     }
 
-    public boolean openMune() {
+    public boolean openSpinner() {
         if (pw_spinner != null) {
             if (pw_spinner.isShowing()) {
                 //关闭弹出窗口
@@ -137,46 +136,7 @@ public class HomeTourGuideActivity extends BaseActivity {
         // 此处返回false，系统不会执行onCreateOptionsMenu中添加的菜单
         return false;
     }
-    public boolean openPlay() {
-        if (pw_play != null) {
-            if (pw_play.isShowing()) {
-                //关闭弹出窗口
-                pw_play.dismiss();
-            } else {
-                //在指定位置弹出窗口
-                pw_play.showAtLocation(mImageButton, Gravity.NO_GRAVITY, x, y);
-            }
-        } else {
-            //定义窗口菜单
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.popu_play, null);
-            TextView textView = (TextView) view.findViewById(R.id.menu_text_1);
-            TextView textView2 = (TextView) view.findViewById(R.id.menu_text_2);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ToastUtils.showShort(HomeTourGuideActivity.this, "消息中心");
-                }
-            });
-            textView2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    IntentUtils.getInstance().startActivity(HomeTourGuideActivity.this, HomeProduceActivity.class);
-                }
-            });
-            //生成PopupWindow对象
-            pw_play = new PopupWindow(view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            // 必须设置背景
-            pw_play.setBackgroundDrawable(new BitmapDrawable());
-            //在指定位置弹出窗口
-            pw_play.setFocusable(false);
-            pw_play.setOutsideTouchable(true);
-            pw_play.showAtLocation(mImageButton, Gravity.NO_GRAVITY, x, y);
-        }
 
-        // 此处返回false，系统不会执行onCreateOptionsMenu中添加的菜单
-        return false;
-    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -190,6 +150,12 @@ public class HomeTourGuideActivity extends BaseActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void  openPlay(){
+        if (pw_play == null)
+            pw_play = new PlayPopuwindow(HomeTourGuideActivity.this);
+        pw_play.showAtLocation(mImageButton, Gravity.NO_GRAVITY, x, y);
     }
 
 }

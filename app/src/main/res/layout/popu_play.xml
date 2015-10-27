@@ -13,7 +13,6 @@
         android:background="@drawable/no_image"/>
 
     <TextView
-        android:id="@+id/menu_text_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -22,15 +21,16 @@
         android:textColor="@color/white"/>
 
     <TextView
-        android:id="@+id/menu_text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginLeft="10dp"
         android:text="动物园景点介绍......"
+        android:singleLine="true"
         android:textColor="@color/white"/>
 
     <ImageButton
+        android:id="@+id/popu_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

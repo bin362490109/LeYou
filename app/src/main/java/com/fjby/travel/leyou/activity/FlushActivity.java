@@ -28,6 +28,7 @@ import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
+import com.fjby.travel.leyou.pojo.ResAppStartup;
 import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.BitmapUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
@@ -99,7 +100,51 @@ public class FlushActivity extends BaseActivity {
 
     private void newFlush() {
         //判断是否有账号登陆
-        if (StringUtils.isEmpty(spf.getString("hhid", ""))) {
+        if (StringUtils.isEmpty(spf.getString("guid", ""))) {
+            //未有账号登陆
+            IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
+            finish();
+        } else {
+            //已有账号登陆
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("req", "AppStartup");
+            map.put("usertype", "1");
+            map.put("system", "1");
+            map.put("version", LeYouMyApplication.versionName);
+            map.put("imei", LeYouMyApplication.imei);
+            map.put("ip", LeYouMyApplication.ip);
+            map.put("device", LeYouMyApplication.device);
+            map.put("citycode", spf.getString("citycode", ""));
+            LeYouMyApplication.mCashHhid=spf.getString("guid", "").trim();
+            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+                @Override
+                public void onFinish(String response) {
+                    Gson gson = new Gson();
+                    ResAppStartup resAppStartup = gson.fromJson(response, ResAppStartup.class);
+                    if (resAppStartup.getStateCode() == 600) {
+                        //// TODO: 2015/10/14 这个可能需要更改 （mUser可能要去掉）
+                        LeYouMyApplication.mUser = resAppStartup.getUser();
+                        LeYouMyApplication.mCashHhid = resAppStartup.getUser().getGuid();
+                        IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);
+                    } else {
+                        ToastUtils.showLong(FlushActivity.this, resAppStartup.getStateMsg());
+                        IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
+                    }
+                    finish();
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    ToastUtils.showLong(FlushActivity.this, R.string.network_err);
+                    finish();
+                }
+            });
+
+        }
+    }
+    private void oldFlush() {
+        //判断是否有账号登陆
+        if (StringUtils.isEmpty(spf.getString("guid", ""))) {
             //未有账号登陆
             IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
             finish();
@@ -107,7 +152,7 @@ public class FlushActivity extends BaseActivity {
             //已有账号登陆
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("req", "UserLoginAccount");
-            map.put("phone", spf.getString("hhid", ""));
+            map.put("phone", spf.getString("name", ""));
             map.put("password", spf.getString("pass", ""));
             HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                 @Override
@@ -116,8 +161,6 @@ public class FlushActivity extends BaseActivity {
                     ResUser mResUser = gson.fromJson(response, ResUser.class);
                     if (mResUser.getStateCode() == 600) {
                         //// TODO: 2015/10/14 这个可能需要更改 （mUser可能要去掉）
-                /*        LogUtil.e("mUser=" + mResUser.getUser().toString());
-                        LogUtil.e("response=" + response);*/
                         LeYouMyApplication.mUser = mResUser.getUser();
                         LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
                         IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);

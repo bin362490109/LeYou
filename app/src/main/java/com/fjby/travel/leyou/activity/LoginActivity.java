@@ -36,7 +36,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         initToolbar(true, true);
         setToolbarTitle(R.string.login_label);
-        LogUtil.e("LoginActivity   ="+ ((LeYouMyApplication)getApplicationContext()).mCashHhid+"      "+LeYouMyApplication.mUser);
+        LogUtil.e("LoginActivity   =" + ((LeYouMyApplication) getApplicationContext()).mCashHhid + "      " + LeYouMyApplication.mUser);
         mRegisetTv = (TextView) findViewById(R.id.btnRegiset);
         mLoginBtn = (Button) findViewById(R.id.btnLogin);
         mNameEditText = (EditText) findViewById(R.id.login_name);
@@ -48,15 +48,15 @@ public class LoginActivity extends BaseActivity {
         mRegisetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putInt(PassWordActivity.PassType, PassWordActivity.RegiserPass);
-                IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, PassWordActivity.class,bundle);
+                IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, PassWordActivity.class, bundle);
             }
         });
         mForgetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putInt(PassWordActivity.PassType, PassWordActivity.ResetPass);
                 IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, PassWordActivity.class, bundle);
             }
@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity {
                     map.put("phone", mNameEditText.getText().toString().trim());
                     map.put("password", mPassEditText.getText().toString().trim());
                     map.put("usertype", "1");
-                    map.put("imei",LeYouMyApplication.imei);
+                    map.put("imei", LeYouMyApplication.imei);
                     HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
@@ -124,8 +124,9 @@ public class LoginActivity extends BaseActivity {
         Gson gson = new Gson();
         ResUser mResUser = gson.fromJson(msg, ResUser.class);
         if (mResUser.getStateCode() == 600) {
-            spf.setString("hhid", mNameEditText.getText().toString().trim());
-            spf.setString("pass", mPassEditText.getText().toString().trim());
+            //  spf.setString("name", mNameEditText.getText().toString().trim());
+            //  spf.setString("pass", mPassEditText.getText().toString().trim());
+            spf.setString("guid", mResUser.getUser().getGuid());
             LeYouMyApplication.mUser = mResUser.getUser();
             LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
             IntentUtils.getInstance().startActivity(LoginActivity.this, MainActivity.class);

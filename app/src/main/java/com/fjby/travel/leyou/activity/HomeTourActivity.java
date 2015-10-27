@@ -21,6 +21,7 @@ import com.fjby.travel.baidulibrary.activity.MapTestActivity;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
+import com.fjby.travel.leyou.widget.MunePopuwindow;
 
 /**
  * Created by abin on 2015/9/17.
@@ -65,48 +66,6 @@ public class HomeTourActivity extends BaseActivity {
         });
     }
 
-    public boolean openMune() {
-        if (pw != null) {
-            if (pw.isShowing()) {
-                //关闭弹出窗口
-                pw.dismiss();
-            } else {
-                //在指定位置弹出窗口
-                pw.showAtLocation(mImageView, Gravity.RIGHT, 0, 0 - location[1]);
-            }
-        } else {
-            //定义窗口菜单
-            LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.popu_produce, null);
-            TextView textView = (TextView) view.findViewById(R.id.menu_text_1);
-            TextView textView2 = (TextView) view.findViewById(R.id.menu_text_2);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ToastUtils.showShort(HomeTourActivity.this, "消息中心");
-                }
-            });
-            textView2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-               //     IntentUtils.getInstance().startActivity(HomeTourActivity.this, HomeTourLocationActivity.class);
-                    IntentUtils.getInstance().startActivity(HomeTourActivity.this, MapTestActivity.class);
-                }
-            });
-            //生成PopupWindow对象
-            pw = new PopupWindow(view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            // 必须设置背景
-            pw.setBackgroundDrawable(new BitmapDrawable());
-            //在指定位置弹出窗口
-            pw.setFocusable(false);
-            pw.setOutsideTouchable(true);
-            pw.showAtLocation(mImageView, Gravity.RIGHT, 0, 0 - location[1]);
-        }
-
-        // 此处返回false，系统不会执行onCreateOptionsMenu中添加的菜单
-        return false;
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -130,10 +89,16 @@ public class HomeTourActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_more:
-                openMune();
+                openPopu();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void  openPopu(){
+        if (pw == null)
+            pw = new MunePopuwindow(HomeTourActivity.this);
+        pw.showAtLocation(mImageView, Gravity.RIGHT, 0, 0 - location[1]);
     }
 
     public void map(View view) {
