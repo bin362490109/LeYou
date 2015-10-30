@@ -1,5 +1,6 @@
 package com.fjby.travel.leyou.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,14 +9,18 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
-import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
+import com.fjby.travel.leyou.pojo.ResAppStartup;
+import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.google.gson.Gson;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.sso.UMSsoHandler;
+import com.umeng.soexample.utils.AccountUtils;
 
 import java.util.HashMap;
 
@@ -37,6 +42,10 @@ public class LoginActivity extends BaseActivity {
         initToolbar(true, true);
         setToolbarTitle(R.string.login_label);
         LogUtil.e("LoginActivity   =" + ((LeYouMyApplication) getApplicationContext()).mCashHhid + "      " + LeYouMyApplication.mUser);
+        //TODO 添加这一步才可以返回界面,而且必须自己的appid
+        AccountUtils.addQZoneQQPlatform(LoginActivity.this);
+        AccountUtils.addSinaPlatform();
+        AccountUtils.addUMWXPlatform(LoginActivity.this);
         mRegisetTv = (TextView) findViewById(R.id.btnRegiset);
         mLoginBtn = (Button) findViewById(R.id.btnLogin);
         mNameEditText = (EditText) findViewById(R.id.login_name);
@@ -64,19 +73,22 @@ public class LoginActivity extends BaseActivity {
         mLoginQqTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showLong(LoginActivity.this, R.string.QQ);
+              //  ToastUtils.showLong(LoginActivity.this, R.string.QQ);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.QQ);
             }
         });
         mLoginWecharTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showLong(LoginActivity.this, R.string.wechat);
+               // ToastUtils.showLong(LoginActivity.this, R.string.wechat);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.WEIXIN);
             }
         });
         mLoginWeiboTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showLong(LoginActivity.this, R.string.weibo);
+                //ToastUtils.showLong(LoginActivity.this, R.string.weibo);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.SINA);
             }
         });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -124,16 +136,57 @@ public class LoginActivity extends BaseActivity {
         Gson gson = new Gson();
         ResUser mResUser = gson.fromJson(msg, ResUser.class);
         if (mResUser.getStateCode() == 600) {
-            //  spf.setString("name", mNameEditText.getText().toString().trim());
-            //  spf.setString("pass", mPassEditText.getText().toString().trim());
             spf.setString("guid", mResUser.getUser().getGuid());
-            LeYouMyApplication.mUser = mResUser.getUser();
-            LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
-            IntentUtils.getInstance().startActivity(LoginActivity.this, MainActivity.class);
-            finish();
+            //  LeYouMyApplication.mUser = mResUser.getUser();
+            //  LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
+            //  IntentUtils.getInstance().startActivity(LoginActivity.this, MainActivity.class);
+            //已有账号登陆
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("req", "AppStartup");
+            map.put("usertype", "1");
+            map.put("system", "1");
+            map.put("version", LeYouMyApplication.versionName);
+            map.put("imei", LeYouMyApplication.imei);
+            map.put("ip", LeYouMyApplication.ip);
+            map.put("device", LeYouMyApplication.device);
+            map.put("citycode", spf.getString("citycode", ""));
+            LeYouMyApplication.mCashHhid = spf.getString("guid", "").trim();
+            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+                @Override
+                public void onFinish(String response) {
+                    Gson gson = new Gson();
+                    ResAppStartup resAppStartup = gson.fromJson(response, ResAppStartup.class);
+                    if (resAppStartup.getStateCode() == 600) {
+                        //// TODO: 2015/10/14 这个可能需要更改 （mUser可能要去掉）
+                        LeYouMyApplication.mUser = resAppStartup.getUser();
+                        LeYouMyApplication.mCashHhid = resAppStartup.getUser().getGuid();
+                        LeYouMyApplication.cityAdList = resAppStartup.getCityAdList();
+                        LeYouMyApplication.touristList = resAppStartup.getTouristList();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("vercode", resAppStartup.getVerCode());
+                        IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, MainActivity.class, bundle);
+                        finish();
+                    } else {
+                        ToastUtils.showLong(LoginActivity.this, resAppStartup.getStateMsg());
+                    }
+                }
+                @Override
+                public void onError(Exception e) {
+                    ToastUtils.showLong(LoginActivity.this, R.string.network_err);
+                }
+            });
         } else {
             ToastUtils.showLong(LoginActivity.this, mResUser.getStateMsg());
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**使用SSO授权必须添加如下代码 */
+        UMSsoHandler ssoHandler = AccountUtils.mController.getConfig().getSsoHandler(requestCode);
+        if(ssoHandler != null){
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
     }
 }

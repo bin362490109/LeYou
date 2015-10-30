@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.PassWordActivity;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
@@ -60,6 +62,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
         updateInfoBirthday = (TextView) view.findViewById(R.id.updateinfo_birthday);
         updateInfoImageCode = (RoundedImageView) view.findViewById(R.id.updateinfo_image);
         mDialog= new MaterialDialog.Builder(getActivity());
+        mDialog.theme(Theme.LIGHT);
         updateInfoButton.setOnClickListener(this);
         updateInfoName.setOnClickListener(this);
         updateInfoEmail.setOnClickListener(this);
@@ -119,8 +122,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
               });
                 break;
             case R.id.updateinfo_name:
-                new MaterialDialog.Builder(getActivity())
-                        .title("修改用户名")
+                mDialog.title("修改用户名")
                         .input("请输入新的用户名", "", new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(MaterialDialog dialog, CharSequence input) {
@@ -128,7 +130,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
                                 if (!TextUtils.isEmpty(input)) {
                                     updateInfoName.setText(input.toString());
                                 } else {
-                                    ToastUtils.showLong(getActivity(),"不能为空");
+                                    ToastUtils.showLong(getActivity(), "不能为空");
                                 }
                             }
                         }).show();
@@ -137,17 +139,17 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
                 ToastUtils.show(getActivity(), "暂时不支持换图像", 0);
                 break;
             case R.id.updateinfo_city:
-                mDialog.title("所属城市").input("请输入你所在的城市", "", new MaterialDialog.InputCallback() {
-                @Override
-                public void onInput(MaterialDialog dialog, CharSequence input) {
-                    // Do something
-                    if (!TextUtils.isEmpty(input)) {
-                        updateInfoBelongCity.setText(input.toString());
-                    } else {
-                        ToastUtils.showLong(getActivity(),"不能为空");
+                mDialog.title("所属城市") .input("请输入你所在的城市", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        // Do something
+                        if (!TextUtils.isEmpty(input)) {
+                            updateInfoBelongCity.setText(input.toString());
+                        } else {
+                            ToastUtils.showLong(getActivity(), "不能为空");
+                        }
                     }
-                }
-            }).show();
+                }).show();
                 break;
             case R.id.updateinfo_birthday:
                 mDialog.title("出生日期").input("请输入你的出生日期", "", new MaterialDialog.InputCallback() {
@@ -170,7 +172,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
                         if (!TextUtils.isEmpty(input)) {
                             updateInfoEmail.setText(input.toString());
                         } else {
-                            ToastUtils.showLong(getActivity(),"不能为空");
+                            ToastUtils.showLong(getActivity(), "不能为空");
                         }
                     }
                 }).show();

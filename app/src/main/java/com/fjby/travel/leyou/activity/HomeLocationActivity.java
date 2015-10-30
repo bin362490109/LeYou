@@ -29,14 +29,11 @@ public class HomeLocationActivity extends BaseActivity{
         GridView gridView = (GridView) findViewById(R.id.gridView);
         gridView.setAdapter(new ImageAdapter(HomeLocationActivity.this));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 ToastUtils.showShort(HomeLocationActivity.this, itemNames[position].toString());
             }
         });
-
     }
 
     public class ImageAdapter extends BaseAdapter {

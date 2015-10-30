@@ -54,6 +54,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LeYouMyApplication.addActivity(this);
+        LogUtil.e("base activity=====" + LeYouMyApplication.Size());
         spf = SharePreferenceUtil.getInstance(getApplicationContext());
     }
 
@@ -78,16 +79,17 @@ public class BaseActivity extends AppCompatActivity {
         mToolbarTitle.setText(resid);
     }
 
+
     public void setToolbarNavigationIcon(int resid) {
         mToolbar.setNavigationIcon(resid);
     }
+
     public void setToolbarShow(boolean show) {
-        if(show) {
+        if (show) {
             mToolbar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mToolbar.setVisibility(View.GONE);
         }
-
     }
 
     private void setToolbarHomeEnabled(boolean isShow) {
@@ -101,34 +103,25 @@ public class BaseActivity extends AppCompatActivity {
                     } else {
                         getSupportFragmentManager().popBackStack();
                     }
-
                 }
             });
         }
-
     }
-/*
-    protected void addFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_base, fragment)
-                .commit();
-    }
-*/
 
     protected void repalceFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.fragment_base,fragment);
-        ft.commit();
-    }
-    public void repalceFragmentWithTag(Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.fragment_base,fragment);
-        ft.addToBackStack("tag");
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_base, fragment);
         ft.commit();
     }
 
+    public void repalceFragmentWithTag(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_base, fragment);
+        ft.addToBackStack("tag");
+        ft.commit();
+    }
 
 
     public void onResume() {
@@ -151,7 +144,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时没必要隐藏 
+     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时没必要隐藏
      *
      * @param v
      * @param event
@@ -175,7 +168,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 多种隐藏软件盘方法的其中一种 
+     * 多种隐藏软件盘方法的其中一种
      *
      * @param token
      */
@@ -189,7 +182,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtil.e(LeYouMyApplication.Size()+"   baseactivity   onDestroy");
         LeYouMyApplication.removeActivity(this);
     }
 }

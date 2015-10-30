@@ -48,7 +48,7 @@ public class HomeProduceActivity extends BaseActivity {
     }
 
 
-    static class MyPagerAdapter extends FragmentPagerAdapter {
+     class MyPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 

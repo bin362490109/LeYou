@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
@@ -39,6 +40,15 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState != null) {
             oldPosition = savedInstanceState.getInt("position", 0);
         }
+
+        String vercode = getIntent().getExtras().getString("vercode", "700");
+        if (vercode.equals("601")) {
+            DialogUtils.mdialogShowOne(MainActivity.this, "升级", "版本太低了，一定要升级");
+        } else if (vercode.equals("600")) {
+            DialogUtils.mdialogShowTwo(MainActivity.this, "升级", "有新的版本，请选择升级");
+        }
+
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
         //slidemune另一个版本
@@ -60,25 +70,25 @@ public class MainActivity extends BaseActivity {
 
         SampleFragmentPagerAdapter pagerAdapter = new SampleFragmentPagerAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(pagerAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                LogUtil.e("onPageSelected--------------" + position);
-                changeToobarSelect(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        mViewPager.addOnPageChangeListener(myOnPageChangeListener);
         initCustomToobar();
     }
+
+    ViewPager.OnPageChangeListener myOnPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            changeToobarSelect(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+        }
+    };
 
     private void initCustomToobar() {
         mLinearLayout = (LinearLayout) findViewById(R.id.linear_tablayout);
@@ -134,6 +144,7 @@ public class MainActivity extends BaseActivity {
         super.onResume();
         setNavImageAndText();
     }
+
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
@@ -193,12 +204,12 @@ public class MainActivity extends BaseActivity {
         ActivityCompat.startActivity(MainActivity.this, intent, options.toBundle());
     }
 
-    private void  setNavImageAndText(){
-        if(LeYouMyApplication.mUser!=null) {
+    private void setNavImageAndText() {
+        if (LeYouMyApplication.mUser != null) {
             mNavTextView.setText(LeYouMyApplication.mUser.getUserName());
             mNavTextView.setVisibility(View.VISIBLE);
             mMenuImage.setImageResource(R.drawable.author);
-        }else{
+        } else {
             mNavTextView.setVisibility(View.GONE);
         }
     }

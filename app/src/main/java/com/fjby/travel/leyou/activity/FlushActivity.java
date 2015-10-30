@@ -17,6 +17,7 @@
  */
 package com.fjby.travel.leyou.activity;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +32,10 @@ import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResAppStartup;
 import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.BitmapUtils;
+import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
+import com.fjby.travel.leyou.utils.LogUtil;
+import com.fjby.travel.leyou.utils.NetworkUtils;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.google.gson.Gson;
@@ -125,7 +129,11 @@ public class FlushActivity extends BaseActivity {
                         //// TODO: 2015/10/14 这个可能需要更改 （mUser可能要去掉）
                         LeYouMyApplication.mUser = resAppStartup.getUser();
                         LeYouMyApplication.mCashHhid = resAppStartup.getUser().getGuid();
-                        IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);
+                        LeYouMyApplication.cityAdList = resAppStartup.getCityAdList();
+                        LeYouMyApplication.touristList = resAppStartup.getTouristList();
+                        Bundle bundle=new Bundle();
+                        bundle.putString("vercode",resAppStartup.getVerCode());
+                        IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class,bundle);
                     } else {
                         ToastUtils.showLong(FlushActivity.this, resAppStartup.getStateMsg());
                         IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
@@ -135,8 +143,14 @@ public class FlushActivity extends BaseActivity {
 
                 @Override
                 public void onError(Exception e) {
-                    ToastUtils.showLong(FlushActivity.this, R.string.network_err);
-                    finish();
+                    if(NetworkUtils.isNetworkConnected(FlushActivity.this)){
+                        DialogUtils.mdialogShowOne(FlushActivity.this,"网络错误","服务器正在更新");
+                    }else{
+                       // DialogUtils.dialogShowOne(FlushActivity.this, "网络错误", "手机没有网络");
+                        DialogUtils.mdialogShowOne(FlushActivity.this, "网络错误", "手机没有网络");
+
+                    }
+
                 }
             });
 

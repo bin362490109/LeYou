@@ -8,12 +8,15 @@ import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.fjby.travel.leyou.pojo.CityAd;
+import com.fjby.travel.leyou.pojo.Tourist;
 import com.fjby.travel.leyou.pojo.User;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.NetworkUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -34,6 +37,9 @@ public class LeYouMyApplication extends Application {
     public static String number;
     public static int screenWidth;
     public static int screenHeight;
+    public static  List<CityAd> cityAdList=null;
+    //返回推荐景点
+    public static List<Tourist> touristList=null;
     @Override
     public void onCreate() {
         mCashHhid = "-1";
@@ -77,6 +83,7 @@ public class LeYouMyApplication extends Application {
     public static Activity currentActivity() {
         return activitiesStack.lastElement();
     }
+
 
     public static void removeActivity(Activity activity) {
         if(activity == null)

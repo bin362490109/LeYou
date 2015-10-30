@@ -75,8 +75,7 @@ public class NetworkUtils {
 		if (context != null) {
 			ConnectivityManager mConnectivityManager = (ConnectivityManager) context
 					.getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo mNetworkInfo = mConnectivityManager
-					.getActiveNetworkInfo();
+			NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
 			if (mNetworkInfo != null) {
 				return mNetworkInfo.isAvailable();
 			}

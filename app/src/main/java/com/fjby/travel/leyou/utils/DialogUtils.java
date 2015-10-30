@@ -1,8 +1,17 @@
 package com.fjby.travel.leyou.utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.view.View;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
+import com.fjby.travel.leyou.R;
 
 /**
  * 
@@ -57,12 +66,110 @@ public class DialogUtils {
 	 *            对话框正文
 	 * @return ProgressDialog
 	 */
-	public static ProgressDialog showTip(Activity ctx, String title,
-			String message) {
+	public static ProgressDialog showTip(Activity ctx, String title,String message) {
 		ProgressDialog pd = ProgressDialog.show(ctx, title, message);
 		pd.setCancelable(true);
 		return pd;
 	}
 
+	/**
+	 * 提示框显示
+	 *
+	 * @param ctx
+	 *            依附的activity
+	 * @param title
+	 *            对话框标题
+	 * @param message
+	 *            对话框正文
+	 * @return ProgressDialog
+	 */
+	public static void mdialogShowOne( final Activity ctx, String title,String message) {
+		MaterialDialog.Builder builder = new MaterialDialog.Builder(ctx);
+		builder.theme(Theme.LIGHT);
+		builder.content(message);
+		builder.title(title);
+		builder.positiveText("确认");
+        builder.callback(new MaterialDialog.ButtonCallback() {
+			@Override
+			public void onPositive(MaterialDialog dialog) {
+				super.onPositive(dialog);
+				dialog.dismiss();
+				ctx.finish();
+			}
+		});
+		builder.cancelable(false);
+		builder.build().show();
+	}
+
+	/**
+	 * 提示框显示
+	 *
+	 * @param ctx
+	 *            依附的activity
+	 * @param title
+	 *            对话框标题
+	 * @param message
+	 *            对话框正文
+	 * @return ProgressDialog
+	 */
+	public static void mdialogShowTwo( final Activity ctx, String title,String message) {
+		MaterialDialog.Builder builder = new MaterialDialog.Builder(ctx);
+		builder.theme(Theme.LIGHT);
+		builder.content(message);
+		builder.title(title);
+		builder.positiveText("确认");
+		builder.negativeText("取消");
+		builder.negativeColorRes(R.color.accent);
+		builder.callback(new MaterialDialog.ButtonCallback() {
+			@Override
+			public void onPositive(MaterialDialog dialog) {
+				super.onPositive(dialog);
+				dialog.dismiss();
+			}
+
+			@Override
+			public void onNegative(MaterialDialog dialog) {
+				super.onNegative(dialog);
+				dialog.dismiss();
+			}
+		});
+		builder.cancelable(false);
+		builder.build().show();
+	}
+/*
+	public static void dialogShowOne( final Activity ctx, String title,String message) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx, R.style.MyDialog);
+		builder.setMessage(message);
+		builder.setTitle(title);
+		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				ctx.finish();
+			}
+		});
+		builder.setCancelable(false);
+		builder.create().show();
+	}
+	public static void dialogShowTwo( final Activity ctx, String title,String message) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx, R.style.MyDialog);
+		builder.setMessage(message);
+		builder.setTitle(title);
+		builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		builder.setNegativeButton("取消",new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		builder.setCancelable(false);
+		builder.create().show();
+	}
+*/
 
 }
