@@ -1,20 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion as Integer
+    buildToolsVersion rootProject.ext.buildToolsVersion as String
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        minSdkVersion rootProject.ext.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.targetSdkVersion as Integer
+        versionCode rootProject.ext.versionCode as Integer
+        versionName rootProject.ext.versionName as String
     }
 }
 

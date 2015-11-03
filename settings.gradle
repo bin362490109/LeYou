@@ -1,1 +1,1 @@
-include ':app', ':baidulibrary',':umengsocial'
+include ':app', ':baidulibrary', ':umengsocial'
