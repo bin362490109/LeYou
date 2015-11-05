@@ -23,6 +23,7 @@ import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.soexample.utils.AccountUtils;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends BaseActivity {
     private EditText mNameEditText;
@@ -33,19 +34,17 @@ public class LoginActivity extends BaseActivity {
     private TextView mLoginWecharTv;
     private TextView mLoginWeiboTv;
     private Button mLoginBtn;
-    //实验
+    private MyAccountInfoListen myAccountInfoListen;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_login);
         initToolbar(true, true);
         setToolbarTitle(R.string.login_label);
-        LogUtil.e("LoginActivity   =" + ((LeYouMyApplication) getApplicationContext()).mCashHhid + "      " + LeYouMyApplication.mUser);
-        //TODO 添加这一步才可以返回界面,而且必须自己的appid
-        AccountUtils.addQZoneQQPlatform(LoginActivity.this);
-        AccountUtils.addSinaPlatform();
-        AccountUtils.addUMWXPlatform(LoginActivity.this);
+    }
+
+    @Override
+    protected void initView() {
         mRegisetTv = (TextView) findViewById(R.id.btnRegiset);
         mLoginBtn = (Button) findViewById(R.id.btnLogin);
         mNameEditText = (EditText) findViewById(R.id.login_name);
@@ -54,6 +53,11 @@ public class LoginActivity extends BaseActivity {
         mLoginQqTv = (TextView) findViewById(R.id.login_QQ);
         mLoginWecharTv = (TextView) findViewById(R.id.login_wechat);
         mLoginWeiboTv = (TextView) findViewById(R.id.login_weibo);
+        myAccountInfoListen=new MyAccountInfoListen();
+    }
+
+    @Override
+    protected void setListener() {
         mRegisetTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,22 +77,22 @@ public class LoginActivity extends BaseActivity {
         mLoginQqTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  ToastUtils.showLong(LoginActivity.this, R.string.QQ);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.QQ);
+                //  ToastUtils.showLong(LoginActivity.this, R.string.QQ);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.QQ,myAccountInfoListen);
             }
         });
         mLoginWecharTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // ToastUtils.showLong(LoginActivity.this, R.string.wechat);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.WEIXIN);
+                // ToastUtils.showLong(LoginActivity.this, R.string.wechat);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.WEIXIN,myAccountInfoListen);
             }
         });
         mLoginWeiboTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //ToastUtils.showLong(LoginActivity.this, R.string.weibo);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.SINA);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.SINA,myAccountInfoListen);
             }
         });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +122,43 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void doOther() {
+        LogUtil.e("LoginActivity   =" + ((LeYouMyApplication) getApplicationContext()).mCashHhid + "      " + LeYouMyApplication.mUser);
+        //TODO 添加这一步才可以返回界面,而且必须自己的appid
+        AccountUtils.addQZoneQQPlatform(LoginActivity.this);
+        AccountUtils.addSinaPlatform();
+        AccountUtils.addUMWXPlatform(LoginActivity.this);
+    }
+
+    private class MyAccountInfoListen implements AccountUtils.AccountInfoListener{
+
+        @Override
+        public void getAccountInfo(Map<String, Object> info) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("req", "UserAuthoLogin");
+            map.put("phone", "");
+            map.put("password","");
+            map.put("usertype", "1");
+            map.put("imei", LeYouMyApplication.imei);
+            map.put("username", info.get("screen_name").toString());
+            map.put("imagecode", info.get("profile_image_url").toString());
+            map.put("shareusertype", info.get("shareusertype").toString());
+            map.put("shareuserid", info.get("shareuserid").toString());
+            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+                @Override
+                public void onFinish(String response) {
+                    CheckResult(response);
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    ToastUtils.showLong(LoginActivity.this, R.string.network_err);
+                }
+            });
+        }
+    }
+
     private boolean checkSend() {
         if (StringUtils.isEmpty(mNameEditText.getText().toString())) {
             ToastUtils.showLong(LoginActivity.this, R.string.name_is_null);
@@ -137,9 +178,6 @@ public class LoginActivity extends BaseActivity {
         ResUser mResUser = gson.fromJson(msg, ResUser.class);
         if (mResUser.getStateCode() == 600) {
             spf.setString("guid", mResUser.getUser().getGuid());
-            //  LeYouMyApplication.mUser = mResUser.getUser();
-            //  LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
-            //  IntentUtils.getInstance().startActivity(LoginActivity.this, MainActivity.class);
             //已有账号登陆
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("req", "AppStartup");
@@ -170,6 +208,7 @@ public class LoginActivity extends BaseActivity {
                         ToastUtils.showLong(LoginActivity.this, resAppStartup.getStateMsg());
                     }
                 }
+
                 @Override
                 public void onError(Exception e) {
                     ToastUtils.showLong(LoginActivity.this, R.string.network_err);
@@ -183,9 +222,9 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /**使用SSO授权必须添加如下代码 */
+        /**新浪使用SSO授权必须添加如下代码  否则删退 */
         UMSsoHandler ssoHandler = AccountUtils.mController.getConfig().getSsoHandler(requestCode);
-        if(ssoHandler != null){
+        if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
     }

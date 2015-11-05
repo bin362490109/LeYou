@@ -43,7 +43,7 @@ import com.fjby.travel.leyou.utils.SharePreferenceUtil;
  *
  * @author Lien Li
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private boolean isExit = false;
     protected SharePreferenceUtil spf;
@@ -56,7 +56,16 @@ public class BaseActivity extends AppCompatActivity {
         LeYouMyApplication.addActivity(this);
         LogUtil.e("base activity=====" + LeYouMyApplication.Size());
         spf = SharePreferenceUtil.getInstance(getApplicationContext());
+        setView();
+        initView();
+        setListener();
+        doOther();
     }
+
+    protected abstract void setView();
+    protected abstract void initView();
+    protected abstract void setListener();
+    protected abstract void doOther();
 
     protected void initToolbar(boolean showToolbar, boolean showNav) {
         if (setToolbarIsShow(showToolbar)) {

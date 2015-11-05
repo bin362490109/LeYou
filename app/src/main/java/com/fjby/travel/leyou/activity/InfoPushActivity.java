@@ -9,13 +9,27 @@ import com.fjby.travel.leyou.R;
  */
 public class InfoPushActivity extends BaseActivity {
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_info_push);
         initToolbar(true, true);
         setToolbarTitle(R.string.info_push_title);
     }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
+
+    }
+
 
 }

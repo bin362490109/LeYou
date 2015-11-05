@@ -42,22 +42,25 @@ public class HomeTourGuideActivity extends BaseActivity {
 
     private ArrayList<String> list = new ArrayList<String>();
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_home_tour_guide);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytourguide);
-        //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
-        list.add("动物园  3.69km");
-        list.add("金牛山  23.6km");
-        list.add("左海公园  16.6km");
-        list.add("森林公园  4.56km");
+    }
 
+    @Override
+    protected void initView() {
         mSpinnerTV = (TextView) findViewById(R.id.spinner_text);
         mListViewAdapter=new ListViewAdapter(HomeTourGuideActivity.this, list);
-        mSpinnerTV.setOnClickListener(new View.OnClickListener() {
+        mImageButton = (ImageButton) findViewById(R.id.attractions);
+    }
 
+    @Override
+    protected void setListener() {
+
+        mSpinnerTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(pw_spinner==null||!pw_spinner.isShowing()){
@@ -66,13 +69,9 @@ public class HomeTourGuideActivity extends BaseActivity {
                     mListViewAdapter.notifyDataSetChanged();
                     openSpinner();
                 }
-
             }
-
         });
-        mSpinnerTV.setText(list.get(0));
 
-        mImageButton = (ImageButton) findViewById(R.id.attractions);
         ViewTreeObserver vto = mImageButton.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -82,6 +81,7 @@ public class HomeTourGuideActivity extends BaseActivity {
                 y = mImageButton.getHeight();
             }
         });
+
         mImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,18 @@ public class HomeTourGuideActivity extends BaseActivity {
                 openPlay();
             }
         });
+    }
 
+    @Override
+    protected void doOther() {
+        //第一步：添加一个下拉列表项的list，这里添加的项就是下拉列表的菜单项
+        list.add("动物园  3.69km");
+        list.add("金牛山  23.6km");
+        list.add("左海公园  16.6km");
+        list.add("森林公园  4.56km");
+
+        mSpinnerTV.setText(list.get(0));
+        mListViewAdapter.notifyDataSetChanged();
     }
 
     public boolean openSpinner() {

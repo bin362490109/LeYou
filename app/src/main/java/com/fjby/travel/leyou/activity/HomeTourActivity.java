@@ -35,15 +35,23 @@ public class HomeTourActivity extends BaseActivity {
     private RelativeLayout mLinearLayout;
     private int[] location = new int[2];
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_home_tour);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytour);
+    }
+
+    @Override
+    protected void initView() {
         mImageView = (ImageView) findViewById(R.id.mytour_menu);
         mToggleButton = (ToggleButton) findViewById(R.id.tour_toggleBtn);
         mLinearLayout = (RelativeLayout) findViewById(R.id.tour_text);
+    }
+
+    @Override
+    protected void setListener() {
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -64,6 +72,11 @@ public class HomeTourActivity extends BaseActivity {
                 location[1] = mImageView.getHeight();
             }
         });
+    }
+
+    @Override
+    protected void doOther() {
+
     }
 
     @Override

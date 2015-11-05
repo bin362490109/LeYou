@@ -17,6 +17,8 @@ import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.HomeLocationActivity;
 import com.fjby.travel.leyou.activity.LoginActivity;
 import com.fjby.travel.leyou.activity.HomeProduceActivity;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.widget.AutoScrollViewPager;
 
@@ -33,20 +35,13 @@ public class HomeFragment extends Fragment {
     private TextView mHomeLocationTV;
 
     private AutoScrollViewPager image_viewpager;
-    
+
     //// TODO: 2015/10/20   如果不放地址以后可以删除  写死
     private List<ImageView> mListImageViews;
     private ImageView[] imageDots;
     private int currentIndex; // 当前图片顺序
-    private int []mImages={R.drawable.main_1,R.drawable.main_2,R.drawable.main_3};
+    private int[] mImages = {R.drawable.main_1, R.drawable.main_2, R.drawable.main_3};
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @return A new instance of fragment PageFragment.
-     */
     public static HomeFragment newInstance(int param1) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -56,7 +51,6 @@ public class HomeFragment extends Fragment {
     }
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -69,19 +63,27 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        initView(view);
+        initLinsten();
+        return view;
+    }
+
+    private void initView(View view) {
         image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
         images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
-
         mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
+        mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
+    }
+
+    private void initLinsten() {
         mHomeAccoutIB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentUtils.getInstance().startActivity(getActivity(), LoginActivity.class);
             }
         });
-        mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
+
         initImageViews();
         // 5秒滚动变换一次
         image_viewpager.startAutoScroll(5000);
@@ -91,11 +93,6 @@ public class HomeFragment extends Fragment {
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        // Remove it here unless you want to get this callback
-                        // for EVERY
-                        // layout pass, which can get you into infinite loops if
-                        // you ever
-                        // modify the layout from within this method.
                         image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                         initImageViews();
                         initDots();
@@ -109,8 +106,8 @@ public class HomeFragment extends Fragment {
                 IntentUtils.getInstance().startActivity(getActivity(), HomeLocationActivity.class);
             }
         });
-        return view;
     }
+
     /**
      * 初始化图片点
      */
@@ -133,7 +130,7 @@ public class HomeFragment extends Fragment {
 
     private void initImageViews() {
         mListImageViews = new ArrayList<>(3);
-        for (int i = 0; i <3; ++i) {
+        for (int i = 0; i < 3; ++i) {
             final ImageView iv = new ImageView(getActivity());
             iv.setScaleType(ImageView.ScaleType.FIT_XY);
             iv.setImageResource(mImages[i]);
@@ -167,7 +164,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void doCurrentDotChange(int position) {
-        if (position < 0 || position == mListImageViews.size()  || currentIndex == position) {
+        if (position < 0 || position == mListImageViews.size() || currentIndex == position) {
             return;
         }
         imageDots[position].setSelected(true);
@@ -180,8 +177,8 @@ public class HomeFragment extends Fragment {
         @Override
         public void destroyItem(View arg0, int arg1, Object arg2) {
             ((ViewPager) arg0).removeView(mListImageViews.get(arg1));
-
         }
+
         @Override
         public int getCount() {
             // Set the total list item count
@@ -190,25 +187,21 @@ public class HomeFragment extends Fragment {
             else
                 return 0;
         }
+
         @Override
         public boolean isViewFromObject(View arg0, Object arg1) {
             return arg0 == arg1;
         }
+
         @Override
         public int getItemPosition(Object object) {
             return super.getItemPosition(object);
         }
+
         @Override
         public Object instantiateItem(View collection, int position) {
             ((ViewPager) collection).addView(mListImageViews.get(position), 0);
             return mListImageViews.get(position);
         }
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initDots();
     }
 }

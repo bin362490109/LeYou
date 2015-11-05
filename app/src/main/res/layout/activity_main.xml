@@ -33,7 +33,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:background="@color/white"
-            app:headerLayout="@layout/navigation_header"
             app:itemTextColor="@color/menu_text_selector"
             app:menu="@menu/drawer"
             />

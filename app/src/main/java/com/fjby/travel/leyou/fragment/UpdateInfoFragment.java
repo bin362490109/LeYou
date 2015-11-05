@@ -1,5 +1,6 @@
 package com.fjby.travel.leyou.fragment;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -54,7 +55,6 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
         updateInfoShareName = (TextView) view.findViewById(R.id.updateinfo_sharename);
         updateInfoShareType = (TextView) view.findViewById(R.id.updateinfo_sharetype);
         updateInfoDate = (TextView) view.findViewById(R.id.updateinfo_date);
-
         updateInfoName = (TextView) view.findViewById(R.id.updateinfo_name);
         updateInfoEmail = (TextView) view.findViewById(R.id.updateinfo_email);
         updateInfoBelongCity = (TextView) view.findViewById(R.id.updateinfo_city);
@@ -72,7 +72,6 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
         updateInfoImageCode.setOnClickListener(this);
 
         initDate();
-
         return view;
     }
 
@@ -93,6 +92,9 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
 
             updateInfoBelongCity.setText(user.getBelongCityCode());
             updateInfoBirthday.setText(user.getBirthday());
+            if (!TextUtils.isEmpty(user.getImageCode())) {
+                HttpUtil.testImageLoad(LeYouMyApplication.mUser.getImageCode(), updateInfoImageCode, R.drawable.author, R.drawable.author);
+            }
        //   updateInfoImageCode.setText(user.getUserName());
         }
     }

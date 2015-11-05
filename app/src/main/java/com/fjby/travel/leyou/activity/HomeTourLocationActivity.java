@@ -29,15 +29,29 @@ public class HomeTourLocationActivity extends BaseActivity {
     private PopupWindow pw = null;
     private ImageView mImageView;
     private int[] location = new int[2];
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_home_tour_location);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytourguidelocation);
+    }
 
+    @Override
+    protected void initView() {
 
     }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
+
+    }
+
     public boolean openMune() {
         if (pw != null) {
             if (pw.isShowing()) {

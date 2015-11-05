@@ -1,5 +1,7 @@
 package com.fjby.travel.leyou.http;
 
+import android.widget.ImageView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -104,7 +106,7 @@ public class HttpUtil {
             }
         }
         input.deleteCharAt(input.length()-1);
-        LogUtil.e("input   inout="+input.toString());
+        LogUtil.e("http  input  is="+input.toString());
         VolleyRequestByParam(input.toString(), listener);
     }
 
@@ -130,5 +132,13 @@ public class HttpUtil {
             }
         };
         MyVolley.addRequest(request);
+    }
+
+    public static   void testImageLoad(String url,ImageView imageView,int defaultImageResId, int errorImageResId){
+        MyVolley.getImage(url, imageView, defaultImageResId, errorImageResId);
+    }
+    public static   void testImageLoad(String url,ImageView imageView,int defaultImageResId, int errorImageResId,int maxWidth,int maxHeight){
+        LogUtil.e("http  url  is="+url.toString());
+        MyVolley.getImage(url, imageView,defaultImageResId,errorImageResId, maxWidth, maxHeight);
     }
 }

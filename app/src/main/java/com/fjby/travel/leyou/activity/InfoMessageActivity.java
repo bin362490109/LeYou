@@ -9,12 +9,25 @@ import com.fjby.travel.leyou.R;
  */
 public class InfoMessageActivity extends BaseActivity {
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_info_message);
         initToolbar(true, true);
         setToolbarTitle(R.string.info_message_title);
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
+
     }
 }

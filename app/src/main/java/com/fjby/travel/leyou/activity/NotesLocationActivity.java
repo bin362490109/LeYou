@@ -19,12 +19,22 @@ import com.fjby.travel.leyou.utils.ToastUtils;
 public class NotesLocationActivity extends BaseActivity {
     private String[] itemNames;
     private TextView mNotesSearch;
+    private   GridView gridView;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_notes_location);
-        GridView gridView = (GridView) findViewById(R.id.gridView);
+    }
+
+    @Override
+    protected void initView() {
+        gridView = (GridView) findViewById(R.id.gridView);
+        mNotesSearch = (TextView) findViewById(R.id.notes_text_search);
+    }
+
+    @Override
+    protected void setListener() {
         gridView.setAdapter(new ImageAdapter(NotesLocationActivity.this));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -35,13 +45,17 @@ public class NotesLocationActivity extends BaseActivity {
             }
         });
 
-        mNotesSearch = (TextView) findViewById(R.id.notes_text_search);
         mNotesSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void doOther() {
+
     }
 
     public class ImageAdapter extends BaseAdapter {

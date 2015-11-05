@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
@@ -32,28 +34,28 @@ public class MainActivity extends BaseActivity {
     private TextView mNavTextView;
     private long exitTime = 0;
 
-    //
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_main);
-        if (savedInstanceState != null) {
-            oldPosition = savedInstanceState.getInt("position", 0);
-        }
+    }
 
-        String vercode = getIntent().getExtras().getString("vercode", "700");
-        if (vercode.equals("601")) {
-            DialogUtils.mdialogShowOne(MainActivity.this, "升级", "版本太低了，一定要升级");
-        } else if (vercode.equals("600")) {
-            DialogUtils.mdialogShowTwo(MainActivity.this, "升级", "有新的版本，请选择升级");
-        }
-
-
+    @Override
+    protected void initView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // setToolbarNavigationIcon(R.drawable.nav_mine_selector);
         //slidemune另一个版本
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mMenuImage = (RoundedImageView) findViewById(R.id.id_header_image);
+        View headeView= mNavigationView.inflateHeaderView(R.layout.navigation_header);
+        mMenuImage = (RoundedImageView) headeView.findViewById(R.id.id_header_image);
+        mNavTextView = (TextView) headeView.findViewById(R.id.id_header_text);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+    }
+
+    @Override
+    protected void setListener() {
+        setupDrawerContent(mNavigationView);
+        if (LeYouMyApplication.mUser!=null&&!TextUtils.isEmpty(LeYouMyApplication.mUser.getImageCode())) {
+            HttpUtil.testImageLoad(LeYouMyApplication.mUser.getImageCode(), mMenuImage, R.drawable.author, R.drawable.author);
+        }
         mMenuImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,20 +64,24 @@ public class MainActivity extends BaseActivity {
                 IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class, bundle);
             }
         });
-        mNavTextView = (TextView) findViewById(R.id.id_header_text);
-        setupDrawerContent(mNavigationView);
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
         // 设置ViewPager最大缓存的页面个数
         mViewPager.setOffscreenPageLimit(3);
-
         SampleFragmentPagerAdapter pagerAdapter = new SampleFragmentPagerAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(myOnPageChangeListener);
         initCustomToobar();
     }
 
+    @Override
+    protected void doOther() {
+        String vercode = getIntent().getExtras().getString("vercode", "700");
+        if (vercode.equals("601")) {
+            DialogUtils.mdialogShowOne(MainActivity.this, "升级", "版本太低了，一定要升级");
+        } else if (vercode.equals("600")) {
+            DialogUtils.mdialogShowTwo(MainActivity.this, "升级", "有新的版本，请选择升级");
+        }
+    }
     ViewPager.OnPageChangeListener myOnPageChangeListener = new ViewPager.OnPageChangeListener() {
-
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         }
@@ -208,7 +214,6 @@ public class MainActivity extends BaseActivity {
         if (LeYouMyApplication.mUser != null) {
             mNavTextView.setText(LeYouMyApplication.mUser.getUserName());
             mNavTextView.setVisibility(View.VISIBLE);
-            mMenuImage.setImageResource(R.drawable.author);
         } else {
             mNavTextView.setVisibility(View.GONE);
         }

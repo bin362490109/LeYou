@@ -81,15 +81,28 @@ public class FlushActivity extends BaseActivity {
         }
     };
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_flush);
-        bitmap = BitmapUtils.decodeThumbBitmapForFile(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
+    }
+
+    @Override
+    protected void initView() {
         //  Bitmap bitmap=BitmapFactory.decodeResource( getResources(),R.drawable.flush_bg);
         mLoading = (ImageView) findViewById(R.id.welcome_03_layout);
         mImageView = (ImageView) findViewById(R.id.welcome_bg);
+        bitmap = BitmapUtils.decodeThumbBitmapForFile(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
         mImageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
         mHandler.post(task);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -98,8 +111,6 @@ public class FlushActivity extends BaseActivity {
             }
         }, 3000);
     }
-
-
 
 
     private void newFlush() {
@@ -140,6 +151,7 @@ public class FlushActivity extends BaseActivity {
                     }
                     finish();
                 }
+
 
                 @Override
                 public void onError(Exception e) {

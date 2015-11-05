@@ -9,14 +9,25 @@ import com.fjby.travel.leyou.R;
  */
 public class MySettingActivity extends BaseActivity {
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_mysetting);
         initToolbar(true, true);
         setToolbarTitle(R.string.mysetting_title);
+    }
 
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
 
     }
 

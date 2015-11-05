@@ -11,12 +11,24 @@ public class MyTravelActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_mytravel);
         initToolbar(true, true);
         setToolbarTitle(R.string.mytravel_title);
+    }
 
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
 
     }
 

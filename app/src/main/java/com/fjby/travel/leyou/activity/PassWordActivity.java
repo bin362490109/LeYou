@@ -20,10 +20,23 @@ public class PassWordActivity extends BaseActivity {
     public  static final String PassType="pass_type";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_fragment);
         initToolbar(true, true);
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
         int type=   getIntent().getExtras().getInt(PassType,2);
         switch (type){
             case ResetPass:
@@ -39,6 +52,5 @@ public class PassWordActivity extends BaseActivity {
                 repalceFragment(new UpdateInfoFragment());
                 break;
         }
-
     }
 }

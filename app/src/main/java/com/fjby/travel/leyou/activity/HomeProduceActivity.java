@@ -22,22 +22,32 @@ import java.util.List;
  */
 public class HomeProduceActivity extends BaseActivity {
     private ViewPager mViewPager;
+    private TabLayout tabLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_home_produce);
         initToolbar(true, true);
         setToolbarTitle(R.string.produce_info);
+    }
 
+    @Override
+    protected void initView() {
         mViewPager = (ViewPager) findViewById(R.id.prodice_viewpager);
+        tabLayout = (TabLayout) findViewById(R.id.produce_tablayout);
+    }
+
+    @Override
+    protected void setListener() {
         setupViewPager(mViewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.produce_tablayout);
         tabLayout.setupWithViewPager(mViewPager);
+    }
 
+    @Override
+    protected void doOther() {
 
     }
+
 
     private void setupViewPager(ViewPager mViewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
@@ -48,7 +58,7 @@ public class HomeProduceActivity extends BaseActivity {
     }
 
 
-     class MyPagerAdapter extends FragmentPagerAdapter {
+    class MyPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 

@@ -24,33 +24,35 @@ import java.util.Map;
 /**
  * Created by abin on 2015/10/29.
  */
-public class AccountUtils {
+public abstract class AccountUtils {
     // 整个平台的Controller, 负责管理整个SDK的配置、操作等处理
     public static UMSocialService mController = UMServiceFactory.getUMSocialService(Constants.DESCRIPTOR);
 
     /**
      * 授权。如果授权成功，则获取用户信息</br>
      */
-    public static void login(final Activity activity, final SHARE_MEDIA platform) {
+    public static void login(final Activity activity, final SHARE_MEDIA platform, final AccountInfoListener accountInfoListener) {
         mController.doOauthVerify(activity, platform, new SocializeListeners.UMAuthListener() {
 
             @Override
             public void onStart(SHARE_MEDIA platform) {
-                if (platform==SHARE_MEDIA.WEIXIN){
+                if (platform == SHARE_MEDIA.WEIXIN) {
                     Toast.makeText(activity, "微信暂时不弄", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     Toast.makeText(activity, "start", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onError(SocializeException e, SHARE_MEDIA platform) {
             }
+
             @Override
             public void onComplete(Bundle value, SHARE_MEDIA platform) {
                 Toast.makeText(activity, "onComplete", Toast.LENGTH_SHORT).show();
                 String uid = value.getString("uid");
                 if (!TextUtils.isEmpty(uid)) {
-                    getUserInfo(activity, platform);
+                    getUserInfo(activity, platform,uid, accountInfoListener);
                 } else {
                     Toast.makeText(activity, "授权失败...", Toast.LENGTH_SHORT).show();
                 }
@@ -88,7 +90,7 @@ public class AccountUtils {
     /**
      * 获取授权平台的用户信息</br>
      */
-    private static void getUserInfo(final Activity activity, SHARE_MEDIA platform) {
+    private static void getUserInfo(final Activity activity, final SHARE_MEDIA platform, final String uid ,final AccountInfoListener accountInfoListener) {
         mController.getPlatformInfo(activity, platform, new SocializeListeners.UMDataListener() {
             @Override
             public void onStart() {
@@ -98,7 +100,17 @@ public class AccountUtils {
             public void onComplete(int status, Map<String, Object> info) {
                 if (info != null) {
                     Toast.makeText(activity, info.toString(), Toast.LENGTH_SHORT).show();
-                    Log.e("crb","info.toString()======"+info.toString());
+                    if (platform==SHARE_MEDIA.WEIXIN){
+                        info.put("shareusertype","1");
+                    }else if(platform==SHARE_MEDIA.QQ){
+                        info.put("shareusertype","2");
+                    }else if (platform==SHARE_MEDIA.SINA){
+                        info.put("shareusertype","3");
+                    }else{
+                        info.put("shareusertype","0");
+                    }
+                    info.put("shareuserid",uid);
+                    accountInfoListener.getAccountInfo(info);
                 }
             }
         });
@@ -134,5 +146,9 @@ public class AccountUtils {
         UMWXHandler wxCircleHandler = new UMWXHandler(activity, appID, appSecret);
         wxCircleHandler.setToCircle(true);
         wxCircleHandler.addToSocialSDK();
+    }
+
+    public  interface  AccountInfoListener{
+           public void getAccountInfo( Map<String, Object> info);
     }
 }

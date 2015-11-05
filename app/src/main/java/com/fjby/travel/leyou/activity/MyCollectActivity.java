@@ -18,20 +18,32 @@ import java.util.List;
  */
 public class MyCollectActivity extends BaseActivity {
     private ViewPager mViewPager;
+    private   TabLayout tabLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_mycollect);
         initToolbar(true, true);
         setToolbarTitle(R.string.mycollect_title);
-        mViewPager = (ViewPager) findViewById(R.id.mycollect_viewpaper);
-        setupViewPager(mViewPager);
+    }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.mycollect_tablayout);
+    @Override
+    protected void initView() {
+        mViewPager = (ViewPager) findViewById(R.id.mycollect_viewpaper);
+        tabLayout = (TabLayout) findViewById(R.id.mycollect_tablayout);
+    }
+
+    @Override
+    protected void setListener() {
+        setupViewPager(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
+    }
+
+    @Override
+    protected void doOther() {
 
     }
+
     private void setupViewPager(ViewPager mViewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MyCollectProduceFragment(), "产品");

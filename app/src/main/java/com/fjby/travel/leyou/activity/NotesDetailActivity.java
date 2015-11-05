@@ -24,12 +24,27 @@ public class NotesDetailActivity extends BaseActivity {
     //声明窗口PopupWindow
     private PopupWindow pw = null;
     private LinearLayout notes_linear;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_notes_detail);
         initToolbar(true, true);
         setToolbarNavigationIcon(R.drawable.nav_back_selector);
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
+
     }
 
     @Override

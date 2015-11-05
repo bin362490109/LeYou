@@ -18,15 +18,23 @@ import com.fjby.travel.leyou.utils.ToastUtils;
  */
 public class HomeLocationActivity extends BaseActivity{
     private String [] itemNames;
+    private  GridView gridView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_home_location);
         initToolbar(true, true);
         setToolbarTitle(R.string.city_location);
         setToolbarNavigationIcon(R.drawable.nav_cancel_selector);
+    }
 
-        GridView gridView = (GridView) findViewById(R.id.gridView);
+    @Override
+    protected void initView() {
+         gridView = (GridView) findViewById(R.id.gridView);
+    }
+
+    @Override
+    protected void setListener() {
         gridView.setAdapter(new ImageAdapter(HomeLocationActivity.this));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -34,7 +42,13 @@ public class HomeLocationActivity extends BaseActivity{
                 ToastUtils.showShort(HomeLocationActivity.this, itemNames[position].toString());
             }
         });
+
     }
+    @Override
+    protected void doOther() {
+
+    }
+
 
     public class ImageAdapter extends BaseAdapter {
         private Context mContext;

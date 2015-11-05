@@ -37,11 +37,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -54,15 +54,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/updateinfo_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -71,7 +68,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -79,11 +76,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -96,15 +93,11 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
-
             <TextView
                 android:id="@+id/updateinfo_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -113,7 +106,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -121,11 +114,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -138,15 +131,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/updateinfo_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -155,7 +145,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -163,12 +153,12 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="5dp">
 
             <TextView
@@ -184,8 +174,8 @@
             <RadioGroup
                 android:id="@+id/updateinfo_sex"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -194,9 +184,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="20dp"
                     android:button="@null"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/selected_selector"
                     android:checked="true"
+                    android:drawableLeft="@drawable/selected_selector"
+                    android:drawablePadding="10dp"
                     android:text="男"/>
 
                 <RadioButton
@@ -204,11 +194,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:button="@null"
-                    android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/selected_selector"
+                    android:drawablePadding="10dp"
                     android:text="女"/>
             </RadioGroup>
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -216,11 +206,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -233,15 +223,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/updateinfo_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -249,7 +236,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -257,11 +244,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -274,15 +261,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/updateinfo_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -292,7 +276,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -300,11 +284,11 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
@@ -317,15 +301,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/updateinfo_sharetype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/set_next_selector"
@@ -335,7 +316,7 @@
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -343,14 +324,15 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:padding="5dp">
 
             <TextView
+                android:id="@+id/updateinfo_sharename_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -360,25 +342,23 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"/>
-
             <TextView
                 android:id="@+id/updateinfo_sharename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:drawablePadding="10dp"
+                android:layout_toRightOf="@+id/updateinfo_sharename_id"
                 android:drawableRight="@drawable/set_next_selector"
-                android:editable="false"
+                android:ellipsize="middle"
                 android:padding="10dp"
+                android:singleLine="true"
                 android:text=""
                 android:textColor="@color/black_grey"
                 android:textSize="16dp"
                 />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -386,7 +366,7 @@
             android:background="@color/lightgray"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -403,6 +383,6 @@
                 android:text="修改信息"
                 android:textColor="@color/passbutton_selector"
                 android:textSize="18sp"/>
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

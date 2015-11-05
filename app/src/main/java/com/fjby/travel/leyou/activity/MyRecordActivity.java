@@ -12,10 +12,23 @@ public class MyRecordActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setView() {
         setContentView(R.layout.activity_fragment);
         initToolbar(true, true);
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void doOther() {
         repalceFragment( new MyRecordMainFragment());
     }
 
