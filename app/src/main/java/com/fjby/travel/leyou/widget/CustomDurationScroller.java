@@ -4,11 +4,6 @@ import android.content.Context;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
-/**
- * CustomDurationScroller
- * 
- * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2014-3-2
- */
 public class CustomDurationScroller extends Scroller {
 
     private double scrollFactor = 1;
@@ -28,14 +23,7 @@ public class CustomDurationScroller extends Scroller {
      * @param interpolator
      * @param flywheel
      */
-    // @SuppressLint("NewApi")
-    // public CustomDurationScroller(Context context, Interpolator interpolator, boolean flywheel){
-    // super(context, interpolator, flywheel);
-    // }
 
-    /**
-     * Set the factor by which the duration will change
-     */
     public void setScrollDurationFactor(double scrollFactor) {
         this.scrollFactor = scrollFactor;
     }

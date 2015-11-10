@@ -2,7 +2,6 @@ package com.fjby.travel.leyou.activity;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.fjby.travel.baidulibrary.activity.MapTestActivity;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
-import com.fjby.travel.leyou.widget.MunePopuwindow;
 
 /**
  * Created by abin on 2015/9/17.

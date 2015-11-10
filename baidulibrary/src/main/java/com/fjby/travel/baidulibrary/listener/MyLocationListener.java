@@ -7,7 +7,7 @@ public class MyLocationListener {
     private OnLocationListener onLocationListener;
 
     public interface OnLocationListener {
-        void onLocation(double x,double y);
+        void onLocation(double x,double y,String  addr);
     }
 
 
@@ -15,9 +15,9 @@ public class MyLocationListener {
        onLocationListener = listener;
     }
 
-    public void setCurrentLocation(double x,double y){
+    public void setCurrentLocation(double x,double y,String  addr){
         if (onLocationListener!=null)
-        onLocationListener.onLocation(x,y);
+        onLocationListener.onLocation(x,y,addr);
     }
 
 }

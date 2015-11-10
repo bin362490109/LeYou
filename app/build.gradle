@@ -11,10 +11,11 @@ android {
         versionCode rootProject.ext.versionCode as Integer
         versionName rootProject.ext.versionName as String
     }
+
     signingConfigs {
         releaseConfig {
             keyAlias 'leyou'
-            storeFile file('C://Users/abin/.android/leyou.jks')
+            storeFile file(System.getProperty("user.home")+"\\.android/leyou.jks")
             keyPassword '654321'
             storePassword '123456'
         }
@@ -25,13 +26,12 @@ android {
             signingConfig signingConfigs.releaseConfig
         }
 
+
         release {
             signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    productFlavors {
     }
 }
 

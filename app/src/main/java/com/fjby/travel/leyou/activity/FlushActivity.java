@@ -25,6 +25,8 @@ import android.os.Message;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.fjby.travel.baidulibrary.listener.MyLocationListener;
+import com.fjby.travel.baidulibrary.utils.LocationUtils;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
@@ -74,7 +76,6 @@ public class FlushActivity extends BaseActivity {
             } else {
                 lp.leftMargin = maxMargin;
             }
-            //    LogUtil.e("lp.leftMargin==" + lp.leftMargin + " i=" + i++);
             mLoading.setLayoutParams(lp);
             if (!isStop)
                 mHandler.postDelayed(this, 100);
@@ -89,7 +90,6 @@ public class FlushActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        //  Bitmap bitmap=BitmapFactory.decodeResource( getResources(),R.drawable.flush_bg);
         mLoading = (ImageView) findViewById(R.id.welcome_03_layout);
         mImageView = (ImageView) findViewById(R.id.welcome_bg);
         bitmap = BitmapUtils.decodeThumbBitmapForFile(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
@@ -103,6 +103,15 @@ public class FlushActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
+        if(StringUtils.isEmpty(spf.getString("city", ""))) {
+            LocationUtils.getLocation(FlushActivity.this, new MyLocationListener.OnLocationListener() {
+                @Override
+                public void onLocation(double x, double y, String addr) {
+                    LogUtil.e("x==" + x + "        y==" + y + "       addr==" + addr);
+                    spf.setString("city", addr);
+                }
+            });
+        }
         mHandler.post(task);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -158,7 +167,6 @@ public class FlushActivity extends BaseActivity {
                     if(NetworkUtils.isNetworkConnected(FlushActivity.this)){
                         DialogUtils.mdialogShowOne(FlushActivity.this,"网络错误","服务器正在更新");
                     }else{
-                       // DialogUtils.dialogShowOne(FlushActivity.this, "网络错误", "手机没有网络");
                         DialogUtils.mdialogShowOne(FlushActivity.this, "网络错误", "手机没有网络");
 
                     }
@@ -168,45 +176,6 @@ public class FlushActivity extends BaseActivity {
 
         }
     }
-    private void oldFlush() {
-        //判断是否有账号登陆
-        if (StringUtils.isEmpty(spf.getString("guid", ""))) {
-            //未有账号登陆
-            IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
-            finish();
-        } else {
-            //已有账号登陆
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("req", "UserLoginAccount");
-            map.put("phone", spf.getString("name", ""));
-            map.put("password", spf.getString("pass", ""));
-            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
-                @Override
-                public void onFinish(String response) {
-                    Gson gson = new Gson();
-                    ResUser mResUser = gson.fromJson(response, ResUser.class);
-                    if (mResUser.getStateCode() == 600) {
-                        //// TODO: 2015/10/14 这个可能需要更改 （mUser可能要去掉）
-                        LeYouMyApplication.mUser = mResUser.getUser();
-                        LeYouMyApplication.mCashHhid = mResUser.getUser().getGuid();
-                        IntentUtils.getInstance().startActivity(FlushActivity.this, MainActivity.class);
-                    } else {
-                        ToastUtils.showLong(FlushActivity.this, mResUser.getStateMsg());
-                        IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
-                    }
-                    finish();
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    ToastUtils.showLong(FlushActivity.this, R.string.network_err);
-                    finish();
-                }
-            });
-
-        }
-    }
-
     @Override
     protected void onDestroy() {
         if (mHandler != null && task != null) {

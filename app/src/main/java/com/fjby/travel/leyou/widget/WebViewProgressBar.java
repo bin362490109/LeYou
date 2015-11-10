@@ -19,21 +19,13 @@ public class WebViewProgressBar extends View {
         super(context, attrs);
     }
 
-    @Deprecated
     public WebViewProgressBar(Context context) {
         super(context);
-//        LinearGradient shader = new LinearGradient(
-//                0, 0,
-//                100, HEIGHT,
-//                colors,
-//                null,
-//                Shader.TileMode.MIRROR);
         paint = new Paint(Paint.DITHER_FLAG);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(HEIGHT);
         paint.setAntiAlias(true);
         paint.setColor(context.getResources().getColor(R.color.primary_light));
-//        paint.setShader(shader);
     }
 
     public void setProgress(int progress) {

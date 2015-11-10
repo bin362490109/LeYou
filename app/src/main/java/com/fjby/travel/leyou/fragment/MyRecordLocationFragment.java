@@ -9,15 +9,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.MyRecordActivity;
+import com.fjby.travel.leyou.utils.ToastUtils;
+import com.fjby.travel.leyou.widget.CleanableEditText;
 
 public class MyRecordLocationFragment extends Fragment {
-    private TextView mTextView;
-
+    private  TextView mRecordBack ;
+    private   TextView mRecordSearch;
+    private CleanableEditText mCleanableEditText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,19 +33,33 @@ public class MyRecordLocationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_record_location, container, false);
         ((MyRecordActivity)getActivity()).setToolbarShow(false);
         setHasOptionsMenu(true);
+        mRecordBack = (TextView) view.findViewById(R.id.record_text_back);
+        mRecordSearch = (TextView) view.findViewById(R.id.record_text_search);
+        mCleanableEditText=(CleanableEditText) view.findViewById(R.id.record_location_editext);
 
-        TextView  mNotesSearch = (TextView) view.findViewById(R.id.record_text_search);
-        mNotesSearch.setOnClickListener(new View.OnClickListener() {
+        mCleanableEditText.setTextEmptyListener(new CleanableEditText.TextEmptyListener() {
+            @Override
+            public void onTextEmptyListener() {
+                mRecordBack.setVisibility(View.VISIBLE);
+                mRecordSearch.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onTextlengthListener() {
+                mRecordBack.setVisibility(View.GONE);
+                mRecordSearch.setVisibility(View.VISIBLE);
+            }
+        });
+        mRecordBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
             }
         });
-        ImageButton mImageButton = (ImageButton) view.findViewById(R.id.record_nav_finish);
-        mImageButton.setOnClickListener(new View.OnClickListener() {
+        mRecordSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().popBackStack();
+                ToastUtils.show(getActivity(),"搜索下次做",0);
             }
         });
         return view;

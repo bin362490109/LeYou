@@ -11,44 +11,52 @@
                   android:fitsSystemWindows="true"
                   android:orientation="vertical"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             >
 
-            <ImageButton
-                android:id="@+id/record_nav_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/nav_back_selector"/>
-
-            <EditText
+            <com.fjby.travel.leyou.widget.CleanableEditText
+                android:id="@+id/record_location_editext"
                 android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="38dp"
                 android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/editext_notes_shap"
                 android:drawableLeft="@drawable/search"
+                android:drawableRight="@drawable/nav_cancel_h"
                 android:drawablePadding="10dp"
                 android:hint="搜索旅行地"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black_grey"
-                android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null"
+               />
 
+            <TextView
+                android:id="@+id/record_text_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:text="取消"
+                android:textColor="@color/login_textcolorhint_selector"
+                android:textSize="20sp"/>
             <TextView
                 android:id="@+id/record_text_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
                 android:text="搜索"
-                android:textColor="@color/login_textcolorhint_selector"
-                android:textSize="18sp"/>
+                android:visibility="gone"
+                android:textColor="@color/accent"
+                android:textSize="20sp"/>
         </LinearLayout>
 
         <LinearLayout

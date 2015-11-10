@@ -12,13 +12,16 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.utils.ToastUtils;
+import com.fjby.travel.leyou.widget.CleanableEditText;
 
 /**
  * Created by abin on 2015/9/17.
  */
 public class NotesLocationActivity extends BaseActivity {
     private String[] itemNames;
-    private TextView mNotesSearch;
+    private  TextView  mNotesBack ;
+    private   TextView mNotesSearch;
+    private CleanableEditText mCleanableEditText;
     private   GridView gridView;
 
 
@@ -31,6 +34,10 @@ public class NotesLocationActivity extends BaseActivity {
     protected void initView() {
         gridView = (GridView) findViewById(R.id.gridView);
         mNotesSearch = (TextView) findViewById(R.id.notes_text_search);
+        mNotesBack = (TextView) findViewById(R.id.notes_text_back);
+        mCleanableEditText=(CleanableEditText)findViewById(R.id.notes_location_editext);
+
+
     }
 
     @Override
@@ -45,10 +52,29 @@ public class NotesLocationActivity extends BaseActivity {
             }
         });
 
+        mCleanableEditText.setTextEmptyListener(new CleanableEditText.TextEmptyListener() {
+            @Override
+            public void onTextEmptyListener() {
+                mNotesBack.setVisibility(View.VISIBLE);
+                mNotesSearch.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onTextlengthListener() {
+                mNotesBack.setVisibility(View.GONE);
+                mNotesSearch.setVisibility(View.VISIBLE);
+            }
+        });
+        mNotesBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
         mNotesSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ToastUtils.show(NotesLocationActivity.this, "搜索下次做", 0);
             }
         });
     }
@@ -105,7 +131,4 @@ public class NotesLocationActivity extends BaseActivity {
 
     }
 
-    public void navFinish(View view) {
-        finish();
-    }
 }
