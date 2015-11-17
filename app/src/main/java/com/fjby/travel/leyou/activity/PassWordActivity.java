@@ -1,6 +1,7 @@
 package com.fjby.travel.leyou.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,10 +19,15 @@ public class PassWordActivity extends BaseActivity {
     public  static final int RegiserPass=2;
     public  static final int updateInfo=3;
     public  static final String PassType="pass_type";
-
+    private int type;
     @Override
     protected void setView() {
+        type=   getIntent().getExtras().getInt(PassType,2);
         setContentView(R.layout.activity_fragment);
+        if (type%2==0) {
+            CoordinatorLayout coordinatorLayout=(CoordinatorLayout)findViewById(R.id.fragment_coord);
+            coordinatorLayout.setBackgroundResource(R.drawable.login_bg);
+        }
         initToolbar(true, true);
     }
 
@@ -37,7 +43,6 @@ public class PassWordActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        int type=   getIntent().getExtras().getInt(PassType,2);
         switch (type){
             case ResetPass:
                 repalceFragment(new PassResetFragment());

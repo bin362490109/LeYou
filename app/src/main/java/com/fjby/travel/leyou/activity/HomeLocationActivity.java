@@ -11,7 +11,15 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.http.HttpCallbackListener;
+import com.fjby.travel.leyou.http.HttpUtil;
+import com.fjby.travel.leyou.pojo.ResGetCodeK;
+import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 /**
  * Created by abin on 2015/9/17.
@@ -46,6 +54,22 @@ public class HomeLocationActivity extends BaseActivity{
     }
     @Override
     protected void doOther() {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("req", "GetCodeK");
+        map.put("guid", LeYouMyApplication.mCashHhid);
+        HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                Gson gson = new Gson();
+                ResGetCodeK resGetCodeK=gson.fromJson(response,ResGetCodeK.class);
+                LogUtil.e(response);
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
 
     }
 

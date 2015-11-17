@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.fjby.travel.baidulibrary.listener.MyLocationListener;
+import com.fjby.travel.baidulibrary.utils.LocationUtils;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
@@ -53,7 +55,7 @@ public class LoginActivity extends BaseActivity {
         mLoginQqTv = (TextView) findViewById(R.id.login_QQ);
         mLoginWecharTv = (TextView) findViewById(R.id.login_wechat);
         mLoginWeiboTv = (TextView) findViewById(R.id.login_weibo);
-        myAccountInfoListen=new MyAccountInfoListen();
+        myAccountInfoListen = new MyAccountInfoListen();
     }
 
     @Override
@@ -77,22 +79,19 @@ public class LoginActivity extends BaseActivity {
         mLoginQqTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  ToastUtils.showLong(LoginActivity.this, R.string.QQ);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.QQ,myAccountInfoListen);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.QQ, myAccountInfoListen);
             }
         });
         mLoginWecharTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ToastUtils.showLong(LoginActivity.this, R.string.wechat);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.WEIXIN,myAccountInfoListen);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.WEIXIN, myAccountInfoListen);
             }
         });
         mLoginWeiboTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToastUtils.showLong(LoginActivity.this, R.string.weibo);
-                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.SINA,myAccountInfoListen);
+                AccountUtils.login(LoginActivity.this, SHARE_MEDIA.SINA, myAccountInfoListen);
             }
         });
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -124,21 +123,28 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        LogUtil.e("LoginActivity   =" + ((LeYouMyApplication) getApplicationContext()).mCashHhid + "      " + LeYouMyApplication.mUser);
+        if (StringUtils.isEmpty(spf.getString("city", ""))) {
+            LocationUtils.getLocation(LoginActivity.this, new MyLocationListener.OnLocationListener() {
+                @Override
+                public void onLocation(double x, double y, String addr) {
+                    spf.setString("city", addr);
+                }
+            });
+        }
         //TODO 添加这一步才可以返回界面,而且必须自己的appid
         AccountUtils.addQZoneQQPlatform(LoginActivity.this);
         AccountUtils.addSinaPlatform();
         AccountUtils.addUMWXPlatform(LoginActivity.this);
     }
 
-    private class MyAccountInfoListen implements AccountUtils.AccountInfoListener{
+    private class MyAccountInfoListen implements AccountUtils.AccountInfoListener {
 
         @Override
         public void getAccountInfo(Map<String, Object> info) {
             HashMap<String, String> map = new HashMap<>();
             map.put("req", "UserAuthoLogin");
             map.put("phone", "");
-            map.put("password","");
+            map.put("password", "");
             map.put("usertype", "1");
             map.put("imei", LeYouMyApplication.imei);
             map.put("username", info.get("screen_name").toString());
@@ -187,7 +193,12 @@ public class LoginActivity extends BaseActivity {
             map.put("imei", LeYouMyApplication.imei);
             map.put("ip", LeYouMyApplication.ip);
             map.put("device", LeYouMyApplication.device);
-            map.put("citycode", spf.getString("citycode", ""));
+            String cityCode = spf.getString("citycode", "");
+            if (StringUtils.isEmpty(cityCode)) {
+                map.put("citycode", cityCode);
+            } else {
+                map.put("city", spf.getString("city", ""));
+            }
             LeYouMyApplication.mCashHhid = spf.getString("guid", "").trim();
             HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                 @Override
@@ -200,6 +211,7 @@ public class LoginActivity extends BaseActivity {
                         LeYouMyApplication.mCashHhid = resAppStartup.getUser().getGuid();
                         LeYouMyApplication.cityAdList = resAppStartup.getCityAdList();
                         LeYouMyApplication.touristList = resAppStartup.getTouristList();
+                        spf.setString("citycode", resAppStartup.getCityCode());
                         Bundle bundle = new Bundle();
                         bundle.putString("vercode", resAppStartup.getVerCode());
                         IntentUtils.getInstance().startActivityWithBudle(LoginActivity.this, MainActivity.class, bundle);
@@ -211,7 +223,6 @@ public class LoginActivity extends BaseActivity {
 
                 @Override
                 public void onError(Exception e) {
-                    ToastUtils.showLong(LoginActivity.this, R.string.network_err);
                 }
             });
         } else {

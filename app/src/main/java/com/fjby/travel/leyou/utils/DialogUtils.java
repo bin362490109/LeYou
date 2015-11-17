@@ -12,6 +12,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.http.HttpCallbackListener;
 
 /**
  * 
@@ -95,6 +96,33 @@ public class DialogUtils {
 				super.onPositive(dialog);
 				dialog.dismiss();
 				ctx.finish();
+			}
+		});
+		builder.cancelable(false);
+		builder.build().show();
+	}
+	/**
+	 * 提示框显示
+	 *
+	 * @param ctx
+	 *            依附的activity
+	 * @param title
+	 *            对话框标题
+	 * @param message
+	 *            对话框正文
+	 * @return ProgressDialog
+	 */
+	public static void mdialogShowNoFinish( final Activity ctx, String title,String message) {
+		MaterialDialog.Builder builder = new MaterialDialog.Builder(ctx);
+		builder.theme(Theme.LIGHT);
+		builder.content(message);
+		builder.title(title);
+		builder.positiveText("确认");
+        builder.callback(new MaterialDialog.ButtonCallback() {
+			@Override
+			public void onPositive(MaterialDialog dialog) {
+				super.onPositive(dialog);
+				dialog.dismiss();
 			}
 		});
 		builder.cancelable(false);

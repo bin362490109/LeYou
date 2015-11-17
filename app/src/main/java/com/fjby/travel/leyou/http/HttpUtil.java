@@ -11,7 +11,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.application.MyVolley;
+import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
+import com.fjby.travel.leyou.utils.NetworkUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -21,8 +23,8 @@ import java.util.Map;
 
 public class HttpUtil {
     public final static String SRV_URL = "http://192.168.0.52:8080/tour/";
-    //public final static String API_URL = "http://192.168.0.54:8080/tour/SaApi";
-    public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
+   public final static String API_URL = "http://192.168.0.54:8080/tour/tourApi";
+ //   public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
 
 
 /*   public static void sendVolleyRequestToString(final HashMap<String, String> map, final HttpCallbackListener listener) {
@@ -59,8 +61,7 @@ public class HttpUtil {
             }
 
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError
-            {
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("Charset", "UTF-8");
                 headers.put("Content-Type", "application/x-javascript");
@@ -69,8 +70,7 @@ public class HttpUtil {
             }
 
             @Override
-            public RetryPolicy getRetryPolicy()
-            {
+            public RetryPolicy getRetryPolicy() {
                 RetryPolicy retryPolicy = new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
                 return retryPolicy;
             }
@@ -93,20 +93,20 @@ public class HttpUtil {
         map.put("ver", LeYouMyApplication.versionName);
         Iterator<Map.Entry<String, String>> iter = map.entrySet().iterator();
         Map.Entry<String, String> entry;
-        StringBuffer input=new StringBuffer();
-        input.append(API_URL+"?");
+        StringBuffer input = new StringBuffer();
+        input.append(API_URL + "?");
         while (iter.hasNext()) {
             entry = iter.next();
             String key = entry.getKey();
             String value = entry.getValue();
             try {
-                input.append(key+"="+ URLEncoder.encode(value, "UTF-8")+"&");
+                input.append(key + "=" + URLEncoder.encode(value, "UTF-8") + "&");
             } catch (UnsupportedEncodingException e) {
                 input.append("");
             }
         }
-        input.deleteCharAt(input.length()-1);
-        LogUtil.e("http  input  is="+input.toString());
+        input.deleteCharAt(input.length() - 1);
+        LogUtil.e("http  input  is=" + input.toString());
         VolleyRequestByParam(input.toString(), listener);
     }
 
@@ -121,24 +121,29 @@ public class HttpUtil {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                listener.onError(error);
+                //     listener.onError(error);
+                if (NetworkUtils.isNetworkConnected(LeYouMyApplication.currentActivity())) {
+                    DialogUtils.mdialogShowNoFinish(LeYouMyApplication.currentActivity(), "网络错误", "服务器正在更新，或则咨询客服人员");
+                } else {
+                    DialogUtils.mdialogShowNoFinish(LeYouMyApplication.currentActivity(), "网络错误", "请检查你的网络问题");
+                }
             }
-        }){
-            @Override
-            public RetryPolicy getRetryPolicy()
-            {
-                RetryPolicy retryPolicy = new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                return retryPolicy;
-            }
-        };
+        });
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //请用缓存
+        request.setShouldCache(true);
+        //设置缓存时间10分钟
+        //// TODO: 2015/11/16  
+       // request.setCacheTime(10*60);
         MyVolley.addRequest(request);
     }
 
-    public static   void testImageLoad(String url,ImageView imageView,int defaultImageResId, int errorImageResId){
+    public static void testImageLoad(String url, ImageView imageView, int defaultImageResId, int errorImageResId) {
         MyVolley.getImage(url, imageView, defaultImageResId, errorImageResId);
     }
-    public static   void testImageLoad(String url,ImageView imageView,int defaultImageResId, int errorImageResId,int maxWidth,int maxHeight){
-        LogUtil.e("http  url  is="+url.toString());
-        MyVolley.getImage(url, imageView,defaultImageResId,errorImageResId, maxWidth, maxHeight);
+
+    public static void testImageLoad(String url, ImageView imageView, int defaultImageResId, int errorImageResId, int maxWidth, int maxHeight) {
+        LogUtil.e("http  url  is=" + url.toString());
+        MyVolley.getImage(url, imageView, defaultImageResId, errorImageResId, maxWidth, maxHeight);
     }
 }

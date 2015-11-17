@@ -63,8 +63,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract void setView();
+
     protected abstract void initView();
+
     protected abstract void setListener();
+
     protected abstract void doOther();
 
     protected void initToolbar(boolean showToolbar, boolean showNav) {

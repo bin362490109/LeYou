@@ -103,11 +103,10 @@ public class FlushActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        if(StringUtils.isEmpty(spf.getString("city", ""))) {
+        if (StringUtils.isEmpty(spf.getString("city", ""))) {
             LocationUtils.getLocation(FlushActivity.this, new MyLocationListener.OnLocationListener() {
                 @Override
                 public void onLocation(double x, double y, String addr) {
-                    LogUtil.e("x==" + x + "        y==" + y + "       addr==" + addr);
                     spf.setString("city", addr);
                 }
             });
@@ -138,8 +137,14 @@ public class FlushActivity extends BaseActivity {
             map.put("imei", LeYouMyApplication.imei);
             map.put("ip", LeYouMyApplication.ip);
             map.put("device", LeYouMyApplication.device);
-            map.put("citycode", spf.getString("citycode", ""));
-            LeYouMyApplication.mCashHhid=spf.getString("guid", "").trim();
+            String cityCode = spf.getString("citycode", "");
+            if (StringUtils.isEmpty(cityCode)) {
+                map.put("citycode", cityCode);
+            } else {
+                map.put("city", spf.getString("city", ""));
+            }
+
+            LeYouMyApplication.mCashHhid = spf.getString("guid", "").trim();
             HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                 @Override
                 public void onFinish(String response) {
@@ -151,9 +156,10 @@ public class FlushActivity extends BaseActivity {
                         LeYouMyApplication.mCashHhid = resAppStartup.getUser().getGuid();
                         LeYouMyApplication.cityAdList = resAppStartup.getCityAdList();
                         LeYouMyApplication.touristList = resAppStartup.getTouristList();
-                        Bundle bundle=new Bundle();
-                        bundle.putString("vercode",resAppStartup.getVerCode());
-                        IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class,bundle);
+                        spf.setString("citycode", resAppStartup.getCityCode());
+                        Bundle bundle = new Bundle();
+                        bundle.putString("vercode", resAppStartup.getVerCode());
+                        IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class, bundle);
                     } else {
                         ToastUtils.showLong(FlushActivity.this, resAppStartup.getStateMsg());
                         IntentUtils.getInstance().startActivity(FlushActivity.this, LoginActivity.class);
@@ -161,21 +167,14 @@ public class FlushActivity extends BaseActivity {
                     finish();
                 }
 
-
                 @Override
                 public void onError(Exception e) {
-                    if(NetworkUtils.isNetworkConnected(FlushActivity.this)){
-                        DialogUtils.mdialogShowOne(FlushActivity.this,"网络错误","服务器正在更新");
-                    }else{
-                        DialogUtils.mdialogShowOne(FlushActivity.this, "网络错误", "手机没有网络");
-
-                    }
-
                 }
             });
 
         }
     }
+
     @Override
     protected void onDestroy() {
         if (mHandler != null && task != null) {
