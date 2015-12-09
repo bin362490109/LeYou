@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+def AAVersion =  rootProject.ext.AAversion as String
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
     buildToolsVersion rootProject.ext.buildToolsVersion as String
@@ -15,7 +15,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.+'
+    compile "com.android.support:appcompat-v7:$AAVersion"
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/httpmime-4.1.3.jar')
     compile files('libs/IndoorscapeAlbumPlugin.jar')

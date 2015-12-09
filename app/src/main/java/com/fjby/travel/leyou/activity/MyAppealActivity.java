@@ -6,10 +6,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.fragment.MyAppealFragment;
 import com.fjby.travel.leyou.fragment.MyAppealOneFragment;
 
 public class MyAppealActivity extends BaseActivity {
 
+    public String titile="";
+    public String content="";
     @Override
     protected void setView() {
         setContentView(R.layout.activity_fragment);
@@ -18,7 +21,6 @@ public class MyAppealActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
     }
 
     @Override
@@ -28,6 +30,6 @@ public class MyAppealActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        repalceFragment( new MyAppealOneFragment());
+        repalceFragment( new MyAppealFragment());
     }
 }

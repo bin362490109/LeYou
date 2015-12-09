@@ -84,6 +84,9 @@ public class SharePreferenceUtil {
     public void  remove(final String key){
         sp.edit().remove(key).commit();
     }
+    public void  removeAll(){
+        sp.edit().clear().commit();
+    }
 /**
      * API-11 以上支持此方法
      * */

@@ -1,9 +1,7 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
     >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -115,8 +113,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="1dp"
             android:padding="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="horizontal"
             android:background="@color/white"
             >
@@ -171,8 +169,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@color/window_background"
             android:gravity="center_vertical"
             android:padding="10dp"
@@ -192,8 +190,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@color/window_background"
             android:drawableRight="@drawable/appeal_location_h"
             android:gravity="center_vertical"
@@ -215,16 +213,14 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@color/window_background"
             android:drawableRight="@drawable/edit_selector"
-
             android:gravity="center_vertical"
             android:padding="10dp"
             android:text="点击图标编辑详情"
             android:textColor="@color/black_grey"/>
-
         <Button
             android:id="@+id/buttonsubmit"
             android:layout_width="match_parent"
@@ -235,4 +231,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

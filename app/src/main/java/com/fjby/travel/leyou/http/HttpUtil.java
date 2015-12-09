@@ -1,5 +1,6 @@
 package com.fjby.travel.leyou.http;
 
+import android.content.Context;
 import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
@@ -8,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
+import com.android.volley.ext.tools.BitmapTools;
 import com.android.volley.toolbox.StringRequest;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.application.MyVolley;
@@ -23,8 +25,10 @@ import java.util.Map;
 
 public class HttpUtil {
     public final static String SRV_URL = "http://192.168.0.52:8080/tour/";
-   public final static String API_URL = "http://192.168.0.54:8080/tour/tourApi";
- //   public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
+     public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
+    public final static String UPLOAD_URL = "http://192.168.0.10:7009/tour/UploadApi";
+    // public final static String API_URL = "http://192.168.0.54:8080/tour/tourApi";
+    // public final static String UPLOAD_URL = "http://192.168.0.54:8080/tour/UploadApi";
 
 
 /*   public static void sendVolleyRequestToString(final HashMap<String, String> map, final HttpCallbackListener listener) {
@@ -71,7 +75,7 @@ public class HttpUtil {
 
             @Override
             public RetryPolicy getRetryPolicy() {
-                RetryPolicy retryPolicy = new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                RetryPolicy retryPolicy = new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
                 return retryPolicy;
             }
         };
@@ -112,7 +116,7 @@ public class HttpUtil {
 
     //POST表单提交
     private static void VolleyRequestByParam(String input, final HttpCallbackListener listener) {
-        StringRequest request = new StringRequest(Request.Method.POST, input, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST,input, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 listener.onFinish(response);
@@ -122,6 +126,7 @@ public class HttpUtil {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //     listener.onError(error);
+                LogUtil.e("VolleyRequestByParam"+error);
                 if (NetworkUtils.isNetworkConnected(LeYouMyApplication.currentActivity())) {
                     DialogUtils.mdialogShowNoFinish(LeYouMyApplication.currentActivity(), "网络错误", "服务器正在更新，或则咨询客服人员");
                 } else {
@@ -129,7 +134,7 @@ public class HttpUtil {
                 }
             }
         });
-        request.setRetryPolicy(new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //请用缓存
         request.setShouldCache(true);
         //设置缓存时间10分钟
@@ -138,12 +143,13 @@ public class HttpUtil {
         MyVolley.addRequest(request);
     }
 
-    public static void testImageLoad(String url, ImageView imageView, int defaultImageResId, int errorImageResId) {
-        MyVolley.getImage(url, imageView, defaultImageResId, errorImageResId);
+    public static void testImageLoad(Context ct, String url, ImageView imageView, int defaultImageResId, int errorImageResId) {
+        MyVolley.getImage(ct,url, imageView, defaultImageResId, errorImageResId);
     }
 
-    public static void testImageLoad(String url, ImageView imageView, int defaultImageResId, int errorImageResId, int maxWidth, int maxHeight) {
+    public static void testImageLoad(Context ct,String url, ImageView imageView, int defaultImageResId, int errorImageResId, int maxWidth, int maxHeight) {
         LogUtil.e("http  url  is=" + url.toString());
-        MyVolley.getImage(url, imageView, defaultImageResId, errorImageResId, maxWidth, maxHeight);
+        MyVolley.getImage(ct,url, imageView, defaultImageResId, errorImageResId, maxWidth, maxHeight);
     }
+
 }

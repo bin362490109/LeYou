@@ -16,8 +16,56 @@
 #   public *;
 #}
 -optimizationpasses 5
- -dontusemixedcaseclassnames
- -dontskipnonpubliclibraryclasses
- -dontpreverify
- -verbose
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+ -dontshrink
+ -dontoptimize
+ -dontwarn com.google.android.maps.**
+ -dontwarn android.webkit.WebView
+ -dontwarn com.umeng.**
+ -dontwarn com.tencent.weibo.sdk.**
+ -dontwarn com.facebook.**
+
+
+ -keep enum com.facebook.**
+ -keepattributes Exceptions,InnerClasses,Signature
+ -keepattributes *Annotation*
+ -keepattributes SourceFile,LineNumberTable
+
+ -keep public interface com.facebook.**
+ -keep public interface com.tencent.**
+ -keep public interface com.umeng.socialize.**
+ -keep public interface com.umeng.socialize.sensor.**
+ -keep public interface com.umeng.scrshot.**
+
+ -keep public class com.umeng.socialize.* {*;}
+ -keep public class javax.**
+ -keep public class android.webkit.**
+
+ -keep class com.facebook.**
+ -keep class com.umeng.scrshot.**
+ -keep public class com.tencent.** {*;}
+ -keep class com.umeng.socialize.sensor.**
+
+ -keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
+
+ -keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
+
+ -keep class im.yixin.sdk.api.YXMessage {*;}
+ -keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+
+ -keep public class [com.umeng.soexample].R$*{
+     public static final int *;
+ }
+
+-dontwarn com.fjby.travel.baidulibrary.**
+-keep com.fjby.travel.baidulibrary.**
+
+-keep class com.baidu.** { *; }
+-keep class vi.com.gdi.bgl.android.**{*;}
 

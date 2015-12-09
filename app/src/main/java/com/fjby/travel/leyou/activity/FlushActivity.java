@@ -17,7 +17,6 @@
  */
 package com.fjby.travel.leyou.activity;
 
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,12 +31,9 @@ import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResAppStartup;
-import com.fjby.travel.leyou.pojo.ResUser;
 import com.fjby.travel.leyou.utils.BitmapUtils;
-import com.fjby.travel.leyou.utils.DialogUtils;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.LogUtil;
-import com.fjby.travel.leyou.utils.NetworkUtils;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.google.gson.Gson;
@@ -92,7 +88,7 @@ public class FlushActivity extends BaseActivity {
     protected void initView() {
         mLoading = (ImageView) findViewById(R.id.welcome_03_layout);
         mImageView = (ImageView) findViewById(R.id.welcome_bg);
-        bitmap = BitmapUtils.decodeThumbBitmapForFile(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
+        bitmap = BitmapUtils.decodeThumbBitmapForRec(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
         mImageView.setImageBitmap(bitmap);
     }
 
@@ -117,7 +113,7 @@ public class FlushActivity extends BaseActivity {
             public void run() {
                 newFlush();
             }
-        }, 3000);
+        }, 1000);
     }
 
 
@@ -159,6 +155,7 @@ public class FlushActivity extends BaseActivity {
                         spf.setString("citycode", resAppStartup.getCityCode());
                         Bundle bundle = new Bundle();
                         bundle.putString("vercode", resAppStartup.getVerCode());
+                        LogUtil.e("-------------resAppStartup-----------------------------");
                         IntentUtils.getInstance().startActivityWithBudle(FlushActivity.this, MainActivity.class, bundle);
                     } else {
                         ToastUtils.showLong(FlushActivity.this, resAppStartup.getStateMsg());
@@ -183,6 +180,7 @@ public class FlushActivity extends BaseActivity {
         }
         if (!bitmap.isRecycled()) {
             bitmap.recycle();
+            bitmap=null;
         }
         isStop = true;
         super.onDestroy();

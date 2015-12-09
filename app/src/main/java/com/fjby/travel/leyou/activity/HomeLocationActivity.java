@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
+import com.fjby.travel.leyou.db.service.LeYouService;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
 import com.fjby.travel.leyou.http.HttpUtil;
+import com.fjby.travel.leyou.pojo.ResChangeCity;
 import com.fjby.travel.leyou.pojo.ResGetCodeK;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.ToastUtils;
@@ -27,6 +29,7 @@ import java.util.HashMap;
 public class HomeLocationActivity extends BaseActivity{
     private String [] itemNames;
     private  GridView gridView;
+    private LeYouService mLeYouService;
 
     @Override
     protected void setView() {
@@ -47,7 +50,27 @@ public class HomeLocationActivity extends BaseActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                if (mLeYouService==null) {
+                    mLeYouService = LeYouService.getInstance(HomeLocationActivity.this);
+                }
                 ToastUtils.showShort(HomeLocationActivity.this, itemNames[position].toString());
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("req", "ChangeCity");
+                map.put("citycode",   mLeYouService.selecltCode(itemNames[position].toString()));
+                map.put("guid", LeYouMyApplication.mCashHhid);
+                HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+                    @Override
+                    public void onFinish(String response) {
+                        Gson gson = new Gson();
+                        ResChangeCity resGetCodeK = gson.fromJson(response, ResChangeCity.class);
+                        LogUtil.e(response);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
             }
         });
 
@@ -62,6 +85,12 @@ public class HomeLocationActivity extends BaseActivity{
             public void onFinish(String response) {
                 Gson gson = new Gson();
                 ResGetCodeK resGetCodeK=gson.fromJson(response,ResGetCodeK.class);
+                if (mLeYouService==null) {
+                    mLeYouService = LeYouService.getInstance(HomeLocationActivity.this);
+                }
+                mLeYouService.deleteCodeK();
+                mLeYouService.saveProvinces(resGetCodeK.getProvinceCodeList());
+                mLeYouService.saveCitys(resGetCodeK.getCityCodeLsit());
                 LogUtil.e(response);
             }
 
@@ -83,7 +112,6 @@ public class HomeLocationActivity extends BaseActivity{
         }
 
         public ImageAdapter(Context c){
-
             mContext = c;
             itemNames=getResources().getStringArray(R.array.provarray);
             inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

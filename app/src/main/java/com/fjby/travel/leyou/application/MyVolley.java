@@ -10,7 +10,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.volley.BitmapLruCache;
-import com.fjby.travel.leyou.volley.ImageListenerFactory;
 
 
 /**
@@ -21,11 +20,10 @@ import com.fjby.travel.leyou.volley.ImageListenerFactory;
  */
 public class MyVolley {
 	private static final String TAG = "MyVolley";
-
 	private static MyVolley instance;
 	private static RequestQueue mRequestQueue;
 	private static ImageLoader mImageLoader;
-	private final static int RATE = 8; // 默认分配最大空间的几分之一
+	private final static int RATE = 10; // 默认分配最大空间的几分之一
 
 	private MyVolley(Context context) {
 		mRequestQueue = Volley.newRequestQueue(context);
@@ -34,7 +32,7 @@ public class MyVolley {
 		int maxSize = manager.getMemoryClass() / RATE; // 比如 64M/8,单位为M
 		// BitmapLruCache自定义缓存class，android本身支持二级缓存，在BitmapLruCache封装一个软引用缓存
 		mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache(1024 * 1024 * maxSize));
-		LogUtil.v("MyVolley初始化完成");
+		LogUtil.v("MyVolley初始化完成"+maxSize);
 	}
 
 	/**
@@ -72,17 +70,18 @@ public class MyVolley {
 		return mImageLoader;
 	}
 
-	public static void getImage(String requestUrl, ImageView imageView) {
-		getImage(requestUrl, imageView, 0, 0);
+	public static void getImage(Context ct,String requestUrl, ImageView imageView) {
+		getImage(ct,requestUrl, imageView, 0, 0);
 	}
 
-	public static void getImage(String requestUrl, ImageView imageView,int defaultImageResId, int errorImageResId) {
-		getImage(requestUrl, imageView, defaultImageResId, errorImageResId, 0,0);
+	public static void getImage(Context ct,String requestUrl, ImageView imageView,int defaultImageResId, int errorImageResId) {
+		getImage(ct,requestUrl, imageView, defaultImageResId, errorImageResId, 0,0);
 	}
 
-	public static void getImage(String requestUrl, ImageView imageView,int defaultImageResId, int errorImageResId, int maxWidth,int maxHeight) {
+	public static void getImage(Context ct,String requestUrl, ImageView imageView,int defaultImageResId, int errorImageResId, int maxWidth,int maxHeight) {
 		imageView.setTag(requestUrl);
-		getImageLoader().get(requestUrl, ImageListenerFactory.getImageListener(imageView, defaultImageResId, errorImageResId), maxWidth, maxHeight);
+	 getImageLoader().get(ct,requestUrl, ImageLoader.getImageListener(imageView, defaultImageResId, errorImageResId), maxWidth, maxHeight);
+
 	}
 
 

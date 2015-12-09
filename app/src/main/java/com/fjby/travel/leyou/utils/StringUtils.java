@@ -53,6 +53,16 @@ public class StringUtils {
             return false;
     }
 
+    public static String setLenghtTwo(String str){
+        if(isEmpty(str)){
+            return "";
+        }else{
+            if (str.length()<2){
+                str="0"+str;
+            }
+            return str;
+        }
+    }
     /**
      * 判断字符串是否为0或者为空
      *

@@ -184,6 +184,7 @@ public class LoginActivity extends BaseActivity {
         ResUser mResUser = gson.fromJson(msg, ResUser.class);
         if (mResUser.getStateCode() == 600) {
             spf.setString("guid", mResUser.getUser().getGuid());
+            LogUtil.e("guid====="+ mResUser.getUser().getGuid());
             //已有账号登陆
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("req", "AppStartup");
@@ -200,6 +201,7 @@ public class LoginActivity extends BaseActivity {
                 map.put("city", spf.getString("city", ""));
             }
             LeYouMyApplication.mCashHhid = spf.getString("guid", "").trim();
+            LeYouMyApplication.mUser=mResUser.getUser();
             HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
                 @Override
                 public void onFinish(String response) {

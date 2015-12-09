@@ -29,6 +29,17 @@
         <item >昆明</item>
         <item >厦门</item>
         <item >马尔代夫</item>
-
+    </string-array>
+    <string-array name="myappeal_type">
+        <item >咨询</item>
+        <item >举报</item>
+        <item >投诉</item>
+        <item >建议</item>
+        <item >感谢</item>
+    </string-array>
+    <string-array name="myappeal_category">
+        <item >导演</item>
+        <item >游客</item>
+        <item >其他</item>
     </string-array>
 </resources>

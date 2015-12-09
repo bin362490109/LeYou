@@ -1,0 +1,301 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightgray"
+    android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_login_background"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="诉求类型:"
+                    android:textColor="#999999"
+                    android:textSize="17sp" />
+
+                <Spinner
+                    android:id="@+id/myappeal_type_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd"></View>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="诉求类别:"
+                    android:textColor="#999999"
+                    android:textSize="17sp" />
+
+                <Spinner
+                    android:id="@+id/myappeal_category_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="事件时间:"
+                    android:textColor="#999999"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:id="@+id/myappeal_time_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textColor="#a0a0a0"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:text="事件地点:"
+                    android:textColor="#999999"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/myappeal_address_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:drawableRight="@drawable/appeal_location_h"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="选择图标编辑地址"
+                    android:textColor="@color/black_grey"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:text="诉求详情:"
+                    android:textColor="#999999"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/myappeal_more_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:drawableRight="@drawable/edit_selector"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="点击图标编辑详情"
+                    android:textColor="@color/black_grey"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dddddd"></View>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/lightgray"
+                android:textSize="17sp"
+                android:text="上传图片：" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/image_bg">
+
+                <ImageView
+                    android:id="@+id/sy_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:scaleType="centerInside" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="1dp">
+
+                    <ImageButton
+                        android:id="@+id/sy_camera_imgbtn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2dp"
+                        android:background="@drawable/selector_tz_camera" />
+
+
+                    <ImageButton
+                        android:id="@+id/sy_camera_deleteBtn"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="2dp"
+                        android:background="@drawable/selector_tz_deletecamera" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/sy_filesize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="文件大小:"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/image_bg">
+
+                <ImageView
+                    android:id="@+id/sy_pic2"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+                    android:scaleType="centerInside" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="1dp">
+
+                    <ImageButton
+                        android:id="@+id/sy_camera_imgbtn2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2dp"
+                        android:background="@drawable/selector_tz_camera" />
+
+
+                    <ImageButton
+                        android:id="@+id/sy_camera_deleteBtn2"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="2dp"
+                        android:background="@drawable/selector_tz_deletecamera" />
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/sy_filesize2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="文件大小:"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+            <Button
+                android:id="@+id/sy_up1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_submit_selector"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+        <!--  结束输入框 -->
+</ScrollView>

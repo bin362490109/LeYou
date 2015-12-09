@@ -2,8 +2,11 @@ package com.fjby.travel.leyou.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +18,8 @@ import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.HomeLocationActivity;
-import com.fjby.travel.leyou.activity.LoginActivity;
 import com.fjby.travel.leyou.activity.HomeProduceActivity;
-import com.fjby.travel.leyou.application.LeYouMyApplication;
-import com.fjby.travel.leyou.utils.DialogUtils;
+import com.fjby.travel.leyou.activity.MainActivity;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.widget.AutoScrollViewPager;
 
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
     private TextView mHomeLocationTV;
 
     private AutoScrollViewPager image_viewpager;
+    private DrawerLayout mDrawerLayout;
 
     //// TODO: 2015/10/20   如果不放地址以后可以删除  写死
     private List<ImageView> mListImageViews;
@@ -63,6 +65,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mDrawerLayout=((MainActivity)getActivity()).mDrawerLayout;
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
         initLinsten();
@@ -75,15 +78,21 @@ public class HomeFragment extends Fragment {
         mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
         mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
     }
-
+    private void toggle() {
+        if (mDrawerLayout.isDrawerVisible(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
+    }
     private void initLinsten() {
         mHomeAccoutIB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.getInstance().startActivity(getActivity(), LoginActivity.class);
+               // IntentUtils.getInstance().startActivity(getActivity(), LoginActivity.class);
+                toggle();
             }
         });
-
         initImageViews();
         // 5秒滚动变换一次
         image_viewpager.startAutoScroll(5000);

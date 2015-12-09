@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private LinearLayout mLinearLayout;
     private LinearLayout[] mLinearButton = new LinearLayout[5];
-    private DrawerLayout mDrawerLayout;
+    public DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int oldPosition = 0;
     private RoundedImageView mMenuImage;
@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void setView() {
+        LogUtil.e("-------------MainActivity-----------------------------");
         setContentView(R.layout.activity_main);
     }
 
@@ -48,22 +49,33 @@ public class MainActivity extends BaseActivity {
         mMenuImage = (RoundedImageView) headeView.findViewById(R.id.id_header_image);
         mNavTextView = (TextView) headeView.findViewById(R.id.id_header_text);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
+
     }
 
     @Override
     protected void setListener() {
         setupDrawerContent(mNavigationView);
-        if (LeYouMyApplication.mUser!=null&&!TextUtils.isEmpty(LeYouMyApplication.mUser.getImageCode())) {
-            HttpUtil.testImageLoad(LeYouMyApplication.mUser.getImageCode(), mMenuImage, R.drawable.author, R.drawable.author);
-        }
-        mMenuImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(PassWordActivity.PassType, PassWordActivity.updateInfo);
-                IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class, bundle);
+        if (LeYouMyApplication.mUser!=null) {
+            if (!TextUtils.isEmpty(LeYouMyApplication.mUser.getImageCode())){
+                HttpUtil.testImageLoad(MainActivity.this,LeYouMyApplication.mUser.getImageCode(), mMenuImage, R.drawable.author, R.drawable.author);
             }
-        });
+            mMenuImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(PassWordActivity.PassType, PassWordActivity.updateInfo);
+                    IntentUtils.getInstance().startActivityWithBudle(MainActivity.this, PassWordActivity.class, bundle);
+                }
+            });
+        }else{
+            mMenuImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IntentUtils.getInstance().startActivity(MainActivity.this, LoginActivity.class);
+                }
+            });
+        }
+
         // 设置ViewPager最大缓存的页面个数
         mViewPager.setOffscreenPageLimit(3);
         SampleFragmentPagerAdapter pagerAdapter = new SampleFragmentPagerAdapter(getSupportFragmentManager(), this);

@@ -80,6 +80,7 @@
     <string name="myrecordRelation_title">关联地点</string>
     <string name="myrecordfile_title">游游随记</string>
     <string name="myappeal_more_title">诉求详情</string>
+    <string name="myappeal_all">诉求历史</string>
     <string name="mytravel_title">我的游记</string>
     <string name="mycollect_title">收藏</string>
     <string name="mytourguide">导游</string>

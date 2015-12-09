@@ -114,6 +114,18 @@ public class LeYouMyApplication extends Application {
         }
         activitiesStack.clear();
     }
+    public static void removeOhterActivities() {
+        if (activitiesStack != null && !activitiesStack.isEmpty()) {
+            for (Iterator<Activity> i = activitiesStack.iterator(); i.hasNext(); ) {
+                Activity a = i.next();
+                if (a != null) {
+                    a.finish();
+                    a = null;
+                }
+            }
+        }
+        activitiesStack.clear();
+    }
 
     public static int Size() {
         return activitiesStack.size();

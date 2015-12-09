@@ -1,6 +1,5 @@
 package com.fjby.travel.leyou.fragment;
 
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -45,7 +43,6 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //// TODO: 2015/10/14   界面按钮需要更改
@@ -70,7 +67,6 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
         updateInfoSex.setOnClickListener(this);
         updateInfoBirthday.setOnClickListener(this);
         updateInfoImageCode.setOnClickListener(this);
-
         initDate();
         return view;
     }
@@ -84,7 +80,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
             updateInfoName.setText(user.getUserName());
             updateInfoEmail.setText(user.getEmail());
             LogUtil.e("user.getSex()======================"+user.getSex()+"      "+user.toString());
-            if(user.getSex()!=null&&user.getSex().equals("女")){
+            if(user.getSex()!=null&&user.getSex().equals("2")){
                 updateInfoSex.check(R.id.updateinfo_sex_nv);
             }else{
                 updateInfoSex.check(R.id.updateinfo_sex_nan);
@@ -93,7 +89,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
             updateInfoBelongCity.setText(user.getBelongCityCode());
             updateInfoBirthday.setText(user.getBirthday());
             if (!TextUtils.isEmpty(user.getImageCode())) {
-                HttpUtil.testImageLoad(LeYouMyApplication.mUser.getImageCode(), updateInfoImageCode, R.drawable.author, R.drawable.author);
+                HttpUtil.testImageLoad(getActivity(),LeYouMyApplication.mUser.getImageCode(), updateInfoImageCode, R.drawable.author, R.drawable.author);
             }
        //   updateInfoImageCode.setText(user.getUserName());
         }
@@ -108,7 +104,7 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
                 map.put("imagecode", LeYouMyApplication.mUser.getImageCode()!=null? LeYouMyApplication.mUser.getImageCode():"");
                 map.put("username", updateInfoName.getText().toString().trim());
                 map.put("email", updateInfoEmail.getText().toString().trim());
-                map.put("sex", updateInfoSex.getCheckedRadioButtonId()==R.id.updateinfo_sex_nan?"男":"女");
+                map.put("sex", updateInfoSex.getCheckedRadioButtonId()==R.id.updateinfo_sex_nan?"1":"2");
                 map.put("belongcitycode", updateInfoBelongCity.getText().toString().trim());
                 map.put("birthday", updateInfoBirthday.getText().toString().trim());
               HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
