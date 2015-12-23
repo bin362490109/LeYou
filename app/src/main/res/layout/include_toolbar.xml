@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         app:layout_scrollFlags="scroll|enterAlways"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/other_bg"
         app:navigationIcon="@drawable/nav_back_selector"
      >
     <TextView

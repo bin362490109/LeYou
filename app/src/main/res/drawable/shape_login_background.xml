@@ -11,7 +11,7 @@
        /> -->
        
       <!-- 描边 --> 
-     <stroke android:width="1dip"     
+     <stroke android:width="5dip"
        android:color="#dddddd" 
        />   
        
@@ -19,11 +19,12 @@
       <solid android:color="#fefefe"
        />   
        
-      <!-- 圆角 -->  
+      <!-- 圆角
        <corners 
        android:bottomRightRadius="4dip" 
        android:bottomLeftRadius="4dip" 
        android:topLeftRadius="4dip" 
        android:topRightRadius="4dip" 
        />
+        -->
 </shape> 

@@ -21,6 +21,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -89,7 +93,7 @@ public class FlushActivity extends BaseActivity {
         mLoading = (ImageView) findViewById(R.id.welcome_03_layout);
         mImageView = (ImageView) findViewById(R.id.welcome_bg);
         bitmap = BitmapUtils.decodeThumbBitmapForRec(getResources(), R.drawable.flush_bg, LeYouMyApplication.screenWidth, LeYouMyApplication.screenHeight);
-        mImageView.setImageBitmap(bitmap);
+      mImageView.setImageBitmap(bitmap);
     }
 
     @Override
@@ -99,7 +103,7 @@ public class FlushActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        if (StringUtils.isEmpty(spf.getString("city", ""))) {
+     if (StringUtils.isEmpty(spf.getString("city", ""))) {
             LocationUtils.getLocation(FlushActivity.this, new MyLocationListener.OnLocationListener() {
                 @Override
                 public void onLocation(double x, double y, String addr) {
@@ -107,13 +111,13 @@ public class FlushActivity extends BaseActivity {
                 }
             });
         }
-        mHandler.post(task);
-        new Handler().postDelayed(new Runnable() {
+     mHandler.post(task);
+       new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 newFlush();
             }
-        }, 1000);
+        }, 100);
     }
 
 
@@ -134,7 +138,7 @@ public class FlushActivity extends BaseActivity {
             map.put("ip", LeYouMyApplication.ip);
             map.put("device", LeYouMyApplication.device);
             String cityCode = spf.getString("citycode", "");
-            if (StringUtils.isEmpty(cityCode)) {
+            if (!StringUtils.isEmpty(cityCode)) {
                 map.put("citycode", cityCode);
             } else {
                 map.put("city", spf.getString("city", ""));
@@ -178,7 +182,7 @@ public class FlushActivity extends BaseActivity {
             mHandler.removeCallbacks(task);
             mHandler = null;
         }
-        if (!bitmap.isRecycled()) {
+       if (!bitmap.isRecycled()) {
             bitmap.recycle();
             bitmap=null;
         }

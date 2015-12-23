@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.fjby.travel.leyou.wheel;
+package com.fjby.travel.leyou.xwheel;
 
 /**
  * Wheel scrolled listener interface.

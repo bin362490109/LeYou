@@ -134,7 +134,6 @@ public class BitmapUtils {
 		if (bitmapWidth > viewWidth || bitmapHeight > viewHeight) {
 			int widthScale = Math.round((float) bitmapWidth / (float) viewWidth);
 			int heightScale = Math.round((float) bitmapHeight / (float) viewHeight);
-
 			//为了保证图片不缩放变形，我们取宽高比例最小的那个
 			inSampleSize = widthScale > heightScale ? widthScale : heightScale;
 		}

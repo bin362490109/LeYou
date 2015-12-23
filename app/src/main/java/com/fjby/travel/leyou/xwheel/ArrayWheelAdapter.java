@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.fjby.travel.leyou.wheel;
+package com.fjby.travel.leyou.xwheel;
 
 /**
  * The simple Array wheel adapter

@@ -1,34 +1,15 @@
 package com.fjby.travel.leyou.utils;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.text.method.PasswordTransformationMethod;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.afollestad.materialdialogs.internal.MDTintHelper;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.LoginActivity;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
-import com.fjby.travel.leyou.http.HttpCallbackListener;
-import com.fjby.travel.leyou.wheel.NumericWheelAdapter;
-import com.fjby.travel.leyou.wheel.WheelView;
-
-import java.util.Calendar;
 
 /**
  * 

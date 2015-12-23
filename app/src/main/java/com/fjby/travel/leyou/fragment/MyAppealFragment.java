@@ -39,7 +39,7 @@ import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.StringUtils;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.utils.Tools;
-import com.fjby.travel.leyou.wheel.CustomMaterialDate;
+import com.fjby.travel.leyou.xwheel.CustomMaterialDate;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -49,7 +49,7 @@ public class MyAppealFragment extends Fragment {
     private Button buttonSubmit;
     private Spinner typeSpinner;  //诉求类型
     private Spinner categorySpinner;  //诉求类别
-    private EditText timeEdit;  //诉求时间
+    private EditText timeText;  //诉求时间
     private TextView addressText;  //诉求地点
     private TextView more_Text;  //诉求更多
     private ImageView sy_pic;
@@ -245,13 +245,13 @@ public class MyAppealFragment extends Fragment {
         custonMaterialDate=new CustomMaterialDate(getActivity(),new CustomMaterialDate.TextCallbackListener() {
             @Override
             public void getTime(String response) {
-                timeEdit.setText(response);
+                timeText.setText(response);
             }}
         );
         buttonSubmit = (Button) view.findViewById(R.id.sy_up1);
         typeSpinner = (Spinner) view.findViewById(R.id.myappeal_type_spinner);
         categorySpinner = (Spinner) view.findViewById(R.id.myappeal_category_spinner);
-        timeEdit = (EditText) view.findViewById(R.id.myappeal_time_edit);
+        timeText = (EditText) view.findViewById(R.id.myappeal_time_edit);
         addressText = (TextView) view.findViewById(R.id.myappeal_address_text);
         more_Text = (TextView) view.findViewById(R.id.myappeal_more_text);
         sy_pic = (ImageView) view.findViewById(R.id.sy_pic);
@@ -335,7 +335,7 @@ public class MyAppealFragment extends Fragment {
 
             }
         });
-       timeEdit.setOnClickListener(new View.OnClickListener() {
+       timeText.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                custonMaterialDate.show();
@@ -347,8 +347,8 @@ public class MyAppealFragment extends Fragment {
             public void onClick(View v) {
                 LogUtil.e("长度："+sy_pic2.getWidth()+"  ----  "+sy_pic2.getHeight());
                 LogUtil.v("crb", "点击UP");
-                if (StringUtils.isEmpty(timeEdit.getText().toString())) {
-                    timeEdit.requestFocus();
+                if (StringUtils.isEmpty(timeText.getText().toString())) {
+                    timeText.startAnimation(shake);
                     ToastUtils.show(getActivity(), "事件时间未填写", Toast.LENGTH_LONG);
                     return;
                 }
@@ -377,7 +377,7 @@ public class MyAppealFragment extends Fragment {
                     paramsMap.put("imei", LeYouMyApplication.imei);
 
                     paramsMap.put("addressk", addressText.getText().toString());
-                    paramsMap.put("timek", timeEdit.getText().toString().replaceAll("-",""));
+                    paramsMap.put("timek", timeText.getText().toString().replaceAll("-",""));
                     paramsMap.put("classk", categorySpinner.getSelectedItem().toString());
                     paramsMap.put("typek", typeSpinner.getSelectedItem().toString());
                     paramsMap.put("titelk", myAppealActivity.titile);
@@ -454,8 +454,8 @@ public class MyAppealFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 LogUtil.v("crb", "点击UP");
-                if (StringUtils.isEmpty(timeEdit.getText().toString())) {
-                    timeEdit.requestFocus();
+                if (StringUtils.isEmpty(timeText.getText().toString())) {
+                    timeText.requestFocus();
                     ToastUtils.show(getActivity(), "事件时间未填写", Toast.LENGTH_LONG);
                     return;
                 }
@@ -485,7 +485,7 @@ public class MyAppealFragment extends Fragment {
                         params.put("imei", LeYouMyApplication.imei);
 
                         params.put("addressk", addressText.getText().toString());
-                        params.put("timek", timeEdit.getText().toString());
+                        params.put("timek", timeText.getText().toString());
                         params.put("classk", categorySpinner.getSelectedItem().toString());
                         params.put("typek", typeSpinner.getSelectedItem().toString());
                         params.put("titelk", myAppealActivity.titile);

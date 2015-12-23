@@ -17,7 +17,7 @@
  *  limitations under the License.
  */
 
-package com.fjby.travel.leyou.wheel;
+package com.fjby.travel.leyou.xwheel;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -40,6 +40,7 @@ import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.utils.DensityUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,10 +60,10 @@ public class WheelView extends View {
 	private static final int MIN_DELTA_FOR_SCROLLING = 1;
 
 	/** Current value & label text color */
-	private static final int VALUE_TEXT_COLOR = 0xFF000000;
+	private static final int VALUE_TEXT_COLOR = 0xFF999999;
 
 	/** Items text color */
-	private static final int ITEMS_TEXT_COLOR = 0xFF000000;
+	private static final int ITEMS_TEXT_COLOR = 0xFF999999;
 
 	/** Top and bottom shadows colors */
 	private static final int[] SHADOWS_COLORS = new int[] { 0x00000000,0x00000000, 0x00000000 };
@@ -71,10 +72,11 @@ public class WheelView extends View {
 	private static final int ADDITIONAL_ITEM_HEIGHT = 15;
 
 	/** Text size */
-	private static final int TEXT_SIZE = 30;
+	private static  int TEXT_SIZE = 30;
 
 	/** Top and bottom items offset (to hide that) */
-	private static final int ITEM_OFFSET = TEXT_SIZE / 5;
+//	private static  int ITEM_OFFSET = TEXT_SIZE / 5;
+	private static  int ITEM_OFFSET = TEXT_SIZE / 5;
 
 	/** Additional width for items layout */
 	private static final int ADDITIONAL_ITEMS_SPACE = 10;
@@ -166,7 +168,8 @@ public class WheelView extends View {
 	private void initData(Context context) {
 		gestureDetector = new GestureDetector(context, gestureListener);
 		gestureDetector.setIsLongpressEnabled(false);
-		
+		TEXT_SIZE=DensityUtil.dip2px(context,15);
+		ITEM_OFFSET=TEXT_SIZE/5;
 		scroller = new Scroller(context);
 	}
 	

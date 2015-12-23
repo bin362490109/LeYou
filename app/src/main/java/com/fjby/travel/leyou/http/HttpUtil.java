@@ -25,10 +25,10 @@ import java.util.Map;
 
 public class HttpUtil {
     public final static String SRV_URL = "http://192.168.0.52:8080/tour/";
-     public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
+    public final static String API_URL = "http://192.168.0.10:7009/tour/tourApi";
     public final static String UPLOAD_URL = "http://192.168.0.10:7009/tour/UploadApi";
-    // public final static String API_URL = "http://192.168.0.54:8080/tour/tourApi";
-    // public final static String UPLOAD_URL = "http://192.168.0.54:8080/tour/UploadApi";
+    //   public final static String API_URL = "http://192.168.0.102:8080/tour/tourApi";
+    // public final static String UPLOAD_URL = "http://192.168.0.102:8080/tour/UploadApi";
 
 
 /*   public static void sendVolleyRequestToString(final HashMap<String, String> map, final HttpCallbackListener listener) {
@@ -144,7 +144,7 @@ public class HttpUtil {
     }
 
     public static void testImageLoad(Context ct, String url, ImageView imageView, int defaultImageResId, int errorImageResId) {
-        MyVolley.getImage(ct,url, imageView, defaultImageResId, errorImageResId);
+        MyVolley.getImage(ct,url, imageView, defaultImageResId, errorImageResId,imageView.getWidth(),imageView.getHeight());
     }
 
     public static void testImageLoad(Context ct,String url, ImageView imageView, int defaultImageResId, int errorImageResId, int maxWidth, int maxHeight) {

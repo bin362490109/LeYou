@@ -1,6 +1,7 @@
 package com.fjby.travel.leyou.activity;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
+import com.fjby.travel.leyou.utils.SystemBarTintManager;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.fjby.travel.leyou.widget.CleanableEditText;
 
@@ -27,6 +29,12 @@ public class NotesLocationActivity extends BaseActivity {
 
     @Override
     protected void setView() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //  setTranslucentStatus(true);
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintResource(R.color.other_bg);
+        }
         setContentView(R.layout.activity_notes_location);
     }
 

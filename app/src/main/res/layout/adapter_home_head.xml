@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  >
+
+    <com.fjby.travel.leyou.widget.AutoScrollViewPager
+        android:id="@+id/image_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+    <ImageButton
+        android:id="@+id/home_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/account_selector"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/home_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/nav_location_selector"
+        android:text="福州"
+        android:textColor="@color/textcolor_selector"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/images_dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image_viewpager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dip"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:contentDescription="@string/no_image"
+            android:padding="5dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/banner_selector" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:contentDescription="@string/no_image"
+            android:padding="5dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/banner_selector" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:contentDescription="@string/no_image"
+            android:padding="5dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/banner_selector" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/home_traveling"
+        android:layout_below="@+id/image_viewpager"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/label" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/home_traveling_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/home_doing_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/home_traveling_image"
+                android:lineSpacingMultiplier="2"
+                android:text="《厦门观音山-沙滩音乐节自驾一日游》阳光沙滩  音乐  门票预定"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+

@@ -1,6 +1,7 @@
 package com.fjby.travel.leyou.activity;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.pojo.ResChangeCity;
 import com.fjby.travel.leyou.pojo.ResGetCodeK;
 import com.fjby.travel.leyou.utils.LogUtil;
+import com.fjby.travel.leyou.utils.SystemBarTintManager;
 import com.fjby.travel.leyou.utils.ToastUtils;
 import com.google.gson.Gson;
 
@@ -33,6 +35,12 @@ public class HomeLocationActivity extends BaseActivity{
 
     @Override
     protected void setView() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+          //  setTranslucentStatus(true);
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintResource(R.color.other_bg);
+        }
         setContentView(R.layout.activity_home_location);
         initToolbar(true, true);
         setToolbarTitle(R.string.city_location);

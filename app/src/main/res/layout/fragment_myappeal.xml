@@ -1,13 +1,13 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/lightgray"
-    android:scrollbars="vertical">
-
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:padding="5dp"
             android:background="@drawable/shape_login_background"
             android:orientation="vertical">
             <LinearLayout
@@ -79,15 +79,15 @@
 
                 <EditText
                     android:id="@+id/myappeal_time_edit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_weight="1"
                     android:background="@null"
                     android:gravity="center_vertical"
-                    android:inputType="number"
-                    android:paddingLeft="5dp"
+                    android:padding="10dp"
+                    android:focusable="false"
                     android:singleLine="true"
                     android:textColor="#a0a0a0"
+                    android:drawableRight="@drawable/edit_selector"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -173,16 +173,13 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="5dp"
                 android:background="@color/image_bg">
 
                 <ImageView
                     android:id="@+id/sy_pic"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="5dp"
                     android:scaleType="centerInside" />
@@ -232,11 +229,9 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginBottom="3dp"
+                android:layout_height="150dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
                 android:background="@color/image_bg">
 
                 <ImageView
@@ -295,7 +290,6 @@
                 android:layout_margin="5dp"
                 android:background="@drawable/btn_submit_selector"
                 android:textColor="#ffffff" />
-
         </LinearLayout>
         <!--  结束输入框 -->
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

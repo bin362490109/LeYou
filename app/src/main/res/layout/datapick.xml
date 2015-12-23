@@ -5,30 +5,22 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <com.fjby.travel.leyou.wheel.WheelView
+    <com.fjby.travel.leyou.xwheel.WheelView
         android:id="@+id/year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginLeft="5dip"
-        android:layout_marginTop="10dip"
         android:layout_weight="1" />
 
-    <com.fjby.travel.leyou.wheel.WheelView
+    <com.fjby.travel.leyou.xwheel.WheelView
         android:id="@+id/month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
         android:layout_weight="1" />
 
-    <com.fjby.travel.leyou.wheel.WheelView
+    <com.fjby.travel.leyou.xwheel.WheelView
         android:id="@+id/day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginRight="5dip"
-        android:layout_marginTop="10dip"
         android:layout_weight="1" />
 
 </LinearLayout>

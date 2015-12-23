@@ -88,6 +88,11 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 
+
+	public static String formatDateTime(Date time) {
+		SimpleDateFormat mDateFormat = new SimpleDateFormat("MM-dd HH:mm");
+		return mDateFormat.format(time);
+	}
 	/**
 	 * 获取增加多少天的时间
 	 * 

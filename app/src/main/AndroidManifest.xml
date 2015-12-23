@@ -37,6 +37,8 @@
         <activity
             android:name="com.fjby.travel.leyou.activity.HomeLocationActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoWindowColor"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             />
         <activity
             android:name="com.fjby.travel.leyou.activity.LoginActivity"
@@ -58,12 +60,13 @@
         <activity
             android:name="com.fjby.travel.leyou.activity.InfoMessageActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoWindowColor"
             android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
         <activity
             android:name="com.fjby.travel.leyou.activity.NotesDetailReviewsActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+          >
         </activity>
         <activity
             android:name="com.fjby.travel.leyou.activity.NotesDetailActivity"
@@ -77,7 +80,9 @@
         </activity>
         <activity
             android:name="com.fjby.travel.leyou.activity.NotesLocationActivity"
+            android:theme="@style/AppThemeNoWindowColor"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             >
         </activity>
         <activity
@@ -103,6 +108,7 @@
         <activity
             android:name="com.fjby.travel.leyou.activity.MyRecordActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoWindowColor"
             android:windowSoftInputMode="adjustResize|stateHidden"
             >
         </activity>

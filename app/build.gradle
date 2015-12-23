@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 def AAVersion = rootProject.ext.AAversion as String
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as Integer
-    buildToolsVersion rootProject.ext.buildToolsVersion as String
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.fjby.travel.leyou"

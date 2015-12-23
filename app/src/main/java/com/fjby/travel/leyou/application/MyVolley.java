@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.fjby.travel.leyou.utils.LogUtil;
+import com.fjby.travel.leyou.volley.BitmapCache;
 import com.fjby.travel.leyou.volley.BitmapLruCache;
 
 
@@ -32,7 +33,8 @@ public class MyVolley {
 		int maxSize = manager.getMemoryClass() / RATE; // 比如 64M/8,单位为M
 		// BitmapLruCache自定义缓存class，android本身支持二级缓存，在BitmapLruCache封装一个软引用缓存
 		mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache(1024 * 1024 * maxSize));
-		LogUtil.v("MyVolley初始化完成"+maxSize);
+		//mImageLoader = new ImageLoader(mRequestQueue, new BitmapCache(context));
+		LogUtil.v("MyVolley初始化完成");
 	}
 
 	/**
@@ -80,8 +82,7 @@ public class MyVolley {
 
 	public static void getImage(Context ct,String requestUrl, ImageView imageView,int defaultImageResId, int errorImageResId, int maxWidth,int maxHeight) {
 		imageView.setTag(requestUrl);
-	 getImageLoader().get(ct,requestUrl, ImageLoader.getImageListener(imageView, defaultImageResId, errorImageResId), maxWidth, maxHeight);
-
+	    getImageLoader().get(ct,requestUrl, ImageLoader.getImageListener(imageView, defaultImageResId, errorImageResId), maxWidth, maxHeight);
 	}
 
 

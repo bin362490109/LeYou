@@ -195,7 +195,7 @@ public class LoginActivity extends BaseActivity {
             map.put("ip", LeYouMyApplication.ip);
             map.put("device", LeYouMyApplication.device);
             String cityCode = spf.getString("citycode", "");
-            if (StringUtils.isEmpty(cityCode)) {
+            if (!StringUtils.isEmpty(cityCode)) {
                 map.put("citycode", cityCode);
             } else {
                 map.put("city", spf.getString("city", ""));

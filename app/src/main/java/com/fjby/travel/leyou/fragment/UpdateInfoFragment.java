@@ -189,4 +189,12 @@ public class UpdateInfoFragment extends Fragment implements View.OnClickListener
             LeYouMyApplication.mUser = mResUser.getUser();
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mDialog!=null){
+            mDialog=null;
+        }
+    }
 }

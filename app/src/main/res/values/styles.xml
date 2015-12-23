@@ -9,13 +9,15 @@
         <!--正常状态下字体颜色和icon颜色-->
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:windowBackground">@color/other_bg</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
     </style>
 
-    <style name="AppTheme" parent="BaseAppTheme"/>
-
-    <style name="DrawerLayoutTheme" parent="AppTheme"></style>
+    <style name="AppTheme" parent="BaseAppTheme">
+        <item name="android:windowBackground">@color/other_bg</item>
+        </style>
+    <style name="AppThemeNoWindowColor" parent="BaseAppTheme">
+        <item name="android:windowBackground">@color/white</item>
+        </style>
 
 
     <style name="CardView.Content" parent="android:Widget">
@@ -89,4 +91,5 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 模糊 -->
     </style>
+
 </resources>

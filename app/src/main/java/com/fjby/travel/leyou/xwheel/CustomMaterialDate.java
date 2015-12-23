@@ -1,4 +1,4 @@
-package com.fjby.travel.leyou.wheel;
+package com.fjby.travel.leyou.xwheel;
 
 import android.app.Activity;
 import android.widget.Toast;
@@ -28,7 +28,7 @@ public class CustomMaterialDate {
         if (mActivity==null)
             mActivity=ctx;
         if(materialDialog==null)
-            materialDialog = new MaterialDialog.Builder(ctx).title("时间选择器") .customView(R.layout.datapick, true)
+            materialDialog = new MaterialDialog.Builder(ctx).title("时间选择器").customView(R.layout.datapick, true)
                     .positiveText("确定").negativeText("取消").theme(Theme.LIGHT)
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override
