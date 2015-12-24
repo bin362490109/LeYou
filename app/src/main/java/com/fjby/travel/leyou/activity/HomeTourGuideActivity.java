@@ -2,6 +2,7 @@ package com.fjby.travel.leyou.activity;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -76,7 +77,11 @@ public class HomeTourGuideActivity extends BaseActivity {
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mImageButton.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    mImageButton.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }else{
+                    mImageButton.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
                 x = mImageButton.getWidth();
                 y = mImageButton.getHeight();
             }

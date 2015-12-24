@@ -1,5 +1,6 @@
 package com.fjby.travel.leyou.activity;
 
+import android.os.Build;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -60,7 +61,11 @@ public class HomeTourActivity extends BaseActivity {
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mImageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        mImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }else{
+                        mImageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    }
                 location[0] = mImageView.getWidth();
                 location[1] = mImageView.getHeight();
             }

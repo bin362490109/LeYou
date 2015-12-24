@@ -1,5 +1,6 @@
 package com.fjby.travel.leyou.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -17,12 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.HomeLocationActivity;
 import com.fjby.travel.leyou.activity.HomeProduceActivity;
+import com.fjby.travel.leyou.activity.HomeTourActivity;
 import com.fjby.travel.leyou.activity.MainActivity;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
@@ -43,9 +44,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
-public class HomeFragment extends Fragment implements XListView.IXListViewListener {
+public class HomeFragment extends Fragment implements XListView.IXListViewListener,View.OnClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
@@ -120,6 +120,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         mListView.setAdapter(mAdapter);
 
         initLinsten();
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -130,9 +131,11 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                 ;
                 if (mSelectedRow >= 0) {
                     LogUtil.v("onItemClick=" + mAdapter.getItem(mSelectedRow).toString());
+                    IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
                 }
             }
         });
+
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -188,6 +191,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
 
         homeTravel = (LinearLayout) view.findViewById(R.id.home_traveling);
         homeTravelImage = (ImageView) view.findViewById(R.id.home_traveling_image);
+        homeTravel.setOnClickListener(this);
         homeTravel.setVisibility(View.GONE);
     }
 
@@ -201,6 +205,10 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         HttpUtil.testImageLoad(getActivity(), tourists[1].getImgUrl(), iamgeview2, R.drawable.no_image, R.drawable.no_image);
         HttpUtil.testImageLoad(getActivity(), tourists[2].getImgUrl(), iamgeview3, R.drawable.no_image, R.drawable.no_image);
         HttpUtil.testImageLoad(getActivity(), tourists[3].getImgUrl(), iamgeview4, R.drawable.no_image, R.drawable.no_image);
+        iamgeview1.setOnClickListener(this);
+        iamgeview2.setOnClickListener(this);
+        iamgeview3.setOnClickListener(this);
+        iamgeview4.setOnClickListener(this);
     }
 
     private void toggle() {
@@ -227,7 +235,11 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                 new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
-                        image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            image_viewpager.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }else{
+                            image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
                         initImageViews();
                         initDots();
 
@@ -486,5 +498,28 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                     ", like='" + like + '\'' +
                     '}';
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+      switch (v.getId()){
+          case R.id.home_hot_image1 :
+              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+              break;
+          case R.id.home_hot_image2 :
+              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+              break;
+          case R.id.home_hot_image3 :
+              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+              break;
+          case R.id.home_hot_image4 :
+              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+              break;
+          case R.id.home_traveling :
+              IntentUtils.getInstance().startActivity(getActivity(), HomeTourActivity.class);
+              break;
+          default: ;
+
+      }
     }
 }
