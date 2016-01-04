@@ -12,20 +12,17 @@ import com.fjby.travel.leyou.fragment.NewsFragment;
 import com.fjby.travel.leyou.fragment.NotesFragment;
 import com.fjby.travel.leyou.fragment.PageFragment;
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class MianFragmentPagerAdapter extends FragmentPagerAdapter {
     private Context context;
     public static  int[] pagetitl={R.string.main_home,R.string.main_info, R.string.main_notes,R.string.main_news};
-    public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
+    public MianFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
-
-
     @Override
     public int getCount() {
         return pagetitl.length;
     }
-
     @Override
     public Fragment getItem(int position) {
         switch (position){
@@ -41,7 +38,6 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
             default:
                 return PageFragment.newInstance(position);
         }
-
     }
 
 }

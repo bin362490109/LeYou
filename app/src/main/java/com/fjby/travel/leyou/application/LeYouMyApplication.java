@@ -7,7 +7,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
 import com.baidu.mapapi.SDKInitializer;
+import com.fjby.travel.baidulibrary.utils.LocationUtils;
 import com.fjby.travel.leyou.pojo.CityAd;
 import com.fjby.travel.leyou.pojo.Tourist;
 import com.fjby.travel.leyou.pojo.User;
@@ -26,6 +29,7 @@ public class LeYouMyApplication extends Application {
     /**
      * The activity list.
      */
+    public static LocationUtils mlocationUtil;
     private static Stack<Activity> activitiesStack = new Stack<Activity>();
     public static int versionCode;
     public static String versionName;
@@ -45,7 +49,6 @@ public class LeYouMyApplication extends Application {
         mCashHhid = "-1";
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
-       MyVolley.init(getApplicationContext());
         // 获取包实例
         PackageManager pm = this.getPackageManager();
         PackageInfo pi = null;
@@ -68,7 +71,8 @@ public class LeYouMyApplication extends Application {
             LogUtil.d("[pi]=" + pi + "   [versioncode]=" + LeYouMyApplication.versionCode + "    [versionName]=" + LeYouMyApplication.versionName + "   [imei]=" + imei + "   [device]=" + device + "   [screenWidth]=" + screenWidth+ "[ip]="+ip);
             LogUtil.e("-------myapplication---------onCreate----------------");
             // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
-           SDKInitializer.initialize(this);
+            MyVolley.init(getApplicationContext());
+            SDKInitializer.initialize(getApplicationContext());
         } catch (PackageManager.NameNotFoundException e) {
             LogUtil.e(e.getMessage());
             ToastUtils.showLong(this, e.getMessage());
@@ -138,7 +142,6 @@ public class LeYouMyApplication extends Application {
         activitiesStack = null;
         mUser = null;
     }
-
 
 
 }

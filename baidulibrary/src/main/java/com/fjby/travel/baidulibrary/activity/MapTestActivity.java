@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -46,6 +45,7 @@ import com.baidu.mapapi.search.share.ShareUrlResult;
 import com.baidu.mapapi.search.share.ShareUrlSearch;
 import com.fjby.travel.baidulibrary.R;
 import com.fjby.travel.baidulibrary.listener.MyOrientationListener;
+import com.fjby.travel.baidulibrary.utils.LocationUtils;
 
 /**
  * 此demo用来展示如何结合定位SDK实现定位，并使用MyLocationOverlay绘制定位位置 同时展示如何使用自定义图标绘制并点击时弹出泡泡
@@ -67,6 +67,8 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
     private BaiduMap mBaiduMap;
     // 定位相关
     private LocationClient mLocClient;
+    private BDLocation mLocation;
+    private LocationUtils mLocClientUtils;
 
     // UI相关 可以隐藏指南针
     private UiSettings mUiSettings;
@@ -87,19 +89,21 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 
         initDatas();
         initViews();
-
         // 定位初始化
-        mLocClient = new LocationClient(this);
+        mLocClientUtils=new LocationUtils(MapTestActivity.this);
+        mLocClientUtils.registerLocation(new MyBDLocationListenner());
+        mLocClientUtils.mRequestLocation();
+     /*   mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(new MyBDLocationListenner());
-
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
         option.setIsNeedLocationDescribe(true);// 可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
-        option.setIsNeedLocationPoiList(true);//
+       // option.setIsNeedLocationPoiList(true);//
+        option.setIsNeedAddress(true);
         // option.setScanSpan(3000);
         mLocClient.setLocOption(option);
-        mLocClient.start();
+        mLocClient.start();*/
     }
 
     private void initDatas() {
@@ -188,7 +192,7 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
                 // TODO Auto-generated method stub
                 if (mCurrentMode == LocationMode.COMPASS) {
                     sensorValue = x;
-                    mLocClient.requestLocation();
+                    setMyLocationData();
                 } else {
                     sensorValue = 100.0f;
                 }
@@ -205,8 +209,8 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
             // map view 销毁后不在处理新接收的位置
             if (location == null || mMapView == null)
                 return;
-
-            setMyLocationData(location);
+            mLocation=location;
+            setMyLocationData();
             if (isFirstLoc) {
                 isFirstLoc = false;
                 LatLng currenLatlng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -270,12 +274,12 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
 
     }
 
-    private void setMyLocationData(BDLocation location) {
+    private void setMyLocationData() {
         MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(location.getRadius())
+                .accuracy(mLocation.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(sensorValue).latitude(location.getLatitude())
-                .longitude(location.getLongitude()).build();
+                .direction(sensorValue).latitude(mLocation.getLatitude())
+                .longitude(mLocation.getLongitude()).build();
         mBaiduMap.setMyLocationData(locData);
     }
 
@@ -321,7 +325,7 @@ public class MapTestActivity extends Activity implements OnGetGeoCoderResultList
     @Override
     protected void onDestroy() {
         // 退出时销毁定位
-        mLocClient.stop();
+     //   mLocClient.stop();
         // 关闭定位图层
         mBaiduMap.setMyLocationEnabled(false);
         mSearch.destroy();

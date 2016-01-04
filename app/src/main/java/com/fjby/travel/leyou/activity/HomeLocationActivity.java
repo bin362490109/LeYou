@@ -43,6 +43,7 @@ public class HomeLocationActivity extends BaseActivity{
         }
         setContentView(R.layout.activity_home_location);
         initToolbar(true, true);
+        setToolbarBackground(R.color.other_bg);
         setToolbarTitle(R.string.city_location);
         setToolbarNavigationIcon(R.drawable.nav_cancel_selector);
     }

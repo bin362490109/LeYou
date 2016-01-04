@@ -1,6 +1,5 @@
 package com.fjby.travel.leyou.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * Created by Monkey on 2015/6/29.
  */
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyRecyclerViewHolder> {
+public class InfoRecyclerViewAdapter extends RecyclerView.Adapter<InfoRecyclerViewAdapter.MyRecyclerViewHolder> {
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -28,15 +27,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.mOnItemClickListener = listener;
     }
 
-    private Context mContext;
     private int [] mImages={R.drawable.groupchat,R.drawable.guidechat,R.drawable.resorts, R.drawable.supervision};
     private List<String[]> mDatas;
-    private LayoutInflater mLayoutInflater;
 
-
-    public MyRecyclerViewAdapter(Context mContext,List<String[]> dates) {
-        this.mContext = mContext;
-        mLayoutInflater = LayoutInflater.from(mContext);
+    public InfoRecyclerViewAdapter(List<String[]> dates) {
         this.mDatas=dates;
     }
 
@@ -50,8 +44,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
      * 创建ViewHolder
      */
     @Override
-    public MyRecyclerViewAdapter.MyRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View mView = mLayoutInflater.inflate(R.layout.adapter_infos, parent, false);
+    public InfoRecyclerViewAdapter.MyRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View mView =  LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_infos, parent, false);
         MyRecyclerViewHolder mViewHolder = new MyRecyclerViewHolder(mView);
         return mViewHolder;
     }

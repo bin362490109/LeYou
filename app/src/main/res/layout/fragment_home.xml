@@ -4,15 +4,14 @@
     android:background="@color/white"
     >
 
-    <com.fjby.travel.leyou.xlistview.XListView
+   <com.fjby.travel.leyou.xlistview.XListView
         android:id="@+id/xListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
         android:listSelector="@android:color/transparent"
-        android:dividerHeight="0px"
+        android:divider="@null"
         android:fadingEdge="none"
         android:cacheColorHint="@android:color/transparent">
     </com.fjby.travel.leyou.xlistview.XListView>
-
 </RelativeLayout>

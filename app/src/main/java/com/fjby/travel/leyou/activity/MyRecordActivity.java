@@ -23,6 +23,7 @@ public class MyRecordActivity extends BaseActivity {
         }
         setContentView(R.layout.activity_record);
         initToolbar(true, true);
+        setToolbarBackground(R.color.other_bg);
     }
 
     @Override

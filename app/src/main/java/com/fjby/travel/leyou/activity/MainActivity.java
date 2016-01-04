@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
-import com.fjby.travel.leyou.adapter.SampleFragmentPagerAdapter;
+import com.fjby.travel.leyou.adapter.MianFragmentPagerAdapter;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpUtil;
 import com.fjby.travel.leyou.utils.DialogUtils;
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
 
         // 设置ViewPager最大缓存的页面个数
         mViewPager.setOffscreenPageLimit(3);
-        SampleFragmentPagerAdapter pagerAdapter = new SampleFragmentPagerAdapter(getSupportFragmentManager(), this);
+        MianFragmentPagerAdapter pagerAdapter = new MianFragmentPagerAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(myOnPageChangeListener);
         initCustomToobar();

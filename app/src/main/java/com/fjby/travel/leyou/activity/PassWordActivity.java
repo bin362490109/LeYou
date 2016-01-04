@@ -24,11 +24,12 @@ public class PassWordActivity extends BaseActivity {
     protected void setView() {
         type=   getIntent().getExtras().getInt(PassType,2);
         setContentView(R.layout.activity_fragment);
+        initToolbar(true, true);
         if (type%2==0) {
             CoordinatorLayout coordinatorLayout=(CoordinatorLayout)findViewById(R.id.fragment_coord);
             coordinatorLayout.setBackgroundResource(R.drawable.login_bg);
         }
-        initToolbar(true, true);
+
     }
 
     @Override

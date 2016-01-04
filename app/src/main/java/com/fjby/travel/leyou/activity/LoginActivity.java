@@ -7,8 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.fjby.travel.baidulibrary.listener.MyLocationListener;
-import com.fjby.travel.baidulibrary.utils.LocationUtils;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
@@ -123,14 +123,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-        if (StringUtils.isEmpty(spf.getString("city", ""))) {
-            LocationUtils.getLocation(LoginActivity.this, new MyLocationListener.OnLocationListener() {
-                @Override
-                public void onLocation(double x, double y, String addr) {
-                    spf.setString("city", addr);
-                }
-            });
-        }
+
         //TODO 添加这一步才可以返回界面,而且必须自己的appid
         AccountUtils.addQZoneQQPlatform(LoginActivity.this);
         AccountUtils.addSinaPlatform();

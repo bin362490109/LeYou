@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.activity.InfoMessageActivity;
 import com.fjby.travel.leyou.activity.InfoPushActivity;
-import com.fjby.travel.leyou.adapter.MyRecyclerViewAdapter;
+import com.fjby.travel.leyou.adapter.InfoRecyclerViewAdapter;
 import com.fjby.travel.leyou.utils.IntentUtils;
 import com.fjby.travel.leyou.utils.SnackbarUtil;
 import com.fjby.travel.leyou.widget.DividerItemDecoration;
@@ -39,7 +39,7 @@ public class InfoFragment extends Fragment {
     private String[] mTitle={"AA线路旅游团","导游私聊","旅游景区","旅游监管机构"};
     private String[] mBody={"AA线路旅游团群聊","聊天内容显示","旅游景区推送消息，旅游景区推送消息，旅游景区推送消息","旅游监管机构，旅游监管机构"};
     private List<String []> mDatasets;
-    private MyRecyclerViewAdapter mAdapter;
+    private InfoRecyclerViewAdapter mAdapter;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -89,10 +89,10 @@ public class InfoFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter=new MyRecyclerViewAdapter(getActivity(),mDatasets);
+        mAdapter=new InfoRecyclerViewAdapter(mDatasets);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mAdapter.setOnItemClickListener(new MyRecyclerViewAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new InfoRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 int i = Integer.parseInt(mDatasets.get(position)[3]);

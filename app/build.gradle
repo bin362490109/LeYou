@@ -15,7 +15,7 @@ android {
     signingConfigs {
         releaseConfig {
             keyAlias 'leyou'
-           // storeFile file(System.getProperty("user.home")+"\\.android/leyou.jks")
+            // storeFile file(System.getProperty("user.home")+"\\.android/leyou.jks")
             storeFile file("leyou.jks")
             keyPassword '654321'
             storePassword '123456'
@@ -25,11 +25,13 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.releaseConfig
+            debuggable true
         }
         release {
             signingConfig signingConfigs.releaseConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //  proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     repositories {
@@ -48,8 +50,7 @@ dependencies {
     compile "com.android.support:cardview-v7:$AAVersion"
     compile "com.android.support:recyclerview-v7:$AAVersion"
     compile(name: 'material-dialogs-0.7.6.0', ext: 'aar')
-    // compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
+    compile files('libs/volleyball_dev.jar')
     compile project(':baidulibrary')
     compile project(':umengsocial')
-    compile files('libs/volleyball_dev.jar')
 }

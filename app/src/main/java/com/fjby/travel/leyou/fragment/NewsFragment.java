@@ -88,7 +88,6 @@ public class NewsFragment extends Fragment {
         GrapeGridview gridView = (GrapeGridview) v.findViewById(R.id.gridView);
         gridView.setAdapter(new ImageAdapter(getActivity()));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {

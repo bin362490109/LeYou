@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fjby.travel.leyou.R;
@@ -45,7 +46,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements XListView.IXListViewListener,View.OnClickListener {
+public class HomeFragment extends Fragment implements XListView.IXListViewListener, View.OnClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
     private ImageView iamgeview2;
     private ImageView iamgeview3;
     private ImageView iamgeview4;
-    private LinearLayout homeTravel;
+    private RelativeLayout homeTravel;
     private ImageView homeTravelImage;
     private XListView mListView;
     private ImageButton mHomeAccoutIB;
@@ -102,33 +103,100 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
     }
 
     @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         mDrawerLayout = ((MainActivity) getActivity()).mDrawerLayout;
         mHandler = new Handler();
         mListView = (XListView) view.findViewById(R.id.xListView);
         mListView.setPullLoadEnable(true);
-        mAdapter = new CustomAdapter(mMessageItems);
+        mAdapter = new HomeListViewAdapter(mMessageItems);
 
         View head = inflater.inflate(R.layout.adapter_home_head, null);
         iniHeadView(head);
         mListView.addHeaderView(head);
-
-        View hot = inflater.inflate(R.layout.adapter_home_hot, null);
-        iniHotView(hot);
-        mListView.addHeaderView(hot);
+        //显示头部出现分割线
         mListView.setAdapter(mAdapter);
-
         initLinsten();
+        initTravel();
+        //	mListView.setPullRefreshEnable(false);  //默认为真
+        return view;
+    }
 
+    private void iniHeadView(View view) {
+        image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
+        images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
+        mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
+        mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
+
+        homeTravel = (RelativeLayout) view.findViewById(R.id.home_traveling);
+        homeTravelImage = (ImageView) view.findViewById(R.id.home_traveling_image);
+        homeTravel.setVisibility(View.GONE);
+
+        iamgeview1 = (ImageView) view.findViewById(R.id.home_hot_image1);
+        iamgeview2 = (ImageView) view.findViewById(R.id.home_hot_image2);
+        iamgeview3 = (ImageView) view.findViewById(R.id.home_hot_image3);
+        iamgeview4 = (ImageView) view.findViewById(R.id.home_hot_image4);
+        HttpUtil.testImageLoad(getActivity(), tourists[0].getImgUrl(), iamgeview1, R.drawable.no_image, R.drawable.no_image);
+        HttpUtil.testImageLoad(getActivity(), tourists[1].getImgUrl(), iamgeview2, R.drawable.no_image, R.drawable.no_image);
+        HttpUtil.testImageLoad(getActivity(), tourists[2].getImgUrl(), iamgeview3, R.drawable.no_image, R.drawable.no_image);
+        HttpUtil.testImageLoad(getActivity(), tourists[3].getImgUrl(), iamgeview4, R.drawable.no_image, R.drawable.no_image);
+    }
+
+    private void initTravel() {
+        //判断旅行进行时是否需要存在
+        if (LeYouMyApplication.mUser != null) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("sts", "0");
+            map.put("req", "GetTourGroupData");
+            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
+                @Override
+                public void onFinish(String response) {
+                    Gson gson = new Gson();
+                    resTourGroupData = gson.fromJson(response, ResTourGroupData.class);
+                    if (resTourGroupData.getStateCode() == 600) {
+                        LogUtil.e("--------------------" + resTourGroupData.getTourGroup().toString());
+                        if (resTourGroupData.getTourGroup().getGuid() != null) {
+                            homeTravel.setVisibility(View.VISIBLE);
+                            HttpUtil.testImageLoad(getActivity(), "", homeTravelImage, R.drawable.no_image, R.drawable.no_image);
+                        }
+                    } else {
+                        ToastUtils.showLong(getActivity(), resTourGroupData.getStateMsg());
+                    }
+                }
+
+                @Override
+                public void onError(Exception e) {
+                }
+            });
+        }
+    }
+
+    private void initLinsten() {
+        //  initImageViews();
+        // 5秒滚动变换一次
+        image_viewpager.startAutoScroll(5000);
+        image_viewpager.setInterval(5000);
+        image_viewpager.setScrollDurationFactor(5);
+        image_viewpager.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            image_viewpager.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        } else {
+                            image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
+                        initImageViews();
+                        initDots();
+
+                    }
+                });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 //这个还有下面的对话框position都要减去1  为咋的   我怀疑是上面的刷新按钮惹得祸
                 mSelectedRow = position - mListView.getHeaderViewsCount();
-                ;
                 if (mSelectedRow >= 0) {
                     LogUtil.v("onItemClick=" + mAdapter.getItem(mSelectedRow).toString());
                     IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
@@ -146,70 +214,22 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                     mAdapter.notifyDataSetChanged();
                 }
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
             }
         });
-        //	mListView.setPullRefreshEnable(false);  //默认为真
         mListView.setXListViewListener(this);
-
-        //判断旅行进行时是否需要存在
-        if (LeYouMyApplication.mUser != null) {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("sts", "0");
-            map.put("req", "GetTourGroupData");
-            HttpUtil.sendVolleyRequesttoParam(map, new HttpCallbackListener() {
-                @Override
-                public void onFinish(String response) {
-                    Gson gson = new Gson();
-                    resTourGroupData = gson.fromJson(response, ResTourGroupData.class);
-                    if (resTourGroupData.getStateCode() == 600) {
-                        LogUtil.e("--------------------" +resTourGroupData.getTourGroup().toString());
-                        if (resTourGroupData.getTourGroup().getGuid()!=null) {
-                            homeTravel.setVisibility(View.VISIBLE);
-                            HttpUtil.testImageLoad(getActivity(), "", homeTravelImage, R.drawable.no_image, R.drawable.no_image);
-                        }
-                    } else {
-                        ToastUtils.showLong(getActivity(), resTourGroupData.getStateMsg());
-                    }
-                }
-                @Override
-                public void onError(Exception e) {
-                }
-            });
-        }
-
-        return view;
-    }
-
-    private void iniHeadView(View view) {
-        image_viewpager = (AutoScrollViewPager) view.findViewById(R.id.image_viewpager);
-        images_dots = (LinearLayout) view.findViewById(R.id.images_dots);
-        mHomeAccoutIB = (ImageButton) view.findViewById(R.id.home_account);
-        mHomeLocationTV = (TextView) view.findViewById(R.id.home_location);
-
-        homeTravel = (LinearLayout) view.findViewById(R.id.home_traveling);
-        homeTravelImage = (ImageView) view.findViewById(R.id.home_traveling_image);
         homeTravel.setOnClickListener(this);
-        homeTravel.setVisibility(View.GONE);
-    }
-
-
-    private void iniHotView(View view) {
-        iamgeview1 = (ImageView) view.findViewById(R.id.home_hot_image1);
-        iamgeview2 = (ImageView) view.findViewById(R.id.home_hot_image2);
-        iamgeview3 = (ImageView) view.findViewById(R.id.home_hot_image3);
-        iamgeview4 = (ImageView) view.findViewById(R.id.home_hot_image4);
-        HttpUtil.testImageLoad(getActivity(), tourists[0].getImgUrl(), iamgeview1, R.drawable.no_image, R.drawable.no_image);
-        HttpUtil.testImageLoad(getActivity(), tourists[1].getImgUrl(), iamgeview2, R.drawable.no_image, R.drawable.no_image);
-        HttpUtil.testImageLoad(getActivity(), tourists[2].getImgUrl(), iamgeview3, R.drawable.no_image, R.drawable.no_image);
-        HttpUtil.testImageLoad(getActivity(), tourists[3].getImgUrl(), iamgeview4, R.drawable.no_image, R.drawable.no_image);
+        mHomeAccoutIB.setOnClickListener(this);
         iamgeview1.setOnClickListener(this);
         iamgeview2.setOnClickListener(this);
         iamgeview3.setOnClickListener(this);
         iamgeview4.setOnClickListener(this);
+        mHomeLocationTV.setOnClickListener(this);
     }
+
 
     private void toggle() {
         if (mDrawerLayout.isDrawerVisible(GravityCompat.START)) {
@@ -217,41 +237,6 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         } else {
             mDrawerLayout.openDrawer(GravityCompat.START);
         }
-    }
-
-    private void initLinsten() {
-        mHomeAccoutIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggle();
-            }
-        });
-        //  initImageViews();
-        // 5秒滚动变换一次
-        image_viewpager.startAutoScroll(5000);
-        image_viewpager.setInterval(5000);
-        image_viewpager.setScrollDurationFactor(5);
-        image_viewpager.getViewTreeObserver().addOnGlobalLayoutListener(
-                new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            image_viewpager.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        }else{
-                            image_viewpager.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                        }
-                        initImageViews();
-                        initDots();
-
-                    }
-                });
-
-        mHomeLocationTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IntentUtils.getInstance().startActivity(getActivity(), HomeLocationActivity.class);
-            }
-        });
     }
 
     /**
@@ -293,10 +278,14 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         image_viewpager.setOffscreenPageLimit(3);
 
         image_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
             @Override
-            public void onPageSelected(int arg0) {
-                doCurrentDotChange(arg0);
+            public void onPageSelected(int position) {
+                if (position < 0 || position == mListImageViews.size() || currentIndex == position) {
+                    return;
+                }
+                imageDots[position].setSelected(true);
+                imageDots[currentIndex].setSelected(false);
+                currentIndex = position;
             }
 
             @Override
@@ -307,15 +296,6 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-    }
-
-    private void doCurrentDotChange(int position) {
-        if (position < 0 || position == mListImageViews.size() || currentIndex == position) {
-            return;
-        }
-        imageDots[position].setSelected(true);
-        imageDots[currentIndex].setSelected(false);
-        currentIndex = position;
     }
 
     private class ImageViewPagerAdapter extends PagerAdapter {
@@ -350,6 +330,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         }
     }
 
+    //初始化热门推荐数据（包括下面listview）
     private void geneCityAd() {
         int num = LeYouMyApplication.cityAdList.size();
         if (num >= 3) {
@@ -404,32 +385,8 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         }
     }
 
-    @Override
-    public void onRefresh() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mMessageItems.clear();
-                geneItems();
-                onLoad();
-            }
-        }, 2000);
-    }
-
-    @Override
-    public void onLoadMore() {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                geneItems();
-                onLoad();
-            }
-        }, 2000);
-    }
-
-
-    private class CustomAdapter extends ArrayAdapter<MessageItem> {
-        public CustomAdapter(List<MessageItem> mMessageItems) {
+    private class HomeListViewAdapter extends ArrayAdapter<MessageItem> {
+        public HomeListViewAdapter(List<MessageItem> mMessageItems) {
             super(getActivity(), 0, mMessageItems);
             // super 用0则是自定义
         }
@@ -470,15 +427,13 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
             return convertView;
         }
 
-
-    }
-
-    static class ViewHolder {
-        public ImageView icon;
-        public TextView title;
-        public TextView account;
-        public TextView reviews;
-        public TextView like;
+        class ViewHolder {
+            public ImageView icon;
+            public TextView title;
+            public TextView account;
+            public TextView reviews;
+            public TextView like;
+        }
     }
 
     public class MessageItem {
@@ -487,39 +442,57 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
         public String account;
         public String reviews;
         public String like;
-
-        @Override
-        public String toString() {
-            return "MessageItem{" +
-                    "iconRes=" + iconRes +
-                    ", title='" + title + '\'' +
-                    ", account='" + account + '\'' +
-                    ", reviews='" + reviews + '\'' +
-                    ", like='" + like + '\'' +
-                    '}';
-        }
     }
 
     @Override
     public void onClick(View v) {
-      switch (v.getId()){
-          case R.id.home_hot_image1 :
-              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
-              break;
-          case R.id.home_hot_image2 :
-              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
-              break;
-          case R.id.home_hot_image3 :
-              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
-              break;
-          case R.id.home_hot_image4 :
-              IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
-              break;
-          case R.id.home_traveling :
-              IntentUtils.getInstance().startActivity(getActivity(), HomeTourActivity.class);
-              break;
-          default: ;
+        switch (v.getId()) {
+            case R.id.home_hot_image1:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+                break;
+            case R.id.home_hot_image2:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+                break;
+            case R.id.home_hot_image3:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+                break;
+            case R.id.home_hot_image4:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeProduceActivity.class);
+                break;
+            case R.id.home_traveling:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeTourActivity.class);
+                break;
+            case R.id.home_location:
+                IntentUtils.getInstance().startActivity(getActivity(), HomeLocationActivity.class);
+                break;
+            case R.id.home_account:
+                toggle();
+                break;
+            default:
+                ;
+        }
+    }
 
-      }
+    @Override
+    public void onRefresh() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mMessageItems.clear();
+                geneItems();
+                onLoad();
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void onLoadMore() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                geneItems();
+                onLoad();
+            }
+        }, 2000);
     }
 }

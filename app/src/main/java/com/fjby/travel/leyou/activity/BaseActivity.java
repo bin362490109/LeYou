@@ -31,10 +31,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.fjby.travel.baidulibrary.utils.LocationUtils;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.utils.LogUtil;
 import com.fjby.travel.leyou.utils.SharePreferenceUtil;
+import com.fjby.travel.leyou.utils.StringUtils;
+
+import java.util.HashMap;
 
 
 /**
@@ -49,13 +55,30 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected SharePreferenceUtil spf;
     protected Toolbar mToolbar;
     private TextView mToolbarTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LeYouMyApplication.addActivity(this);
         LogUtil.e("base activity=====" + LeYouMyApplication.Size());
         spf = SharePreferenceUtil.getInstance(getApplicationContext());
+       if(LeYouMyApplication.mlocationUtil==null){
+           LeYouMyApplication.mlocationUtil=new LocationUtils(getApplicationContext());
+           LeYouMyApplication.mlocationUtil.registerLocation(new BDLocationListener() {
+               @Override
+               public void onReceiveLocation(BDLocation bdLocation) {
+                   if (StringUtils.isEmpty(spf.getString("city", ""))) {
+                       LogUtil.e("StringUtils   StringUtils    StringUtils            " + bdLocation.getCity());
+                       spf.setString("city",bdLocation.getCity());
+                   }
+                   HashMap<String, String> map = new HashMap<String, String>();
+                   map.put("req", "UploadTrack");
+                   map.put("usertype", "1");
+                   map.put("system", "1");
+                   LogUtil.e("BaseActivity   BaseActivity    BaseActivity        " + bdLocation.getCity());
+               }
+           });
+           LogUtil.e("LeYouMyApplication.mlocationUtil==null   LeYouMyApplication.mlocationUtil==null");
+       }
         setView();
         initView();
         setListener();
@@ -89,6 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void setToolbarTitle(int resid) {
         mToolbarTitle.setText(resid);
+    }
+    public void setToolbarBackground(int resid) {
+        mToolbar.setBackgroundResource(resid);
     }
 
 

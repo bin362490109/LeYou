@@ -23,7 +23,8 @@
 -verbose
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
- -dontshrink
+
+-dontshrink
  -dontoptimize
  -dontwarn com.google.android.maps.**
  -dontwarn android.webkit.WebView
@@ -63,9 +64,6 @@
      public static final int *;
  }
 
--dontwarn com.fjby.travel.baidulibrary.**
--keep com.fjby.travel.baidulibrary.**
-
--keep class com.baidu.** { *; }
--keep class vi.com.gdi.bgl.android.**{*;}
-
+ -keep public class [com.fjby.travel.baidulibrary].R$*{
+     public static final int *;
+ }

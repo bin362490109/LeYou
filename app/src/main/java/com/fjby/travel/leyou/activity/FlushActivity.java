@@ -21,15 +21,11 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.fjby.travel.baidulibrary.listener.MyLocationListener;
-import com.fjby.travel.baidulibrary.utils.LocationUtils;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
 import com.fjby.travel.leyou.R;
 import com.fjby.travel.leyou.application.LeYouMyApplication;
 import com.fjby.travel.leyou.http.HttpCallbackListener;
@@ -103,14 +99,6 @@ public class FlushActivity extends BaseActivity {
 
     @Override
     protected void doOther() {
-     if (StringUtils.isEmpty(spf.getString("city", ""))) {
-            LocationUtils.getLocation(FlushActivity.this, new MyLocationListener.OnLocationListener() {
-                @Override
-                public void onLocation(double x, double y, String addr) {
-                    spf.setString("city", addr);
-                }
-            });
-        }
      mHandler.post(task);
        new Handler().postDelayed(new Runnable() {
             @Override
